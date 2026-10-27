@@ -1,0 +1,239 @@
+---
+// Events — "the screening ledger". A left margin column carries the page title, a sticky
+// month marker per group and the "Already screened" marker; the frames run down the right.
+import Base from '../../layouts/Base.astro';
+import Frame from '../../components/Frame.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection } from 'astro:content';
+import { fmtMonth, fmtWeekday, fmtDate, isUpcoming, edgeCode } from '../../lib/format';
+import { withBase } from '../../lib/url';
+import { kindLabel, timeRange, countLabel } from '../../components/events/kinds';
+
+const all = await getCollection('events');
+type Entry = (typeof all)[number];
+const byDate = (a: Entry, b: Entry) => a.data.date.getTime() - b.data.date.getTime();
+const upcoming = all.filter((e) => isUpcoming(e.data.date)).sort(byDate);
+const past = all.filter((e) => !isUpcoming(e.data.date)).sort((a, b) => byDate(b, a));
+const nextId = upcoming[0]?.id;
+
+interface MonthGroup { key: string; month: string; year?: string; events: Entry[] }
+const months: MonthGroup[] = [];
+// Real-dated events group by month. Placeholder entries have no date yet (their file date only
+// orders them), so they share one undated group after the dated months.
+for (const e of upcoming.filter((e) => !e.data.placeholder)) {
+  const key = fmtMonth(e.data.date); // "November 2026"
+  const year = String(e.data.date.getUTCFullYear());
+  let g = months.find((m) => m.key === key);
+  if (!g) months.push((g = { key, month: key.replace(year, '').trim(), year, events: [] }));
+  g.events.push(e);
+}
+const unscheduled = upcoming.filter((e) => e.data.placeholder);
+if (unscheduled.length > 0) months.push({ key: 'to-be-scheduled', month: 'To be scheduled', events: unscheduled });
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const dayOf = (d: Date) => String(d.getUTCDate());
+---
+<Base title="Events" description="Live recordings, talks, workshops and mixers from What Brings You In, in Montréal.">
+  <div class="events">
+    <section class="ledger-row events__head container" aria-labelledby="events-h">
+      <h1 id="events-h" class="display display--md">Events</h1>
+      <p class="lede">Live recordings, talks, workshops and mixers in Montréal, posted here as they are scheduled.</p>
+    </section>
+
+    <section class="ledger container" aria-label="Upcoming events">
+      {months.length === 0 ? (
+        <div class="ledger-row">
+          <div class="ledger__marker" data-reveal>
+            <h2 class="display display--sm">Upcoming</h2>
+            <p class="edge-code">Nothing yet</p>
+          </div>
+          <div class="ledger__empty" data-reveal>
+            <Frame as="div" state="latent" leak code={edgeCode('Upcoming', 'Nothing scheduled yet')}>
+              <p class="title title--lg">No screenings scheduled yet — the first one will be posted here.</p>
+              <div class="actions">
+                <Button variant="ghost" href="/get-involved#hello" iconAfter="arrow-right">Get notified</Button>
+              </div>
+            </Frame>
+          </div>
+        </div>
+      ) : (
+        months.map((m) => (
+          <div class="ledger-row month">
+            <div class="ledger__marker ledger__marker--sticky" data-reveal>
+              <h2 class="display display--sm" id={`month-${slug(m.key)}`}>{m.month}</h2>
+              {m.year && <p class="edge-code">{edgeCode(m.year, countLabel(m.events.length))}</p>}
+            </div>
+            <ul class="month__frames" role="list" aria-labelledby={`month-${slug(m.key)}`} data-reveal-stagger="90">
+              {m.events.map((e) => {
+                const d = e.data;
+                const ph = d.placeholder;
+                const isNext = e.id === nextId;
+                // A placeholder's date and time are not facts yet: no weekday, no clock, "TBC" for the day.
+                const when = ph ? undefined : timeRange(d.time, d.endTime);
+                return (
+                  <li class:list={['ledger__item', { 'is-next': isNext }]}>
+                    <Frame
+                      as="article"
+                      class={isNext ? 'is-lit' : ''}
+                      state={ph ? 'latent' : 'projected'}
+                      leak
+                      numeral={ph ? 'TBC' : dayOf(d.date)}
+                      numeralLabel={ph ? 'Date' : 'Day'}
+                      code={edgeCode(isNext && 'Next screening', !ph && fmtWeekday(d.date), kindLabel(d.kind), when, ph && 'Date to confirm')}
+                      aria-labelledby={`ev-${e.id}`}
+                      data-reveal
+                    >
+                      {d.image && <img slot="media" src={withBase(d.image)} alt="" loading="lazy" decoding="async" />}
+                      <h3
+                        id={`ev-${e.id}`}
+                        class="title title--lg"
+                        transition:name={`ev-title-${e.id}`}
+                        data-placeholder={d.placeholder ? 'event' : undefined}
+                        title={d.placeholder ? `Placeholder event: edit src/content/events/${e.id}.md` : undefined}
+                      >{d.title}</h3>
+                      <p class="ev__desc muted">{d.description}</p>
+                      <ul class="ev__meta" role="list">
+                        <li><Icon name="pin" size={16} /><span>{d.location}</span></li>
+                        {when && <li><Icon name="clock" size={16} /><span>{when}</span></li>}
+                      </ul>
+                      <div class="actions">
+                        <Button variant="ghost" size="sm" href={`/events/${e.id}`} iconAfter="arrow-right">Details</Button>
+                        {d.rsvpUrl && <Button variant="primary" size="sm" href={d.rsvpUrl} external iconAfter="arrow-up-right">RSVP</Button>}
+                      </div>
+                    </Frame>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))
+      )}
+    </section>
+
+    {past.length > 0 && (
+      <section class="ledger-row screened container" aria-labelledby="screened-h">
+        <div class="ledger__marker ledger__marker--sticky" data-reveal>
+          <h2 id="screened-h" class="display display--sm">Already screened</h2>
+          <p class="edge-code edge-code--sepia">{countLabel(past.length)}</p>
+        </div>
+        <ul class="screened__grid" role="list" data-reveal-stagger="90">
+          {past.map((e) => {
+            const d = e.data;
+            return (
+              <li>
+                <Frame
+                  as="a"
+                  href={withBase(`/events/${e.id}`)}
+                  class="is-interactive"
+                  state="fogged"
+                  wear={2}
+                  numeral={dayOf(d.date)}
+                  numeralLabel="Day"
+                  code={edgeCode(fmtDate(d.date), kindLabel(d.kind))}
+                  data-reveal
+                >
+                  {d.image ? (
+                    <img slot="media" src={withBase(d.image)} alt="" loading="lazy" decoding="async" />
+                  ) : (
+                    <Placeholder slot="media" kind="cover" label="Event photo" ratio="16 / 10" />
+                  )}
+                  <h3 class="title" transition:name={`ev-title-${e.id}`} data-placeholder={d.placeholder ? 'event' : undefined}>{d.title}</h3>
+                  <p class="small">{d.description}</p>
+                </Frame>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    )}
+
+    <section class="ledger-row close container" aria-labelledby="close-h">
+      <div class="close__body" data-reveal>
+        <h2 id="close-h" class="display display--sm">Want to be in the room?</h2>
+        <p class="lede">Say hello on the Get involved page and we'll let you know when the next one is scheduled. Ideas for speakers and events are welcome too.</p>
+        <div class="actions">
+          <Button variant="primary" href="/get-involved#hello" iconAfter="arrow-right">Get notified</Button>
+          <Button variant="ghost" href="/get-involved#hello">Suggest a speaker</Button>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .events {
+    --container: 72rem;
+    --ledger-col: 11rem;
+    --ledger-gap: var(--s-7);
+    padding-block: var(--s-9) 0;
+  }
+
+  /* ledger rows: a margin column on the left, content on the right (stacked under 48em) */
+  .ledger-row { display: grid; gap: var(--s-5); align-items: start; }
+  @media (min-width: 48em) {
+    .ledger-row { grid-template-columns: var(--ledger-col) minmax(0, 1fr); column-gap: var(--ledger-gap); }
+  }
+  @media (min-width: 64em) {
+    .events { --ledger-col: 14rem; --ledger-gap: var(--s-8); }
+  }
+
+  /* head */
+  .events__head { align-items: end; }
+  .events__head .lede { margin-block-start: 0; }
+  @media (min-width: 48em) {
+    .events__head .lede { padding-block-end: 0.35em; }
+  }
+
+  /* upcoming ledger */
+  .ledger { margin-block-start: var(--s-9); }
+  .month + .month { margin-block-start: var(--s-9); }
+  .ledger__marker .edge-code { margin-block-start: var(--s-2); }
+  @media (min-width: 48em) {
+    .ledger__marker--sticky { position: sticky; top: var(--s-6); padding-block-start: var(--s-3); }
+  }
+  .month__frames { display: grid; gap: var(--s-6); }
+
+  /* one event frame */
+  .ev__desc { max-width: 58ch; }
+  /* with a real image at desktop: body left, image right, so the leak floods the image (as on the detail page) */
+  @media (min-width: 48em) {
+    .month__frames :global(.frame.has-media) { grid-template-columns: var(--perf-w) minmax(0, 7fr) minmax(0, 5fr) var(--perf-w); grid-template-rows: 1fr auto; }
+    .month__frames :global(.frame.has-media > .frame__rail--r) { grid-column: 4; }
+    .month__frames :global(.frame.has-media > .frame__body) { grid-column: 2; grid-row: 1; padding-block-start: var(--s-8); }
+    .month__frames :global(.frame.has-media > .frame__code) { grid-column: 2; grid-row: 2; }
+    .month__frames :global(.frame.has-media > .frame__media) { grid-column: 3; grid-row: 1 / -1; }
+  }
+  .ev__meta { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-6); font-size: var(--text-sm); color: var(--fg-muted); }
+  .ev__meta li { display: inline-flex; align-items: center; gap: var(--s-2); }
+  .ev__meta :global(.icon) { color: var(--fg-faint); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-block-start: var(--s-3); }
+
+  /* the authored moment: the next screening's leak blooms in once, after its frame develops */
+  :global(.js) .is-next :global(.frame[data-reveal] .frame__leak) {
+    transition: opacity var(--dur-4) var(--ease-out) var(--dur-2);
+  }
+  :global(.js) .is-next :global(.frame[data-reveal]:not(.is-in) .frame__leak) { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .is-next :global(.frame[data-reveal] .frame__leak) { transition-delay: 0ms; }
+  }
+
+  /* empty upcoming state */
+  .ledger__empty .actions { margin-block-start: var(--s-4); }
+
+  /* already screened */
+  .screened { margin-block-start: var(--s-10); }
+  .screened__grid { display: grid; gap: var(--s-6); }
+  @media (min-width: 48em) {
+    .screened__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .screened__grid .title { text-wrap: pretty; }
+
+  /* close */
+  .close { margin-block-start: var(--s-10); }
+  @media (min-width: 48em) {
+    .close__body { grid-column: 2; }
+  }
+  .close__body .lede { margin-block-start: var(--s-5); }
+  .close__body .actions { margin-block-start: var(--s-6); }
+</style>

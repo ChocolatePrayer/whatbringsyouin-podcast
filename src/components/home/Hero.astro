@@ -1,0 +1,93 @@
+---
+/**
+ * Home hero — the first frame of the reel.
+ * Left: the show's name, the tagline, two actions, honest follow marks.
+ * Right: one oversized lit frame that is a TITLE CARD (type only, no image).
+ * The page's one authored motion moment lives here: the frame's light leak blooms in once
+ * on load while the title-card lines develop. Static under prefers-reduced-motion.
+ */
+import Frame from '../Frame.astro';
+import Button from '../Button.astro';
+import SocialLinks from '../SocialLinks.astro';
+import { site } from '../../site';
+import { edgeCode } from '../../lib/format';
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__grid container">
+    <div class="hero__copy">
+      <h1 id="hero-title" class="display display--lg hero__title">What brings you in</h1>
+      <p class="lede hero__lede">{site.tagline}</p>
+      <div class="hero__actions">
+        <Button variant="primary" href="#first-reel" iconAfter="arrow-down">Hear the first reel</Button>
+        <Button href="/get-involved">Join the team</Button>
+      </div>
+      <div class="hero__follow">
+        <p class="edge-code">Follow, once the reel is live</p>
+        <SocialLinks />
+      </div>
+    </div>
+
+    <div class="hero__card">
+      <Frame as="figure" leak class="is-lit hero-frame" numeral="01" numeralLabel="Frame" code={edgeCode('Reel 01', 'Frame 01', '16 mm')}>
+        <div class="card" data-reveal-stagger="140">
+          <p class="card__lines">
+            <span class="display card__line" data-reveal>Chairs, deans, researchers.</span>
+            <span class="display card__line" data-reveal>The students coming up.</span>
+            <span class="display card__line" data-reveal>One question between them.</span>
+          </p>
+          <p class="grease grease--lg card__question" data-reveal>What brings you in?</p>
+        </div>
+        <div class="card__foot">
+          <p class="muted small">{site.affiliation}</p>
+          <p class="edge-code edge-code--sepia" data-placeholder={site.launch.placeholder ? 'launch' : undefined} title={site.launch.placeholder ? 'Replace the launch note in src/site.ts' : undefined}>{site.launch.label}</p>
+        </div>
+      </Frame>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; overflow-x: clip; padding-block: var(--s-7) var(--s-8); }
+  .hero__grid { display: grid; row-gap: 0; }
+  /* On narrow screens the copy dissolves into the grid so the frame can sit between the actions and the follow marks. */
+  .hero__copy { display: contents; }
+  .hero__title { text-wrap: balance; }
+  .hero__lede { margin-block-start: var(--s-5); }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); margin-block-start: var(--s-7); }
+  .hero__card { margin-block-start: var(--s-8); display: grid; }
+  .hero__follow { order: 1; display: grid; gap: var(--s-3); margin-block-start: var(--s-7); }
+
+  /* the title card */
+  .hero__card :global(.frame) { min-height: 24rem; }
+  .hero .hero__card :global(.frame.has-numeral .frame__body) { padding: var(--s-9) var(--s-6) var(--s-6); align-content: space-between; gap: var(--s-8); }
+  .hero .hero__card :global(.frame__code) { padding-inline: var(--s-6); }
+  /* the card keeps off the leak core along the right rail */
+  .card { display: grid; gap: var(--s-6); max-width: 36rem; padding-inline-end: 8%; }
+  .card__lines { display: grid; gap: var(--s-2); }
+  .card__line { display: block; font-size: clamp(1.375rem, 0.85rem + 1.75vw, 2.25rem); }
+  @media (max-width: 47.99em) {
+    .card__lines { gap: var(--s-1); }
+    .card__line { font-size: clamp(1.1875rem, 0.95rem + 1.3vw, 1.5rem); letter-spacing: 0.03em; }
+  }
+  .card__question { font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.75rem); justify-self: start; margin-inline-start: var(--s-1); color: var(--ink-bright); }
+  .card__foot { display: grid; gap: var(--s-2); max-width: 30rem; padding-inline-end: 10%; }
+
+  /* THE authored moment: the leak blooms in once. Nothing loops. */
+  @keyframes hero-bloom { from { opacity: 0; } to { opacity: 0.95; } }
+  .hero__card :global(.frame__leak) { animation: hero-bloom var(--dur-4) var(--ease-out) 200ms both; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__card :global(.frame__leak) { animation: none; }
+  }
+
+  @media (min-width: 60em) {
+    .hero { display: grid; align-items: center; min-height: min(calc(100svh - 5.8rem), 58rem); padding-block: var(--s-8); }
+    .hero__grid { grid-template-columns: minmax(0, 11fr) minmax(0, 13fr); column-gap: var(--s-8); align-items: center; }
+    .hero__copy { display: block; }
+    .hero__follow { order: 0; margin-block-start: var(--s-8); }
+    /* the frame is wider than the copy and runs a little past the container, like a strip leaving the gate */
+    .hero__card { margin-block-start: 0; margin-inline-end: calc(-1 * min(10rem, max(0px, (100vw - var(--container)) / 2 - var(--gutter)))); }
+    .hero__card :global(.frame) { min-height: clamp(28rem, 60vh, 40rem); }
+    .hero .hero__card :global(.frame.has-numeral .frame__body) { padding: var(--s-9) var(--s-8) var(--s-7); }
+    .hero .hero__card :global(.frame__code) { padding-inline: var(--s-8); }
+  }
+</style>

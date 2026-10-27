@@ -1,0 +1,61 @@
+{
+  "title": "Choose the visual world",
+  "question": "The roll assigned The On-Call Room. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The On-Call Room",
+      "kicker": "THE ROLL",
+      "lineage": "The hospital after midnight: the resident's on-call room, one lamp, a pager on the nightstand, and the story an attending finally tells at the end of a shift",
+      "thesis": "The show is the conversation that happens in the on-call room after midnight, when the senior doctor tells you how they really got here.",
+      "palette": ["#17243A", "#0E1626", "#F3E2C0", "#F0A830"],
+      "materials": ["navy scrubs twill", "tungsten lamplight pool", "pager LCD amber", "laminated door sign", "whiteboard marker", "ID-badge lanyard red"],
+      "viewport": "A dark navy room with one warm lamp pool at left holding the show's name and a single line; at right a hand-sized pager reads WHAT BRINGS YOU IN in amber dot-matrix and blinks once; the follow links wait on the nightstand shelf below, nothing crowding anything.",
+      "risk": "Dark plus amber slides into the generic neon dashboard if the light is not warm and the layout is not roomy; every page must stay a quiet room, not a control panel."
+    },
+    {
+      "id": "challenger-seven-segment",
+      "label": "Seven-Segment Night Clock",
+      "lineage": "bedside clocks, scoreboards, gas totems: one eight-cell mask where unlit segments are designed too",
+      "thesis": "Every number on the site, episode count, event date, clock, is a lit segment mask on matte black.",
+      "palette": ["#0B0B0D", "#E63B2E", "#3A1512", "#F3E2C0"],
+      "materials": ["LED red segments", "ghost cells", "matte black plastic"],
+      "viewport": "Four giant red digits hang in the dark reading the launch date; the show name sits small beneath in grotesk; follow links are tiny lit segments.",
+      "risk": "Prose cannot live in a segment mask, so the identity thins out past the hero.",
+      "case": "Fuses as a detail, not a world: it loses product clarity as the whole identity but can serve the pager readout inside the assigned room.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-seven-segment-alarm-clock-hero.webp"
+    },
+    {
+      "id": "challenger-film",
+      "label": "Hand-Processed 16mm",
+      "lineage": "hand-processed film strips with scratches, uneven chemistry and light leaks",
+      "thesis": "Episodes are frames on one strip; the live one floods orange through its perforations.",
+      "palette": ["#2B2B2B", "#9A9A96", "#F07A1E", "#6B4A2E"],
+      "materials": ["silver emulsion", "near-black leader", "orange light leak", "grease-pencil numerals"],
+      "viewport": "A strip of frames runs horizontally across a gray field; one frame blooms orange and carries the title; sprocket margins hold the edge codes.",
+      "risk": "Grain and leaks read as decoration unless each artifact is tied to a real episode event.",
+      "case": "Fuses poorly on audience identification: film emulsion is a cinephile's world, not a med student's, and its wear textures fight the cozy brief.",
+      "hero": "https://impeccable.style/worlds/cards/cinema-cinematography-editing-hand-processed-film-bloom-hero.webp"
+    },
+    {
+      "id": "challenger-weather-sun",
+      "label": "Indoor Weather Sun",
+      "lineage": "a monofrequency amber half sun doubled by a mirrored ceiling over a hazy hall",
+      "thesis": "One amber hall; every visitor's silhouette doubled in the ceiling mirror.",
+      "palette": ["#C8841A", "#F2B35C", "#1A1206", "#E8D4B0"],
+      "materials": ["sodium amber haze", "silhouette black", "mirror ceiling"],
+      "viewport": "A vast horizontal band of amber haze with a half sun completing itself at the far wall; the show name sits low on the horizon line in black grotesk.",
+      "risk": "A single duotone flattens photos, bios and events into one undifferentiated glow.",
+      "case": "Shares the amber warmth but loses both axes: an art-hall scene says nothing about medicine or about a podcast.",
+      "hero": "https://impeccable.style/worlds/cards/light-shadow-caustics-indoor-weather-sun-hero.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The podcast site standard",
+    "thesis": "What podcast sites ship, executed impeccably: cover art, follow buttons, episode cards.",
+    "viewport": "Cover art left, title and two follow buttons right, the latest episodes as a card grid below, team headshots in a row."
+  },
+  "steer": true
+}

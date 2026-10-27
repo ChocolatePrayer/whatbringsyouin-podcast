@@ -1,0 +1,110 @@
+---
+/**
+ * "Next screening" — the soonest upcoming event as one wide frame.
+ * Placeholder entries render latent with an honest stamp; none upcoming → a latent frame.
+ */
+import type { CollectionEntry } from 'astro:content';
+import Frame from '../Frame.astro';
+import Button from '../Button.astro';
+import Icon from '../Icon.astro';
+import { fmtMonth, fmtWeekday, edgeCode } from '../../lib/format';
+
+interface Props { event?: CollectionEntry<'events'> }
+const { event } = Astro.props;
+const kinds: Record<CollectionEntry<'events'>['data']['kind'], string> = {
+  'live-recording': 'Live recording',
+  talk: 'Talk',
+  mixer: 'Mixer',
+  workshop: 'Workshop',
+  other: 'Event',
+};
+const ph = event?.data.placeholder ?? false;
+const date = event?.data.date;
+// A placeholder's date and time are not facts yet (the file date only orders it): no day, no weekday, no clock.
+const time = !ph && event?.data.time ? `${event.data.time}${event.data.endTime ? ` – ${event.data.endTime}` : ''}` : undefined;
+---
+<section class="screening container" aria-labelledby="screening-title">
+  <div class="screening__head" data-reveal>
+    <h2 id="screening-title" class="display display--sm">Next screening</h2>
+    <p class="lede">Evenings run by the team, in Montréal. Come and meet the people behind the reel.</p>
+  </div>
+
+  <div class="screening__frame" data-reveal>
+    {event && date ? (
+      <Frame
+        as="article"
+        leak
+        state={ph ? 'latent' : 'projected'}
+        code={edgeCode(kinds[event.data.kind], ph && 'Date to confirm')}
+        data-placeholder={ph ? 'event' : undefined}
+        title={ph ? `Placeholder entry: replace src/content/events/${event.id}.md` : undefined}
+      >
+        <div class="screening__inner">
+          <div class="screening__date">
+            {ph ? (
+              <>
+                <span class="grease grease--lg screening__day" aria-hidden="true">TBC</span>
+                <span class="edge-code edge-code--sepia">Date to confirm</span>
+              </>
+            ) : (
+              <>
+                <span class="grease grease--lg screening__day" aria-hidden="true">{date.getUTCDate()}</span>
+                <span class="edge-code edge-code--bright">{fmtWeekday(date)}</span>
+                <span class="edge-code">{fmtMonth(date)}</span>
+                <span class="visually-hidden">{`${fmtWeekday(date)} ${date.getUTCDate()} ${fmtMonth(date)}`}</span>
+              </>
+            )}
+          </div>
+          <div class="screening__body">
+            <h3 class="title title--lg screening__title">{event.data.title}</h3>
+            <ul class="screening__meta" role="list">
+              <li>{kinds[event.data.kind]}</li>
+              {time && <li><Icon name="clock" size={16} />{time}</li>}
+              <li><Icon name="pin" size={16} />{event.data.location}</li>
+            </ul>
+            <p class="measure">{event.data.description}</p>
+            <div class="screening__actions">
+              <Button variant="ghost" href={`/events/${event.id}`} iconAfter="arrow-right">Event details</Button>
+              <Button variant="ghost" href="/events">All events</Button>
+            </div>
+          </div>
+        </div>
+      </Frame>
+    ) : (
+      <Frame as="article" state="latent" leak code="Events">
+        <h3 class="title title--lg">No screenings scheduled yet</h3>
+        <p class="measure">When the team sets a date, it shows here first.</p>
+        <div class="screening__actions">
+          <Button variant="ghost" href="/events" iconAfter="arrow-right">All events</Button>
+        </div>
+      </Frame>
+    )}
+  </div>
+</section>
+
+<style>
+  .screening { padding-block-start: var(--s-9); }
+  .screening__head { display: grid; gap: var(--s-4); }
+  .screening__frame { margin-block-start: var(--s-7); display: grid; }
+  .screening .screening__frame :global(.frame__body) { padding: var(--s-7) var(--s-6); }
+  .screening .screening__frame :global(.frame__code) { padding-inline: var(--s-6); }
+  .screening__inner { display: grid; gap: var(--s-6); }
+  .screening__date { display: grid; gap: var(--s-1); align-content: start; justify-items: start; }
+  .screening__day { font-size: clamp(3.25rem, 2.6rem + 2.2vw, 5rem); margin-block-end: var(--s-2); }
+  .screening__body { display: grid; gap: var(--s-4); }
+  .screening__title { transition: color var(--dur-3) var(--ease-out); }
+  .screening__frame :global(.frame.is-latent) .screening__title { color: inherit; }
+  .screening__frame :global(.frame.is-latent:is(:hover, :focus-within)) .screening__title { color: var(--fg-strong); }
+  .screening__meta { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); font-size: var(--text-sm); color: var(--fg-muted); }
+  .screening__meta li { display: inline-flex; align-items: center; gap: var(--s-2); }
+  .screening__actions { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); margin-block-start: var(--s-3); }
+
+  @media (min-width: 48em) {
+    .screening__inner { grid-template-columns: 9rem minmax(0, 1fr); gap: var(--s-8); }
+  }
+  @media (min-width: 60em) {
+    .screening { padding-block-start: var(--s-10); }
+    .screening .screening__frame :global(.frame__body) { padding: var(--s-8) var(--s-8); }
+    .screening .screening__frame :global(.frame__code) { padding-inline: var(--s-8); }
+  }
+</style>

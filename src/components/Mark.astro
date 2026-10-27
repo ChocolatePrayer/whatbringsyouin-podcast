@@ -1,0 +1,14 @@
+---
+// The show's mark: a single 16mm frame. REPLACE with the real logo (see README → placeholders).
+interface Props { size?: number; class?: string; [key: string]: unknown }
+const { size = 28, class: cls, ...rest } = Astro.props;
+---
+<svg class:list={['mark', cls]} data-placeholder="logo" width={size} height={size} viewBox="0 0 28 28" aria-hidden="true" focusable="false" {...rest}>
+  <rect x="1" y="1" width="26" height="26" rx="3" fill="var(--shadow)" />
+  <rect x="7" y="5" width="14" height="18" rx="1.5" fill="var(--leak)" />
+  <g fill="var(--leader)">
+    <rect x="3" y="5" width="2.2" height="3.2" rx=".5"/><rect x="3" y="12.4" width="2.2" height="3.2" rx=".5"/><rect x="3" y="19.8" width="2.2" height="3.2" rx=".5"/>
+    <rect x="22.8" y="5" width="2.2" height="3.2" rx=".5"/><rect x="22.8" y="12.4" width="2.2" height="3.2" rx=".5"/><rect x="22.8" y="19.8" width="2.2" height="3.2" rx=".5"/>
+  </g>
+</svg>
+<style>.mark { flex: none; }</style>

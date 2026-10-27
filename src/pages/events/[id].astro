@@ -1,0 +1,156 @@
+---
+// One event: a single wide frame (body left, image right at desktop so the leak floods the
+// image gate), then the attendee details and a quiet close row.
+import Base from '../../layouts/Base.astro';
+import Frame from '../../components/Frame.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import Button from '../../components/Button.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { fmtDate, fmtWeekday, isUpcoming, edgeCode } from '../../lib/format';
+import { withBase } from '../../lib/url';
+import { kindLabel, kindIcon, timeRange } from '../../components/events/kinds';
+import { buildIcs, icsDataUri } from '../../components/events/ics';
+
+export async function getStaticPaths() {
+  const events = await getCollection('events');
+  return events.map((event) => ({ params: { id: event.id }, props: { event, isPast: !isUpcoming(event.data.date) } }));
+}
+
+interface Props { event: CollectionEntry<'events'>; isPast: boolean }
+const { event, isPast } = Astro.props;
+const d = event.data;
+const { Content } = await render(event);
+
+// A placeholder's date and time are not facts yet: "TBC" for the day, no weekday, no clock, no calendar file.
+const ph = d.placeholder;
+const day = String(d.date.getUTCDate());
+const when = ph ? undefined : timeRange(d.time, d.endTime);
+const code = ph
+  ? edgeCode(kindLabel(d.kind), 'Date to confirm')
+  : edgeCode(fmtWeekday(d.date), fmtDate(d.date), kindLabel(d.kind), isPast ? 'Already screened' : undefined);
+const pageUrl = Astro.site ? new URL(withBase(`/events/${event.id}`), Astro.site).href : undefined;
+const ics = ph
+  ? undefined
+  : icsDataUri(
+      buildIcs({ id: event.id, title: d.title, date: d.date, time: d.time, endTime: d.endTime, location: d.location, description: d.description, url: pageUrl }),
+    );
+---
+<Base title={d.title} description={d.placeholder ? undefined : d.description}>
+  <div class="detail">
+    <section class="container detail__top" aria-labelledby="ev-title">
+      <p class="detail__back">
+        <a class="edge-code edge-code--bright" href={withBase('/events')}><Icon name="arrow-left" size={14} /> All events</a>
+      </p>
+
+      <Frame
+        as="article"
+        class={isPast ? '' : 'is-lit'}
+        state={isPast ? 'fogged' : 'projected'}
+        leak={!isPast}
+        wear={isPast ? 2 : 1}
+        numeral={ph ? 'TBC' : day}
+        numeralLabel={ph ? 'Date' : 'Day'}
+        code={code}
+      >
+        {d.image ? (
+          <img slot="media" src={withBase(d.image)} alt="" loading="lazy" decoding="async" />
+        ) : (
+          <Placeholder slot="media" kind="cover" label="Event image" ratio="16 / 9" />
+        )}
+        <h1
+          id="ev-title"
+          class="display display--sm"
+          transition:name={`ev-title-${event.id}`}
+          data-placeholder={d.placeholder ? 'event' : undefined}
+          title={d.placeholder ? `Placeholder event: edit src/content/events/${event.id}.md` : undefined}
+        >{d.title}</h1>
+        <p class="lede">{d.description}</p>
+        <dl class="facts">
+          <div>
+            <dt class="edge-code"><Icon name="calendar" size={14} /><span>When</span></dt>
+            <dd>
+              {ph ? (
+                <span class="facts__date">To be confirmed</span>
+              ) : (
+                <><span class="facts__date">{fmtDate(d.date)}</span>{when && <span class="facts__time">{when}</span>}</>
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt class="edge-code"><Icon name="pin" size={14} /><span>Where</span></dt>
+            <dd>{d.location}</dd>
+          </div>
+          <div>
+            <dt class="edge-code"><Icon name={kindIcon(d.kind)} size={14} /><span>What</span></dt>
+            <dd>{kindLabel(d.kind)}</dd>
+          </div>
+        </dl>
+        <div class="actions">
+          {d.rsvpUrl && <Button variant="primary" href={d.rsvpUrl} external iconAfter="arrow-up-right">RSVP</Button>}
+          {ics && !isPast && <Button variant="ghost" href={ics} download={`${event.id}.ics`} icon="calendar">Add to calendar</Button>}
+          {isPast && <span class="edge-code edge-code--sepia detail__past">This one has already happened</span>}
+        </div>
+      </Frame>
+
+      {d.placeholder && <p class="detail__note small faint">Details for this event are still being confirmed.</p>}
+    </section>
+
+    <section class="container detail__body" aria-labelledby="details-h" data-reveal>
+      <h2 id="details-h" class="display display--sm">Details</h2>
+      <div class="prose"><Content /></div>
+    </section>
+
+    <section class="container detail__close" aria-label="More" data-reveal>
+      <Button variant="ghost" href="/events" icon="arrow-left">All events</Button>
+      <Button variant="ghost" href="/get-involved#hello">Suggest an event or speaker</Button>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .detail { padding-block: var(--s-7) 0; }
+  .detail__back { margin-block-end: var(--s-5); }
+  .detail__back a { display: inline-flex; align-items: center; gap: var(--s-2); text-decoration: none; }
+  .detail__back a:hover { color: var(--fg-strong); }
+  .detail__note { margin-block-start: var(--s-4); padding-inline-start: calc(var(--perf-w) + var(--s-5)); }
+
+  /* inside the frame */
+  .detail :global(.frame__body) { gap: var(--s-4); }
+  .detail .lede { margin-block-start: var(--s-1); }
+  .facts { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-3) var(--s-5); margin-block-start: var(--s-3); max-width: 60ch; }
+  .facts > div { display: contents; }
+  .facts dt { display: inline-flex; align-items: center; gap: var(--s-2); padding-block-start: 0.3em; }
+  .facts dt :global(.icon) { color: var(--fg-faint); }
+  .facts dd { color: var(--fg); }
+  .facts__date, .facts__time { white-space: nowrap; }
+  .facts__time { display: block; }
+  @media (min-width: 48em) {
+    .facts__time { display: inline; }
+    .facts__time::before { content: ', '; }
+  }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-4); margin-block-start: var(--s-4); }
+  .detail__past { padding-block: var(--s-2); }
+
+  /* at desktop the body sits left and the image gate right, so the leak floods the image */
+  @media (min-width: 60em) {
+    .detail :global(.frame.has-media) {
+      grid-template-columns: var(--perf-w) minmax(0, 7fr) minmax(0, 5fr) var(--perf-w);
+      grid-template-rows: 1fr auto;
+    }
+    .detail :global(.frame.has-media > .frame__rail--r) { grid-column: 4; }
+    .detail :global(.frame.has-media > .frame__body) { grid-column: 2; grid-row: 1; padding: var(--s-8) var(--s-7) var(--s-6) var(--s-6); }
+    .detail :global(.frame.has-media > .frame__code) { grid-column: 2; grid-row: 2; padding-inline-start: var(--s-6); }
+    .detail :global(.frame.has-media > .frame__media) { grid-column: 3; grid-row: 1 / -1; }
+    .detail__note { padding-inline-start: calc(var(--perf-w) + var(--s-6)); }
+  }
+
+  /* details and close align with the frame's text column */
+  .detail__body { margin-block-start: var(--s-9); }
+  .detail__body h2 { margin-block-end: var(--s-5); }
+  .detail__close { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-block-start: var(--s-9); }
+  @media (min-width: 60em) {
+    .detail__body, .detail__close { padding-inline-start: calc(var(--perf-w) + var(--s-6)); }
+  }
+</style>

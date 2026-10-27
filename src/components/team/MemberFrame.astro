@@ -1,0 +1,84 @@
+---
+/**
+ * MemberFrame — one frame on the team's contact sheet. Owned by the team page.
+ * Renders the <li> the sheet grid positions (and the reveal stagger develops) around a
+ * shared <Frame>. Placeholder entries stay honest: bracketed copy in chemical sepia,
+ * a photo placeholder in the media slot, and a maintainer hint on hover.
+ *
+ *  member  a `team` collection entry
+ *  index   0-based position on the sheet (becomes the grease numeral)
+ */
+import Frame from '../Frame.astro';
+import Placeholder from '../Placeholder.astro';
+import { withBase } from '../../lib/url';
+import { pad2, edgeCode } from '../../lib/format';
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props { member: CollectionEntry<'team'>; index: number }
+const { member, index } = Astro.props;
+const { name, role, program, photo, placeholder } = member.data;
+const { Content } = await render(member);
+const photoLabel = `Photo of ${name === '[Executive name]' ? 'team member' : name}`;
+const nameId = `member-${member.id}`;
+const hint = (what: string) => (placeholder ? `Add the ${what} in src/content/team/${member.id}.md` : undefined);
+---
+<li class="cell" data-reveal>
+  <Frame
+    as="article"
+    leak
+    state="latent"
+    numeral={pad2(index + 1)}
+    numeralLabel="Frame"
+    code={edgeCode(role, program)}
+    wear={index % 2 ? 2 : 1}
+    aria-labelledby={nameId}
+  >
+    <Fragment slot="media">
+      {photo ? (
+        <img class="photo" src={withBase(photo)} alt={name} width="800" height="1000" loading="lazy" decoding="async" />
+      ) : (
+        <Placeholder kind="photo" label={photoLabel} ratio="4 / 5" />
+      )}
+    </Fragment>
+    <header class="who">
+      <h2 class="title title--lg" id={nameId} data-placeholder={placeholder ? 'name' : undefined} title={hint('name')}>{name}</h2>
+      <p class="edge-code edge-code--bright">{role}</p>
+      {program && <p class="small muted" data-placeholder={placeholder ? 'program' : undefined} title={hint('program')}>{program}</p>}
+    </header>
+    <div class="prose small bio" data-placeholder={placeholder ? 'bio' : undefined} title={hint('bio')}><Content /></div>
+  </Frame>
+</li>
+
+<style>
+  .cell { list-style: none; }
+  .photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+
+  /* name, role, program: one tight group; the bio sits a breath below */
+  .who { display: grid; gap: var(--s-1); }
+  .who > .edge-code { margin-block-start: var(--s-1); }
+  .bio { margin-block-start: var(--s-2); }
+
+  /* placeholder copy is chemical stain until a maintainer replaces it */
+  .cell [data-placeholder='name'],
+  .cell [data-placeholder='program'],
+  .cell [data-placeholder='bio'] { color: var(--sepia); cursor: help; }
+
+  /* the editor's loupe: the chosen frame gets its numeral circled in grease pencil.
+     Padding and a transparent border are always present so the glyph never jumps;
+     only colour and the circle develop. */
+  .cell :global(.frame__numeral) {
+    padding: 0.1em 0.45em 0.15em;
+    margin: calc(-0.1em - 2px) 0 0 calc(-0.45em - 2px);
+    border: 2px solid transparent;
+    border-radius: 50% 45% 55% 50% / 55% 50% 45% 50%;
+    transition:
+      color var(--dur-2) var(--ease-out),
+      border-color var(--dur-3) var(--ease-out),
+      rotate var(--dur-3) var(--ease-out);
+  }
+  .cell :global(.frame.has-numeral:is(:hover, :focus-within) .frame__numeral) {
+    color: var(--leak);
+    border-color: var(--leak);
+    rotate: -5deg;
+  }
+</style>

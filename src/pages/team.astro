@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import Frame from '../components/Frame.astro';
+import Button from '../components/Button.astro';
+import MemberFrame from '../components/team/MemberFrame.astro';
+import { getCollection } from 'astro:content';
+import { pad2, edgeCode } from '../lib/format';
+
+// The contact sheet: every team entry, in the order the maintainer set.
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id));
+const count = team.length;
+const year = new Date().getFullYear();
+// Placeholder files are not a roster: no frame count while every entry is one.
+const allPlaceholder = count > 0 && team.every((m) => m.data.placeholder);
+const sheetCode = edgeCode('WBYI', 'Team', allPlaceholder ? 'Placeholder frames' : `${count} ${count === 1 ? 'frame' : 'frames'}`, `${year}–${year + 1}`);
+const description =
+  'The students who host, produce and edit What Brings You In, and who run its events. A student organization affiliated with McGill University.';
+---
+<Base title="Team" description={description}>
+  <section class="section container team" aria-labelledby="team-h">
+    <header class="team__head">
+      <h1 id="team-h" class="display display--md">The team</h1>
+      <p class="lede">
+        The students who host, produce and edit the show, and who run its events. We are a student organization
+        affiliated with McGill University.
+      </p>
+    </header>
+
+    {count > 0 ? (
+      <div class="light-table">
+        <p class="sheet-edge edge-code"><span class="visually-hidden">Sheet </span>{sheetCode}</p>
+        <ol class="sheet" role="list" data-reveal-stagger="70">
+          {team.map((member, i) => <MemberFrame member={member} index={i} />)}
+        </ol>
+      </div>
+    ) : (
+      <div class="light-table light-table--empty">
+        <p class="sheet-edge edge-code"><span class="visually-hidden">Sheet </span>{sheetCode}</p>
+        <Frame as="div" class="empty-frame" state="latent" leak numeral="01" numeralLabel="Frame" code={edgeCode('WBYI', 'Team', 'Coming soon')}>
+          <h2 class="title title--lg">The team sheet is being developed</h2>
+          <p class="muted">Names, photos and bios will appear here as the team comes together. If you would like to be on it, the door is open.</p>
+          <div class="empty-frame__action"><Button variant="primary" href="/get-involved#team" iconAfter="arrow-right">Join the team</Button></div>
+        </Frame>
+      </div>
+    )}
+  </section>
+
+  {count > 0 && (
+    <section class="team-join container" aria-labelledby="join-h">
+      <Frame as="div" class="is-lit join-frame" leak numeral={pad2(count + 1)} numeralLabel="Open frame" code={edgeCode('WBYI', 'Team', 'Open frame')}>
+        <div class="join-frame__inner">
+          <h2 id="join-h" class="display display--sm">Join the sheet</h2>
+          <p class="join-frame__copy">
+            The show is made by students who host, produce and edit it, and who run its events. If that sounds like you,
+            there is an open frame on this sheet.
+          </p>
+          <div class="join-frame__action"><Button variant="primary" href="/get-involved#team" iconAfter="arrow-right">Join the team</Button></div>
+        </div>
+      </Frame>
+    </section>
+  )}
+</Base>
+
+<style>
+  /* ---------- header: title and lede share one band; at desktop the lede sits right, on the title's baseline ---------- */
+  .team__head { display: grid; gap: var(--s-5); }
+  @media (min-width: 60em) {
+    .team__head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s-7); align-items: end; }
+    .team__head > h1 { grid-column: 1 / 7; }
+    .team__head > .lede { grid-column: 7 / 12; padding-block-end: 0.3em; }
+  }
+
+  /* ---------- the light table: a soft backlight under the sheet, and the film-edge data line ---------- */
+  .light-table { position: relative; isolation: isolate; display: grid; gap: var(--s-6); margin-block-start: var(--s-8); }
+  .light-table::before {
+    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(70% 55% at 50% 42%, rgb(166 171 176 / 0.1), transparent 70%);
+  }
+  .sheet-edge { white-space: nowrap; }
+  @media (min-width: 60em) {
+    .light-table { margin-block-start: var(--s-9); grid-template-columns: 2.5rem minmax(0, 1fr); column-gap: 0; margin-inline-start: -2.5rem; }
+    /* the edge code runs along the sheet like print on a film margin, bottom to top, and rides with the scroll */
+    .sheet-edge { writing-mode: vertical-rl; rotate: 180deg; justify-self: center; align-self: start; position: sticky; top: var(--s-6); }
+  }
+
+  /* ---------- the sheet: frames laid on the table, not a card grid ---------- */
+  .sheet { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-8) var(--s-7); align-items: start; }
+  @media (min-width: 40em) {
+    .sheet { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .sheet > :global(li) { grid-column: span 6; }
+    .sheet > :global(li:nth-child(2n)) { margin-block-start: var(--s-7); }
+  }
+  @media (min-width: 60em) {
+    .sheet { row-gap: var(--s-9); }
+    .sheet > :global(li) { grid-column: span 4; }
+    .sheet > :global(li:nth-child(2n)) { margin-block-start: 0; }
+    .sheet > :global(li:nth-child(3n + 2)) { margin-block-start: var(--s-8); }
+    .sheet > :global(li:nth-child(3n + 3)) { margin-block-start: var(--s-4); }
+  }
+
+  /* ---------- empty sheet ---------- */
+  .light-table--empty .empty-frame { max-width: 40rem; }
+  .empty-frame__action { margin-block-start: var(--s-3); }
+
+  /* ---------- join: one wide, always-lit frame; copy stays left, off the bloom ---------- */
+  .team-join { padding-block: 0; }
+  .join-frame__inner { display: grid; gap: var(--s-4); max-width: 56ch; padding: var(--s-2) var(--s-5) var(--s-2) 0; }
+  .join-frame__copy { color: var(--fg-muted); }
+  .join-frame__action { margin-block-start: var(--s-3); }
+  @media (min-width: 60em) {
+    .join-frame__inner { padding: var(--s-6) 0 var(--s-6) var(--s-6); }
+  }
+</style>

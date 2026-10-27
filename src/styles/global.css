@@ -1,0 +1,171 @@
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; hanging-punctuation: first last; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body {
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 var(--text-base) / var(--leading-body) var(--font-sans);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1 0 auto; outline: none; }
+img, picture, video, canvas, svg { display: block; max-width: 100%; }
+img, video { height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+p, h1, h2, h3, h4, li, dd, dt, figcaption, blockquote { overflow-wrap: break-word; }
+h1, h2, h3, h4 { font-weight: 700; font-stretch: var(--wdth-narrow); line-height: 1.1; color: var(--fg-strong); text-wrap: balance; }
+p { text-wrap: pretty; }
+ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
+a { color: var(--fg-strong); text-decoration: underline; text-decoration-color: var(--leak); text-decoration-thickness: 1px; text-underline-offset: 0.18em; transition: text-decoration-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out); }
+a:hover { text-decoration-color: var(--leak-hot); color: var(--ink-bright); }
+::selection { background: var(--leak); color: var(--leader); }
+:focus-visible { outline: 2px solid var(--leak); outline-offset: 3px; border-radius: 2px; }
+hr { border: 0; border-top: 1px solid var(--line); }
+
+/* ---------- layout ---------- */
+.container { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.container--narrow { --container: 56rem; }
+.container--wide { --container: 96rem; }
+.section { padding-block: var(--s-9); }
+@media (min-width: 60em) { .section { padding-block: var(--s-10); } }
+.stack > * + * { margin-block-start: var(--flow, var(--s-4)); }
+.measure { max-width: var(--measure); }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; top: var(--s-3); left: var(--s-3); z-index: 100; padding: var(--s-2) var(--s-4); background: var(--leak); color: var(--leader); font-weight: 600; border-radius: var(--radius-plate); translate: 0 -200%; transition: translate var(--dur-2) var(--ease-out); text-decoration: none; }
+.skip-link:focus { translate: 0; }
+
+/* ---------- type ---------- */
+.display { --display-ink: var(--fg-strong); font-family: var(--font-display); font-weight: 700; font-stretch: normal; text-transform: uppercase; letter-spacing: var(--track-display); line-height: var(--leading-tight); color: var(--display-ink); text-wrap: balance; }
+/* emulsion grain inside the stencil letterforms (set --display-ink to recolour) */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .display { background-color: var(--display-ink); background-image: url('../assets/textures/grain-dark.png'); background-size: 256px 256px; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+  .display::selection { background: var(--leak); color: var(--leader); -webkit-text-fill-color: var(--leader); }
+}
+.display--lg { font-size: var(--display-lg); }
+.display--md { font-size: var(--display-md); }
+.display--sm { font-size: var(--display-sm); }
+.title { font-weight: 700; font-stretch: var(--wdth-narrow); line-height: var(--leading-snug); color: var(--fg-strong); text-wrap: balance; }
+.title--lg { font-size: var(--text-xl); }
+.lede { font-size: var(--text-lg); line-height: 1.5; color: var(--fg-muted); max-width: 55ch; text-wrap: pretty; }
+.muted { color: var(--fg-muted); }
+.faint { color: var(--fg-faint); }
+.small { font-size: var(--text-sm); }
+
+/* Stamped edge code: the film's margin labels. Use for metadata, never for prose. */
+.edge-code { font-weight: 600; font-stretch: 80%; font-size: var(--text-xs); line-height: 1.25; letter-spacing: var(--track-code); text-transform: uppercase; color: var(--fg-faint); font-variant-numeric: tabular-nums; }
+.edge-code--bright { color: var(--fg-muted); }
+.edge-code--leak { color: var(--leak); }
+.edge-code--sepia { color: var(--sepia); }
+
+/* Grease pencil: frame numerals written by hand on the strip. */
+.grease { display: inline-block; font-family: var(--font-hand); font-weight: 600; font-size: 1.75rem; line-height: 1; color: var(--grease); rotate: -3deg; letter-spacing: 0.02em; }
+.grease--lg { font-size: 2.75rem; }
+.grease--leak { color: var(--leak); }
+.grease--circled { padding: 0.1em 0.45em 0.15em; border: 2px solid var(--leak); border-radius: 50% 45% 55% 50% / 55% 50% 45% 50%; }
+
+/* Rendered Markdown */
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-block-start: var(--s-4); }
+.prose h2, .prose h3 { margin-block-start: var(--s-8); margin-block-end: var(--s-3); }
+.prose h2 { font-size: var(--text-xl); }
+.prose h3 { font-size: var(--text-lg); }
+.prose ul, .prose ol { padding-inline-start: 1.25em; }
+.prose li + li { margin-block-start: var(--s-2); }
+.prose blockquote { padding-inline-start: var(--s-5); border-inline-start: 1px solid var(--line-strong); color: var(--fg-muted); font-style: italic; }
+.prose code { font-size: 0.9em; background: var(--shadow-2); padding: 0.1em 0.35em; border-radius: var(--radius-plate); }
+
+/* ---------- perforation rails ---------- */
+/* A rail is a solid band with the holes masked out, so whatever sits behind it (page ground,
+   a light leak) shows through the perforations. .perf runs vertically; .perf--h horizontally. */
+.perf {
+  background-color: var(--rail);
+  background-image: url('../assets/textures/grain-dark.png'), linear-gradient(to right, rgb(0 0 0 / 0.55), transparent 36%, transparent 64%, rgb(0 0 0 / 0.55));
+  background-size: 256px 256px, auto;
+  -webkit-mask-image:
+    repeating-linear-gradient(to bottom, #000 0 calc((var(--perf-period) - var(--perf-hole-h)) / 2), transparent 0 calc((var(--perf-period) + var(--perf-hole-h)) / 2), #000 0 var(--perf-period)),
+    linear-gradient(to right, #000 0 calc((var(--perf-w) - var(--perf-hole-w)) / 2), transparent 0 calc((var(--perf-w) + var(--perf-hole-w)) / 2), #000 0);
+  mask-image:
+    repeating-linear-gradient(to bottom, #000 0 calc((var(--perf-period) - var(--perf-hole-h)) / 2), transparent 0 calc((var(--perf-period) + var(--perf-hole-h)) / 2), #000 0 var(--perf-period)),
+    linear-gradient(to right, #000 0 calc((var(--perf-w) - var(--perf-hole-w)) / 2), transparent 0 calc((var(--perf-w) + var(--perf-hole-w)) / 2), #000 0);
+  -webkit-mask-composite: source-over;
+  mask-composite: add;
+}
+.perf--h {
+  background-image: url('../assets/textures/grain-dark.png'), linear-gradient(to bottom, rgb(0 0 0 / 0.55), transparent 36%, transparent 64%, rgb(0 0 0 / 0.55));
+  -webkit-mask-image:
+    repeating-linear-gradient(to right, #000 0 calc((var(--perf-period) - var(--perf-hole-h)) / 2), transparent 0 calc((var(--perf-period) + var(--perf-hole-h)) / 2), #000 0 var(--perf-period)),
+    linear-gradient(to bottom, #000 0 calc((var(--perf-w) - var(--perf-hole-w)) / 2), transparent 0 calc((var(--perf-w) + var(--perf-hole-w)) / 2), #000 0);
+  mask-image:
+    repeating-linear-gradient(to right, #000 0 calc((var(--perf-period) - var(--perf-hole-h)) / 2), transparent 0 calc((var(--perf-period) + var(--perf-hole-h)) / 2), #000 0 var(--perf-period)),
+    linear-gradient(to bottom, #000 0 calc((var(--perf-w) - var(--perf-hole-w)) / 2), transparent 0 calc((var(--perf-w) + var(--perf-hole-w)) / 2), #000 0);
+}
+
+/* ---------- plates (buttons) ---------- */
+.btn {
+  --btn-bg: var(--shadow); --btn-fg: var(--ink-bright); --btn-hole: var(--leader);
+  position: relative; isolation: isolate;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
+  min-height: 2.75rem; padding: 0 var(--s-7);
+  border: 0; border-radius: var(--radius-plate);
+  background-color: var(--btn-bg); background-image: url('../assets/textures/grain-dark.png'); background-size: 256px 256px; color: var(--btn-fg);
+  font-weight: 600; font-size: var(--text-sm); font-stretch: 80%; line-height: 1;
+  letter-spacing: var(--track-code); text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  box-shadow: var(--shadow-plate);
+  transition: background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out), box-shadow var(--dur-3) var(--ease-out), translate var(--dur-2) var(--ease-out);
+}
+.btn::before, .btn::after { content: ''; position: absolute; top: 0.625rem; width: 0.375rem; height: 0.4375rem; border-radius: var(--radius-hole); background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); }
+.btn::before { left: 0.625rem; }
+.btn::after { right: 0.625rem; }
+.btn:hover { --btn-bg: var(--shadow-3); translate: 0 -1px; }
+.btn:active { translate: 0 1px; transition-duration: var(--dur-1); }
+.btn--primary { --btn-bg: var(--leak); --btn-fg: var(--leader); }
+.btn--primary:hover { --btn-bg: var(--leak-hot); box-shadow: var(--shadow-leak), var(--shadow-plate); }
+.btn--ghost { --btn-bg: transparent; background-image: none; box-shadow: inset 0 0 0 1px var(--line-strong); }
+.btn--ghost:hover { --btn-bg: color-mix(in oklab, var(--shadow) 60%, transparent); box-shadow: inset 0 0 0 1px var(--emulsion-dim); }
+.btn--ghost::before, .btn--ghost::after { background: var(--line-strong); box-shadow: 0 1.0625rem 0 var(--line-strong); }
+.btn[aria-disabled='true'], .btn:disabled { opacity: 0.45; cursor: not-allowed; translate: none; box-shadow: var(--shadow-plate); }
+.btn--sm { min-height: 2.25rem; padding-inline: var(--s-5); font-size: var(--text-xs); }
+.btn--sm::before, .btn--sm::after { top: 0.5rem; height: 0.375rem; box-shadow: 0 0.875rem 0 var(--btn-hole); }
+.btn--icon { padding-inline: 0; width: 2.75rem; }
+.btn--icon::before, .btn--icon::after { display: none; }
+
+/* ---------- fields ---------- */
+.field { display: grid; gap: var(--s-2); }
+.field > label, .field__label { font-weight: 600; font-stretch: 80%; font-size: var(--text-xs); letter-spacing: var(--track-code); text-transform: uppercase; color: var(--fg-muted); }
+.field__hint { font-size: var(--text-sm); color: var(--fg-faint); }
+.input, .field input:not([type='checkbox']):not([type='radio']), .field textarea, .field select {
+  width: 100%; min-height: 3rem; padding: var(--s-3) var(--s-4);
+  background: var(--shadow-2); color: var(--fg-strong);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-plate);
+  transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-3) var(--ease-out), background var(--dur-2);
+}
+.field textarea { min-height: 9rem; resize: vertical; line-height: var(--leading-body); }
+.field input::placeholder, .field textarea::placeholder { color: var(--fg-faint); }
+.field input:hover, .field textarea:hover, .field select:hover { border-color: var(--emulsion-dim); }
+.field input:focus-visible, .field textarea:focus-visible, .field select:focus-visible { outline: none; border-color: var(--leak); box-shadow: 0 0.5rem 1.5rem -0.75rem color-mix(in oklab, var(--leak) 60%, transparent); }
+.field input:user-invalid, .field textarea:user-invalid { border-color: var(--sepia); }
+.field__error { font-size: var(--text-sm); color: var(--sepia); }
+
+/* ---------- placeholder marker (maintainer-facing, visitor-honest) ---------- */
+.social.is-placeholder, [data-placeholder='link'] { cursor: help; }
+
+/* ---------- motion ---------- */
+/* Content "develops": from faint and slightly blurred to projected. Only once JS is present,
+   only when motion is allowed, and never on anything already in view at load for long. */
+.js [data-reveal] { opacity: 0; translate: 0 0.75rem; filter: blur(6px); transition: opacity var(--dur-3) var(--ease-out), translate var(--dur-3) var(--ease-out), filter var(--dur-3) var(--ease-out); transition-delay: var(--reveal-delay, 0ms); will-change: opacity, translate, filter; }
+.js [data-reveal].is-in { opacity: 1; translate: 0 0; filter: blur(0); will-change: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] { opacity: 1; translate: 0 0; filter: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---------- film grain over the whole page (static, faint) ---------- */
+.grain { position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0.3; mix-blend-mode: screen; background-image: url('../assets/textures/grain-light.png'); background-size: 512px 512px; }
+@media (prefers-reduced-transparency: reduce) { .grain { display: none; } }

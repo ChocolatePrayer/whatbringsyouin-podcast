@@ -1,0 +1,59 @@
+---
+import Mark from './Mark.astro';
+import SocialLinks from './SocialLinks.astro';
+import { site } from '../site';
+import { withBase } from '../lib/url';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <span class="site-footer__rail perf perf--h" aria-hidden="true"></span>
+  <div class="site-footer__inner container">
+    <div class="site-footer__brand">
+      <a class="brand" href={withBase('/')} aria-label={`${site.name} — home`}><Mark size={36} /></a>
+      <p class="site-footer__name display display--sm">{site.name}</p>
+      <p class="muted measure">{site.affiliation}</p>
+      <p class="edge-code edge-code--sepia" data-placeholder={site.launch.placeholder ? 'launch' : undefined}>{site.launch.label}</p>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <p class="edge-code">Reels</p>
+      <ul role="list">
+        {site.nav.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="site-footer__follow">
+      <p class="edge-code">Follow</p>
+      <SocialLinks variant="column" />
+    </div>
+
+    <div class="site-footer__contact">
+      <p class="edge-code">Write to us</p>
+      {site.email.placeholder || !site.email.address ? (
+        <p class="muted" data-placeholder="email" title="Add the contact address in src/site.ts">Email address coming soon.</p>
+      ) : (
+        <a href={`mailto:${site.email.address}`}>{site.email.address}</a>
+      )}
+      <p class="muted small">Have a guest in mind, or want to join the team? <a href={withBase('/get-involved')}>Get involved</a>.</p>
+    </div>
+  </div>
+  <div class="site-footer__colophon container">
+    <p class="edge-code">© {year} {site.name} · Student-run · Affiliated with McGill University</p>
+    <p class="edge-code">Montréal, QC</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { margin-block-start: var(--s-10); background: var(--leader-2); border-top: 1px solid var(--line); }
+  .site-footer__rail { display: block; height: var(--perf-w); width: 100%; }
+  .site-footer__inner { display: grid; grid-template-columns: 1fr; gap: var(--s-8) var(--s-7); padding-block: var(--s-8) var(--s-7); }
+  @media (min-width: 48em) { .site-footer__inner { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; } }
+  .site-footer__brand { display: grid; gap: var(--s-3); align-content: start; }
+  .site-footer__name { font-size: 1.5rem; }
+  .site-footer__nav ul, .site-footer__contact { display: grid; gap: var(--s-2); margin-block-start: var(--s-3); }
+  .site-footer__follow :global(.socials) { margin-block-start: var(--s-3); }
+  .site-footer a:not(.brand) { text-decoration: none; color: var(--fg-muted); }
+  .site-footer a:not(.brand):hover { color: var(--fg-strong); }
+  .site-footer__contact p { margin: 0; }
+  .site-footer__colophon { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); padding-block: var(--s-5) var(--s-6); border-top: 1px solid var(--line); }
+</style>

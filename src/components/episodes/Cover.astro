@@ -1,0 +1,15 @@
+---
+/**
+ * Cover — an episode's cover art, or the honest placeholder for it.
+ * Goes in a <Frame slot="media">. `cover` is a path under /public (passed through withBase).
+ */
+import Placeholder from '../Placeholder.astro';
+import { withBase } from '../../lib/url';
+interface Props { cover?: string; ratio?: string; alt?: string; loading?: 'lazy' | 'eager' }
+const { cover, ratio = '1 / 1', alt = '', loading = 'lazy' } = Astro.props;
+---
+{cover ? (
+  <img src={withBase(cover)} alt={alt} loading={loading} decoding="async" />
+) : (
+  <Placeholder kind="cover" label="Episode cover" ratio={ratio} />
+)}

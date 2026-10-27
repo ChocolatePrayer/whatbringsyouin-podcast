@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T00:00:00Z",
+  "title": "Design System: What Brings You In",
+  "extensions": {
+    "colorMeta": {
+      "leader": { "role": "neutral", "displayName": "Leader", "canonical": "#0e0f10", "oklch": "oklch(16.8% 0.003 248)", "tonalRamp": ["oklch(15% 0.003 248)", "oklch(25% 0.003 248)", "oklch(35% 0.003 248)", "oklch(45% 0.003 248)", "oklch(55% 0.003 248)", "oklch(65% 0.003 248)", "oklch(75% 0.003 248)", "oklch(85% 0.003 248)"] },
+      "leader-2": { "role": "neutral", "displayName": "Leader 2", "canonical": "#141618", "oklch": "oklch(19.9% 0.005 248)", "tonalRamp": ["oklch(15% 0.005 248)", "oklch(25% 0.005 248)", "oklch(35% 0.005 248)", "oklch(45% 0.005 248)", "oklch(55% 0.005 248)", "oklch(65% 0.005 248)", "oklch(75% 0.005 248)", "oklch(85% 0.005 248)"] },
+      "shadow-2": { "role": "neutral", "displayName": "Shadow 2 (frame fill)", "canonical": "#1c1f22", "oklch": "oklch(23.7% 0.007 248)", "tonalRamp": ["oklch(15% 0.007 248)", "oklch(25% 0.007 248)", "oklch(35% 0.007 248)", "oklch(45% 0.007 248)", "oklch(55% 0.007 248)", "oklch(65% 0.007 248)", "oklch(75% 0.007 248)", "oklch(85% 0.007 248)"] },
+      "shadow": { "role": "neutral", "displayName": "Shadow (rails, plates)", "canonical": "#2a2e31", "oklch": "oklch(29.8% 0.008 240)", "tonalRamp": ["oklch(15% 0.008 240)", "oklch(25% 0.008 240)", "oklch(35% 0.008 240)", "oklch(45% 0.008 240)", "oklch(55% 0.008 240)", "oklch(65% 0.008 240)", "oklch(75% 0.008 240)", "oklch(85% 0.008 240)"] },
+      "shadow-3": { "role": "neutral", "displayName": "Shadow 3 (hover plate)", "canonical": "#353a3e", "oklch": "oklch(34.5% 0.01 242)", "tonalRamp": ["oklch(15% 0.01 242)", "oklch(25% 0.01 242)", "oklch(35% 0.01 242)", "oklch(45% 0.01 242)", "oklch(55% 0.01 242)", "oklch(65% 0.01 242)", "oklch(75% 0.01 242)", "oklch(85% 0.01 242)"] },
+      "fogged-fill": { "role": "neutral", "displayName": "Fogged Fill", "canonical": "#1a1714", "oklch": "oklch(20.7% 0.008 67)", "tonalRamp": ["oklch(15% 0.008 67)", "oklch(25% 0.008 67)", "oklch(35% 0.008 67)", "oklch(45% 0.008 67)", "oklch(55% 0.008 67)", "oklch(65% 0.008 67)", "oklch(75% 0.008 67)", "oklch(85% 0.008 67)"] },
+      "emulsion-dim": { "role": "neutral", "displayName": "Emulsion Dim (faint text)", "canonical": "#8e9397", "oklch": "oklch(66% 0.008 242)", "tonalRamp": ["oklch(15% 0.008 242)", "oklch(25% 0.008 242)", "oklch(35% 0.008 242)", "oklch(45% 0.008 242)", "oklch(55% 0.008 242)", "oklch(65% 0.008 242)", "oklch(75% 0.008 242)", "oklch(85% 0.008 242)"] },
+      "emulsion": { "role": "neutral", "displayName": "Emulsion (muted text)", "canonical": "#a6abb0", "oklch": "oklch(73.9% 0.009 248)", "tonalRamp": ["oklch(15% 0.009 248)", "oklch(25% 0.009 248)", "oklch(35% 0.009 248)", "oklch(45% 0.009 248)", "oklch(55% 0.009 248)", "oklch(65% 0.009 248)", "oklch(75% 0.009 248)", "oklch(85% 0.009 248)"] },
+      "ink": { "role": "neutral", "displayName": "Ink (body text)", "canonical": "#d8d6d0", "oklch": "oklch(87.6% 0.008 91)", "tonalRamp": ["oklch(15% 0.008 91)", "oklch(25% 0.008 91)", "oklch(35% 0.008 91)", "oklch(45% 0.008 91)", "oklch(55% 0.008 91)", "oklch(65% 0.008 91)", "oklch(75% 0.008 91)", "oklch(85% 0.008 91)"] },
+      "ink-bright": { "role": "neutral", "displayName": "Ink Bright (headings)", "canonical": "#eceae4", "oklch": "oklch(93.7% 0.008 91)", "tonalRamp": ["oklch(15% 0.008 91)", "oklch(25% 0.008 91)", "oklch(35% 0.008 91)", "oklch(45% 0.008 91)", "oklch(55% 0.008 91)", "oklch(65% 0.008 91)", "oklch(75% 0.008 91)", "oklch(85% 0.008 91)"] },
+      "leak": { "role": "primary", "displayName": "Light Leak", "canonical": "#ff8a33", "oklch": "oklch(74.9% 0.17 53)", "tonalRamp": ["oklch(15% 0.17 53)", "oklch(25% 0.17 53)", "oklch(35% 0.17 53)", "oklch(45% 0.17 53)", "oklch(55% 0.17 53)", "oklch(65% 0.17 53)", "oklch(75% 0.17 53)", "oklch(85% 0.17 53)"] },
+      "leak-hot": { "role": "primary", "displayName": "Leak Hot", "canonical": "#ffb070", "oklch": "oklch(82% 0.123 59)", "tonalRamp": ["oklch(15% 0.123 59)", "oklch(25% 0.123 59)", "oklch(35% 0.123 59)", "oklch(45% 0.123 59)", "oklch(55% 0.123 59)", "oklch(65% 0.123 59)", "oklch(75% 0.123 59)", "oklch(85% 0.123 59)"] },
+      "sepia": { "role": "secondary", "displayName": "Chemical Sepia", "canonical": "#c8b089", "oklch": "oklch(76.8% 0.059 80)", "tonalRamp": ["oklch(15% 0.059 80)", "oklch(25% 0.059 80)", "oklch(35% 0.059 80)", "oklch(45% 0.059 80)", "oklch(55% 0.059 80)", "oklch(65% 0.059 80)", "oklch(75% 0.059 80)", "oklch(85% 0.059 80)"] },
+      "sepia-dim": { "role": "secondary", "displayName": "Sepia Dim", "canonical": "#6b5a42", "oklch": "oklch(47.8% 0.042 76)", "tonalRamp": ["oklch(15% 0.042 76)", "oklch(25% 0.042 76)", "oklch(35% 0.042 76)", "oklch(45% 0.042 76)", "oklch(55% 0.042 76)", "oklch(65% 0.042 76)", "oklch(75% 0.042 76)", "oklch(85% 0.042 76)"] },
+      "grease": { "role": "tertiary", "displayName": "Grease Pencil", "canonical": "#b8b3a6", "oklch": "oklch(76.7% 0.019 89)", "tonalRamp": ["oklch(15% 0.019 89)", "oklch(25% 0.019 89)", "oklch(35% 0.019 89)", "oklch(45% 0.019 89)", "oklch(55% 0.019 89)", "oklch(65% 0.019 89)", "oklch(75% 0.019 89)", "oklch(85% 0.019 89)"] }
+    },
+    "derivedColors": [
+      { "name": "line", "value": "color-mix(in oklab, var(--emulsion) 16%, transparent)", "purpose": "Hairline dividers, header/footer borders, topic chip borders." },
+      { "name": "line-strong", "value": "color-mix(in oklab, var(--emulsion) 32%, transparent)", "purpose": "Input borders, ghost button ring, blockquote bar." },
+      { "name": "wire", "value": "color-mix(in oklab, var(--emulsion) 52%, transparent)", "purpose": "The drying-line wire and leaders on About." }
+    ],
+    "typographyMeta": {
+      "display": { "displayName": "Display LG", "purpose": "Home h1 only. Uppercase stencil with grain painted through background-clip: text; recolor via --display-ink." },
+      "display-md": { "displayName": "Display MD", "purpose": "Every other page h1 and the Join the reel h2." },
+      "display-sm": { "displayName": "Display SM", "purpose": "Section h2s, sticky ledger markers, the episode-detail h1 inside its frame, the footer wordmark." },
+      "title": { "displayName": "Title", "purpose": "Frame headings, guest and team names. Width axis 85." },
+      "lede": { "displayName": "Lede", "purpose": "The one paragraph under a page or section title; emulsion; max 55ch." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and rendered Markdown; measure 65ch." },
+      "small": { "displayName": "Small", "purpose": "Meta lines, hints, bios, privacy note." },
+      "label": { "displayName": "Edge Code", "purpose": "Stamped film-margin metadata: codes, counts, states, field labels, chips. Uppercase, tabular numerals. Never prose, never an eyebrow." },
+      "plate": { "displayName": "Plate", "purpose": "Button lettering; nav links use the same voice at 0.14em tracking." },
+      "hand": { "displayName": "Grease Pencil", "purpose": "Frame numerals, the hero question, the screening day, step counters. Rotated -3deg." }
+    },
+    "textures": [
+      { "name": "grain-light.png", "path": "src/assets/textures/grain-light.png", "purpose": "Page grain overlay (.grain): fixed, 512px tile, opacity 0.3, screen blend, z-index 90; removed under prefers-reduced-transparency." },
+      { "name": "grain-dark.png", "path": "src/assets/textures/grain-dark.png", "purpose": "256px tile inside .display letterforms (background-clip: text), on perforation rails, and on button plates." },
+      { "name": "grain-alpha.png", "path": "src/assets/textures/grain-alpha.png", "purpose": "256px mask on the light leak (intersected with blotch-alpha)." },
+      { "name": "blotch-alpha.png", "path": "src/assets/textures/blotch-alpha.png", "purpose": "640px chemical-blotch mask on the light leak." },
+      { "name": "scratches.svg", "path": "src/assets/textures/scratches.svg", "purpose": "Authored scratches over frame media (.frame__media::after), screen blend, opacity 0 / 0.6 / 1 by data-wear." },
+      { "name": "stain.png", "path": "src/assets/textures/stain.png", "purpose": "Chemistry stain on placeholders (opacity 0.8; 0.5 for audio), position by kind." }
+    ],
+    "perforation": [
+      { "name": "perf-w", "value": "1.25rem", "purpose": "Rail thickness." },
+      { "name": "perf-hole-w", "value": "0.5625rem", "purpose": "Hole across the rail." },
+      { "name": "perf-hole-h", "value": "0.875rem", "purpose": "Hole along the rail." },
+      { "name": "perf-period", "value": "1.5rem", "purpose": "Hole pitch." }
+    ],
+    "shadows": [
+      { "name": "shadow-frame", "value": "0 1.5rem 3rem -1.5rem rgb(0 0 0 / 0.8), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5)", "purpose": "Every Frame, HangingStrip column, the audio player plate." },
+      { "name": "shadow-frame-lifted", "value": "0 2rem 3.5rem -1.5rem rgb(0 0 0 / 0.85), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5)", "purpose": "Interactive frames on hover, with translate 0 -2px." },
+      { "name": "shadow-plate", "value": "0 0.5rem 1rem -0.6rem rgb(0 0 0 / 0.7)", "purpose": "Buttons and checked topic plates." },
+      { "name": "shadow-leak", "value": "0 1rem 3rem -1rem color-mix(in oklab, var(--leak) 55%, transparent)", "purpose": "Primary button hover only, layered over shadow-plate." },
+      { "name": "nav-current-glow", "value": "0 0.25rem 0.75rem -0.125rem color-mix(in oklab, var(--leak) 70%, transparent)", "purpose": "Under the current page's orange underline." },
+      { "name": "field-focus-glow", "value": "0 0.5rem 1.5rem -0.75rem color-mix(in oklab, var(--leak) 60%, transparent)", "purpose": "Focused input, textarea, select." },
+      { "name": "menu-panel", "value": "0 2rem 3rem -2rem rgb(0 0 0 / 0.9)", "purpose": "The mobile nav panel." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The only easing in use: reveals, hovers, leak, lifts." },
+      { "name": "dur-1", "value": "160ms", "purpose": "Press (button :active)." },
+      { "name": "dur-2", "value": "320ms", "purpose": "Color, underline, lift, link decoration." },
+      { "name": "dur-3", "value": "640ms", "purpose": "Reveal (opacity, translate, blur), shadow, rotate, topic-field height." },
+      { "name": "dur-4", "value": "1200ms", "purpose": "Light leak opacity, media develop, hero bloom." },
+      { "name": "reveal-start", "value": "opacity 0; translate 0 0.75rem; filter blur(6px)", "purpose": "[data-reveal] before it enters; only when html.js is set." },
+      { "name": "reveal-observer", "value": "rootMargin 0px 0px -8% 0px; threshold 0.05", "purpose": "IntersectionObserver that adds .is-in once." },
+      { "name": "reveal-stagger", "value": "data-reveal-stagger=\"ms\" (default 60, cap 600)", "purpose": "Sets --reveal-delay per child." },
+      { "name": "hero-bloom", "value": "opacity 0 -> 0.95, dur-4, 200ms delay, once", "purpose": "Home's authored moment; animation: none under reduced motion." },
+      { "name": "reduced-motion", "value": "animation-duration 0.01ms; transition-duration 0.01ms; reveals shown", "purpose": "Global kill switch under prefers-reduced-motion: reduce." }
+    ],
+    "breakpoints": [
+      { "name": "sheet-two-up", "value": "40em" },
+      { "name": "nav-desktop", "value": "48em" },
+      { "name": "page-wide", "value": "60em" },
+      { "name": "ledger-wide", "value": "64em" },
+      { "name": "line-four-strips", "value": "80em" }
+    ],
+    "layout": [
+      { "name": "container", "value": "min(100% - 2 * var(--gutter), 80rem)" },
+      { "name": "container-narrow", "value": "56rem" },
+      { "name": "container-wide", "value": "96rem" },
+      { "name": "container-events", "value": "72rem" },
+      { "name": "measure", "value": "65ch" },
+      { "name": "section-padding", "value": "6rem; 8rem at >= 60em" },
+      { "name": "strip-item-w", "value": "min(78vw, 26rem)" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one primary action per view: an orange plate with two perforation holes at each end.",
+      "html": "<a class=\"ds-btn ds-btn--primary\" href=\"#\">Hear the first reel <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M6 13l6 6 6-6\"/></svg></a>",
+      "css": ".ds-btn { --btn-bg: var(--shadow, #2a2e31); --btn-fg: var(--ink-bright, #eceae4); --btn-hole: var(--leader, #0e0f10); position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 3rem; border: 0; border-radius: 0.25rem; background-color: var(--btn-bg); color: var(--btn-fg); font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 0.8125rem; font-stretch: 80%; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; box-shadow: 0 0.5rem 1rem -0.6rem rgb(0 0 0 / 0.7); transition: background-color 320ms cubic-bezier(0.16,1,0.3,1), box-shadow 640ms cubic-bezier(0.16,1,0.3,1), translate 320ms cubic-bezier(0.16,1,0.3,1); } .ds-btn::before, .ds-btn::after { content: ''; position: absolute; top: 0.625rem; width: 0.375rem; height: 0.4375rem; border-radius: 0.125rem; background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); } .ds-btn::before { left: 0.625rem; } .ds-btn::after { right: 0.625rem; } .ds-btn:hover { --btn-bg: var(--shadow-3, #353a3e); translate: 0 -1px; } .ds-btn:active { translate: 0 1px; transition-duration: 160ms; } .ds-btn:focus-visible { outline: 2px solid var(--leak, #ff8a33); outline-offset: 3px; } .ds-btn--primary { --btn-bg: var(--leak, #ff8a33); --btn-fg: var(--leader, #0e0f10); } .ds-btn--primary:hover { --btn-bg: var(--leak-hot, #ffb070); box-shadow: 0 1rem 3rem -1rem color-mix(in oklab, var(--leak, #ff8a33) 55%, transparent), 0 0.5rem 1rem -0.6rem rgb(0 0 0 / 0.7); } .ds-btn svg { flex: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The default plate: shadow gray with bright lettering; lifts a pixel and brightens on hover.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Join the team</a>",
+      "css": ".ds-btn { --btn-bg: var(--shadow, #2a2e31); --btn-fg: var(--ink-bright, #eceae4); --btn-hole: var(--leader, #0e0f10); position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 3rem; border: 0; border-radius: 0.25rem; background-color: var(--btn-bg); color: var(--btn-fg); font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 0.8125rem; font-stretch: 80%; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; box-shadow: 0 0.5rem 1rem -0.6rem rgb(0 0 0 / 0.7); transition: background-color 320ms cubic-bezier(0.16,1,0.3,1), translate 320ms cubic-bezier(0.16,1,0.3,1); } .ds-btn::before, .ds-btn::after { content: ''; position: absolute; top: 0.625rem; width: 0.375rem; height: 0.4375rem; border-radius: 0.125rem; background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); } .ds-btn::before { left: 0.625rem; } .ds-btn::after { right: 0.625rem; } .ds-btn:hover { --btn-bg: var(--shadow-3, #353a3e); translate: 0 -1px; } .ds-btn:active { translate: 0 1px; transition-duration: 160ms; } .ds-btn:focus-visible { outline: 2px solid var(--leak, #ff8a33); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "A plate drawn only as a hairline ring; the quiet tertiary action and the strip controls.",
+      "html": "<a class=\"ds-btn ds-btn--ghost\" href=\"#\">All episodes <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn { --btn-bg: var(--shadow, #2a2e31); --btn-fg: var(--ink-bright, #eceae4); --btn-hole: var(--leader, #0e0f10); position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0 3rem; border: 0; border-radius: 0.25rem; background-color: var(--btn-bg); color: var(--btn-fg); font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 0.8125rem; font-stretch: 80%; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color 320ms cubic-bezier(0.16,1,0.3,1), box-shadow 640ms cubic-bezier(0.16,1,0.3,1), translate 320ms cubic-bezier(0.16,1,0.3,1); } .ds-btn::before, .ds-btn::after { content: ''; position: absolute; top: 0.625rem; width: 0.375rem; height: 0.4375rem; border-radius: 0.125rem; } .ds-btn::before { left: 0.625rem; } .ds-btn::after { right: 0.625rem; } .ds-btn--ghost { --btn-bg: transparent; --line-strong-fallback: color-mix(in oklab, var(--emulsion, #a6abb0) 32%, transparent); box-shadow: inset 0 0 0 1px var(--line-strong, var(--line-strong-fallback)); } .ds-btn--ghost::before, .ds-btn--ghost::after { background: var(--line-strong, var(--line-strong-fallback)); box-shadow: 0 1.0625rem 0 var(--line-strong, var(--line-strong-fallback)); } .ds-btn--ghost:hover { --btn-bg: color-mix(in oklab, var(--shadow, #2a2e31) 60%, transparent); box-shadow: inset 0 0 0 1px var(--emulsion-dim, #8e9397); translate: 0 -1px; } .ds-btn:active { translate: 0 1px; transition-duration: 160ms; } .ds-btn:focus-visible { outline: 2px solid var(--leak, #ff8a33); outline-offset: 3px; } .ds-btn svg { flex: none; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Edge-code label over a shadow-filled input; the border turns orange with a soft leak on focus and sepia when invalid.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-email\">Email</label><input id=\"ds-email\" type=\"email\" placeholder=\"you@example.com\" /><p class=\"ds-field__hint\">We only use this to reply to you.</p></div>",
+      "css": ".ds-field { display: grid; gap: 0.5rem; font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-field > label { font-weight: 600; font-stretch: 80%; font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emulsion, #a6abb0); } .ds-field input { width: 100%; min-height: 3rem; padding: 0.75rem 1rem; font: inherit; font-size: 1.0625rem; background: var(--shadow-2, #1c1f22); color: var(--ink-bright, #eceae4); border: 1px solid color-mix(in oklab, var(--emulsion, #a6abb0) 32%, transparent); border-radius: 0.25rem; transition: border-color 320ms cubic-bezier(0.16,1,0.3,1), box-shadow 640ms cubic-bezier(0.16,1,0.3,1); } .ds-field input::placeholder { color: var(--emulsion-dim, #8e9397); } .ds-field input:hover { border-color: var(--emulsion-dim, #8e9397); } .ds-field input:focus-visible { outline: none; border-color: var(--leak, #ff8a33); box-shadow: 0 0.5rem 1.5rem -0.75rem color-mix(in oklab, var(--leak, #ff8a33) 60%, transparent); } .ds-field input:user-invalid { border-color: var(--sepia, #c8b089); } .ds-field__hint { margin: 0; font-size: 0.8125rem; color: var(--emulsion-dim, #8e9397); }"
+    },
+    {
+      "name": "Primary Nav",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Desktop nav: condensed uppercase links; a 2px underline scales in from the left on hover and stays orange with a small glow on the current page.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Primary\"><ul><li><a href=\"#\" aria-current=\"page\">Episodes</a></li><li><a href=\"#\">Events</a></li><li><a href=\"#\">Team</a></li><li><a href=\"#\">About</a></li><li><a href=\"#\">Get involved</a></li></ul></nav>",
+      "css": ".ds-nav ul { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; } .ds-nav a { position: relative; display: inline-block; padding: 0.5rem 0; font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-stretch: 80%; font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--emulsion, #a6abb0); text-decoration: none; transition: color 320ms cubic-bezier(0.16,1,0.3,1); } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 1px; background: var(--leak, #ff8a33); transform-origin: left; scale: 0 1; transition: scale 640ms cubic-bezier(0.16,1,0.3,1), background 320ms; } .ds-nav a:hover { color: var(--ink-bright, #eceae4); } .ds-nav a:hover::after { scale: 1 1; background: var(--emulsion, #a6abb0); } .ds-nav a[aria-current='page'] { color: var(--ink-bright, #eceae4); } .ds-nav a[aria-current='page']::after { scale: 1 1; background: var(--leak, #ff8a33); box-shadow: 0 0.25rem 0.75rem -0.125rem color-mix(in oklab, var(--leak, #ff8a33) 70%, transparent); } .ds-nav a:focus-visible { outline: 2px solid var(--leak, #ff8a33); outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Topic Chip",
+      "kind": "chip",
+      "refersTo": "topic-chip",
+      "description": "A quiet, non-interactive edge-code chip for episode topics; its border brightens when the surrounding frame is hovered.",
+      "html": "<ul class=\"ds-topics\" aria-label=\"Topics\"><li>Admissions</li><li>Residency</li><li>Surgery</li></ul>",
+      "css": ".ds-topics { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; } .ds-topics li { padding: 0.4em 0.7em 0.35em; border: 1px solid color-mix(in oklab, var(--emulsion, #a6abb0) 16%, transparent); border-radius: 0.25rem; font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-stretch: 80%; font-size: 0.6875rem; line-height: 1.25; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emulsion-dim, #8e9397); font-variant-numeric: tabular-nums; transition: border-color 640ms cubic-bezier(0.16,1,0.3,1); } .ds-topics:hover li { border-color: color-mix(in oklab, var(--emulsion, #a6abb0) 32%, transparent); }"
+    },
+    {
+      "name": "Frame (latent, with leak)",
+      "kind": "card",
+      "refersTo": "frame-latent",
+      "description": "The atom: a cell of film with masked perforation rails, a grease numeral, a stamped edge code, and a light leak that blooms through the right rail on hover or focus.",
+      "html": "<a class=\"ds-frame ds-frame--latent\" href=\"#\"><span class=\"ds-frame__rail ds-frame__rail--l\" aria-hidden=\"true\"></span><div class=\"ds-frame__body\"><h3 class=\"ds-frame__title\">The decisions along the way</h3><p>How a specialty gets chosen, how admissions and residency really work, and which choices mattered in hindsight.</p></div><span class=\"ds-frame__code\">Reel 01 · Frame 02 · Coming soon</span><span class=\"ds-frame__rail ds-frame__rail--r\" aria-hidden=\"true\"></span><span class=\"ds-frame__leak\" aria-hidden=\"true\"></span><span class=\"ds-frame__numeral\"><span class=\"ds-sr\">Episode </span>02</span></a>",
+      "css": ".ds-frame { --perf-w: 1.25rem; --perf-hole-w: 0.5625rem; --perf-hole-h: 0.875rem; --perf-period: 1.5rem; position: relative; display: grid; grid-template-columns: var(--perf-w) minmax(0, 1fr) var(--perf-w); grid-template-rows: auto 1fr auto; background: var(--shadow-2, #1c1f22); border-radius: 0.375rem; box-shadow: 0 1.5rem 3rem -1.5rem rgb(0 0 0 / 0.8), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5); color: var(--ink, #d8d6d0); isolation: isolate; overflow: clip; text-decoration: none; font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-size: 1.0625rem; line-height: 1.6; cursor: pointer; transition: translate 640ms cubic-bezier(0.16,1,0.3,1), box-shadow 640ms cubic-bezier(0.16,1,0.3,1), color 640ms cubic-bezier(0.16,1,0.3,1); } .ds-frame:hover { translate: 0 -2px; box-shadow: 0 2rem 3.5rem -1.5rem rgb(0 0 0 / 0.85), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5); } .ds-frame:focus-visible { outline: 2px solid var(--leak, #ff8a33); outline-offset: 4px; } .ds-frame__rail { grid-row: 1 / -1; z-index: 3; background-color: var(--shadow, #2a2e31); background-image: linear-gradient(to right, rgb(0 0 0 / 0.55), transparent 36%, transparent 64%, rgb(0 0 0 / 0.55)); -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 calc((var(--perf-period) - var(--perf-hole-h)) / 2), transparent 0 calc((var(--perf-period) + var(--perf-hole-h)) / 2), #000 0 var(--perf-period)), linear-gradient(to right, #000 0 calc((var(--perf-w) - var(--perf-hole-w)) / 2), transparent 0 calc((var(--perf-w) + var(--perf-hole-w)) / 2), #000 0); mask-image: repeating-linear-gradient(to bottom, #000 0 calc((var(--perf-period) - var(--perf-hole-h)) / 2), transparent 0 calc((var(--perf-period) + var(--perf-hole-h)) / 2), #000 0 var(--perf-period)), linear-gradient(to right, #000 0 calc((var(--perf-w) - var(--perf-hole-w)) / 2), transparent 0 calc((var(--perf-w) + var(--perf-hole-w)) / 2), #000 0); -webkit-mask-composite: source-over; mask-composite: add; } .ds-frame__rail--l { grid-column: 1; } .ds-frame__rail--r { grid-column: 3; } .ds-frame__body { grid-column: 2; grid-row: 2; position: relative; z-index: 1; display: grid; gap: 0.75rem; align-content: start; padding: 4rem 1.5rem 2rem; } .ds-frame__body p { margin: 0; max-width: 52ch; } .ds-frame__title { margin: 0; font-weight: 700; font-stretch: 85%; font-size: 1.5rem; line-height: 1.2; color: inherit; text-wrap: balance; transition: color 640ms cubic-bezier(0.16,1,0.3,1); } .ds-frame__code { grid-column: 2; grid-row: 3; position: relative; z-index: 1; padding: 0 1.5rem 1rem; font-weight: 600; font-stretch: 80%; font-size: 0.6875rem; line-height: 1.25; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emulsion-dim, #8e9397); font-variant-numeric: tabular-nums; } .ds-frame__numeral { position: absolute; z-index: 4; top: 0.5rem; left: calc(var(--perf-w) + 0.75rem); pointer-events: none; display: inline-block; font-family: 'Caveat Variable', 'Bradley Hand', 'Segoe Print', cursive; font-weight: 600; font-size: 1.75rem; line-height: 1; letter-spacing: 0.02em; color: var(--grease, #b8b3a6); rotate: -3deg; text-shadow: 0 1px 0 rgb(0 0 0 / 0.5); } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } .ds-frame__leak { position: absolute; inset: -25% -10% -25% 30%; z-index: 2; pointer-events: none; opacity: 0; background: linear-gradient(to left, color-mix(in oklab, var(--leak-hot, #ffb070) 75%, transparent), transparent 18%), radial-gradient(58% 95% at 100% 50%, var(--leak-hot, #ffb070) 0%, var(--leak, #ff8a33) 16%, color-mix(in oklab, var(--leak, #ff8a33) 58%, transparent) 36%, transparent 70%); mix-blend-mode: screen; transition: opacity 1200ms cubic-bezier(0.16,1,0.3,1); } .ds-frame:is(:hover, :focus-within) .ds-frame__leak { opacity: 0.85; } .ds-frame--latent { color: var(--emulsion, #a6abb0); } .ds-frame--latent:is(:hover, :focus-within) { color: var(--ink, #d8d6d0); } .ds-frame--latent:is(:hover, :focus-within) .ds-frame__title { color: var(--ink-bright, #eceae4); }"
+    },
+    {
+      "name": "Placeholder",
+      "kind": "custom",
+      "refersTo": "placeholder",
+      "description": "An honest latent slot for a missing asset: dashed sepia registration edge, centered label plate, and a sepia 'Add photo' stamp.",
+      "html": "<div class=\"ds-placeholder\" role=\"img\" aria-label=\"Placeholder for guest photo\" title=\"Add photo: Guest photo\"><span class=\"ds-placeholder__label\" aria-hidden=\"true\">Guest photo</span><span class=\"ds-placeholder__stamp\" aria-hidden=\"true\">Add photo</span></div>",
+      "css": ".ds-placeholder { position: relative; aspect-ratio: 4 / 5; width: 100%; max-width: 20rem; min-height: 4rem; display: grid; place-items: center; padding: 1rem; background: radial-gradient(70% 60% at 50% 45%, rgb(166 171 176 / 0.07), transparent 70%), var(--shadow, #2a2e31); color: var(--emulsion, #a6abb0); overflow: hidden; font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; } .ds-placeholder::before { content: ''; position: absolute; inset: 0.75rem; border: 1px dashed var(--sepia-dim, #6b5a42); border-radius: 2px; pointer-events: none; z-index: 1; } .ds-placeholder__label { position: relative; z-index: 1; font-size: 0.8125rem; font-stretch: 90%; text-align: center; max-width: 18ch; color: var(--ink, #d8d6d0); padding: 0.3em 0.7em; border-radius: 0.25rem; background: rgb(14 15 16 / 0.8); } .ds-placeholder__stamp { position: absolute; left: 1.5rem; bottom: 1rem; z-index: 1; padding: 0.35em 0.6em 0.3em; border-radius: 0.25rem; background: rgb(14 15 16 / 0.8); font-weight: 600; font-stretch: 80%; font-size: 0.6875rem; line-height: 1.25; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sepia, #c8b089); }"
+    },
+    {
+      "name": "Follow Marks",
+      "kind": "custom",
+      "refersTo": "edge-code",
+      "description": "Follow links as edge-code names; a real link gets a bright name and an arrow, a placeholder gets a bordered sepia 'soon' tag instead of a dead link.",
+      "html": "<ul class=\"ds-socials\"><li><span class=\"ds-social ds-social--soon\" title=\"Add the Spotify link in src/site.ts\">Spotify<span class=\"ds-social__soon\">soon</span></span></li><li><a class=\"ds-social ds-social--real\" href=\"#\">YouTube <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a></li></ul>",
+      "css": ".ds-socials { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; list-style: none; margin: 0; padding: 0; } .ds-social { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.25rem 0; text-decoration: none; font-family: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-stretch: 80%; font-size: 0.6875rem; line-height: 1.25; letter-spacing: 0.18em; text-transform: uppercase; color: var(--emulsion-dim, #8e9397); transition: color 320ms cubic-bezier(0.16,1,0.3,1); } .ds-social--soon { cursor: help; } .ds-social--real { color: var(--emulsion, #a6abb0); } .ds-social--real:hover { color: var(--ink-bright, #eceae4); } .ds-social__soon { font-size: 0.6em; letter-spacing: 0.12em; padding: 0.2em 0.5em 0.15em; border: 1px solid var(--sepia-dim, #6b5a42); border-radius: 2px; color: var(--sepia, #c8b089); }"
+    },
+    {
+      "name": "Grease Numeral (circled)",
+      "kind": "custom",
+      "refersTo": "edge-code",
+      "description": "The hand-written frame number; the circled variant is the editor's loupe on the chosen frame (Team on hover).",
+      "html": "<span class=\"ds-grease\">01</span> <span class=\"ds-grease ds-grease--circled\">02</span> <span class=\"ds-grease ds-grease--lg\">TBC</span>",
+      "css": ".ds-grease { display: inline-block; font-family: 'Caveat Variable', 'Bradley Hand', 'Segoe Print', cursive; font-weight: 600; font-size: 1.75rem; line-height: 1; color: var(--grease, #b8b3a6); rotate: -3deg; letter-spacing: 0.02em; margin-right: 1rem; } .ds-grease--lg { font-size: 2.75rem; } .ds-grease--circled { padding: 0.1em 0.45em 0.15em; border: 2px solid var(--leak, #ff8a33); border-radius: 50% 45% 55% 50% / 55% 50% 45% 50%; color: var(--leak, #ff8a33); rotate: -5deg; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Hand-Processed Reel",
+    "overview": "The whole site is one strip of 16mm film that a student processed by hand. The page ground is film leader, type is the gray of emulsion, and every unit of content is a frame: a cell with perforation rails on both sides, a grease-pencil numeral in the corner, and a stamped edge code along the bottom. Frames are latent until something develops them (hover, focus, becoming the active frame), projected when they are real, and fogged when they belong to the past. One orange exists in the world, a light leak, and it is spent on exactly the things that are live right now: the lit frame, the current page, the primary action.\n\nThe build refuses the podcast-site defaults: no cover-art hero, no \"listen on\" button row, no same-size card grid. Instead each of the six page types has its own film-handling structure (a title card, a strip, a drying line, a contact sheet, a film log, a ledger, a splice bench), all made from the same Frame atom. Density is cozy on purpose: sections sit 6 to 8rem apart, groups inside them are tight, and every page is a quiet room rather than a control panel.\n\nMaterial is literal, not implied. Grain sits over the whole page and inside the stencil letterforms; rails are sooted at their edges; the light leak is masked through grain and chemical blotches; media slots carry authored scratches; placeholders carry an unfixed chemistry stain. Motion is \"developing\": content arrives faint and blurred and resolves into projection, once, with an expo ease-out. Nothing loops.",
+    "keyCharacteristics": [
+      "One dark world only (color-scheme: dark); there is no light theme.",
+      "Frame grammar everywhere: rails, numeral, edge code, media gate, body.",
+      "Orange is a semantic signal (live / current / primary), never decoration.",
+      "Sepia marks wear, placeholders, and the past; placeholders are visible to maintainers and honest to visitors.",
+      "Three faces with fixed jobs: stencil caps for titles, one grotesque for everything read, one hand for numerals.",
+      "Pages differ structurally; the atom does not."
+    ],
+    "rules": [
+      { "name": "The One Leak Rule", "body": "Orange means live: the one lit frame per strip, the current page, the primary action, and the small emphasis marks listed above. A strip has at most one .is-lit frame, and the lit frame always means something that can be named in its edge code (\"Next to develop\", \"Latest\", \"Next screening\", \"Open frame\", \"Tail\"). Hover and focus only preview the leak; they never make a second frame permanently lit.", "section": "colors" },
+      { "name": "The Sepia Is Wear Rule", "body": "Anything that is not real yet, or no longer current, reads in sepia: placeholder stamps and bracketed copy, \"soon\" marks, past events, invalid input. Sepia never decorates a live element.", "section": "colors" },
+      { "name": "The Pre-Checked Contrast Rule", "body": "Text colors are checked on leader: use emulsion-dim and up for any text; keep text off the orange bloom core (bodies inside lit frames stop before the right rail with extra right padding).", "section": "colors" },
+      { "name": "The Grain-In-The-Letterform Rule", "body": ".display paints grain-dark.png (256px tile) through background-clip: text over --display-ink so the stencil letters carry emulsion grain. Recolor display type by setting --display-ink, never color. Browsers without background-clip: text get solid --display-ink via @supports.", "section": "typography" },
+      { "name": "The Edge Code Is Metadata Rule", "body": ".edge-code carries dates, counts, states, kinds and labels. It is never used for prose, and never placed above a heading as an eyebrow; it sits at the bottom of a frame, beside a list, or as a column head.", "section": "typography" },
+      { "name": "The Numeral Must Mean Something Rule", "body": "A grease numeral is the episode number, the day of the month, a position on the sheet, or a step the reader takes. \"TBC\" is the only non-numeric numeral and marks an unconfirmed date. There are no decorative 01/02/03.", "section": "typography" },
+      { "name": "The Light Is The Only Glow Rule", "body": "Colored shadows exist only where orange is already present and live (primary hover, current page, focused field). Nothing else glows.", "section": "elevation" },
+      { "name": "The Grain Over Everything Rule", "body": ".grain is a fixed, pointer-transparent overlay at z-index: 90, opacity 0.3, mix-blend-mode: screen, tiling grain-light.png at 512px. It is removed under prefers-reduced-transparency: reduce. Texture is layered, never faked with opacity on content.", "section": "elevation" },
+      { "name": "The No Nested Frames Rule", "body": "Frames do not sit inside frames. Inside a Strip, HangingStrip or the film log, a frame drops its own rails (grid-template-columns: 0 1fr 0; .frame__rail { display: none }) and the parent's single pair of rails carries the perforations.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do build every unit of content as a Frame and give it a real state: latent for coming-soon or undiscovered, projected for real, fogged for the past.",
+      "Do light at most one frame per strip with .is-lit, and name why in its edge code (\"Next to develop\", \"Latest\", \"Next screening\", \"Open frame\", \"Tail\").",
+      "Do keep copy out of the leak: bodies inside lit or horizontal frames stop before the right rail (padding-inline-end of 8–22% or clamp(--s-6, 22%, 10rem)).",
+      "Do set titles with .display and recolor them through --display-ink; set frame headings with .title; set metadata with .edge-code joined by edgeCode(); set numerals with .grease.",
+      "Do separate sections by --s-9 / --s-10, keep groups at --s-3 / --s-4, and offset cells on the 12-column table so no row reads as a card grid.",
+      "Do route every internal href and src through withBase().",
+      "Do use <Placeholder> for any missing image or audio, <SocialLinks> for follow links, and data-placeholder=\"<what>\" plus a title hint on any copy, endpoint or date a maintainer must replace; render placeholder text in sepia.",
+      "Do branch on placeholder: true and missing fields, and design the real state too (real image → <img> in the media slot; real link → bright edge-code link).",
+      "Do put data-reveal on sections and data-reveal-stagger on lists, and keep any further motion inside one authored moment per page that is static under prefers-reduced-motion: reduce.",
+      "Do keep one h1 per page, real landmarks with aria-labelledby, lists as role=\"list\", buttons for actions and links for navigation, a visually-hidden label before every numeral, alt or aria-label on anything visual, and text at emulsion-dim or brighter on leader.",
+      "Do add new icons to Icon.astro and new site facts to src/site.ts."
+    ],
+    "donts": [
+      "Don't paint a section, card or background orange, and don't add orange glows to anything that is not live (the primary hover, the current page and a focused field are the only glows).",
+      "Don't use sepia on a live element; it marks wear, placeholders and the past only.",
+      "Don't nest a frame inside a frame, and don't add perforation rails to arbitrary boxes; rails belong to frames, strips, the film log, the header and the footer.",
+      "Don't build a same-size card grid, a cover-art hero, or a \"listen on\" button row.",
+      "Don't put an eyebrow, kicker or label above a heading; edge codes sit at the bottom of a frame, beside a list, or as a column head.",
+      "Don't add decorative 01 / 02 / 03; a numeral is an episode number, a date, a sheet position or a step.",
+      "Don't use monospace, a system display face, or inline SVG in pages.",
+      "Don't invent guest names, episode titles, dates, times, quotes, counts, partners or a founding story; don't count placeholder entries as real; don't place McGill marks (affiliation is text only).",
+      "Don't add loops, parallax, auto-play, hover effects that move layout, or any animation that bypasses the shared reduced-motion rules.",
+      "Don't redefine tokens or shared classes locally; page CSS stays scoped in the page and its src/components/<page>/ folder, with :global() only inside a wrapper the page owns.",
+      "Don't use --base (#6e7377) for text; it fails body contrast and is currently unused."
+    ]
+  }
+}

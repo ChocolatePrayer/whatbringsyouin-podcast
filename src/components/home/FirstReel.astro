@@ -1,0 +1,130 @@
+---
+/**
+ * "The first reel" — every episode as a frame on one strip, sorted by number.
+ * Coming-soon frames are latent; placeholder entries (placeholder: true) never read as real.
+ * Empty collection: one latent frame that says what is coming.
+ */
+import type { CollectionEntry } from 'astro:content';
+import Frame from '../Frame.astro';
+import Strip from '../Strip.astro';
+import Placeholder from '../Placeholder.astro';
+import Button from '../Button.astro';
+import { withBase } from '../../lib/url';
+import { fmtDate, pad2, edgeCode } from '../../lib/format';
+
+interface Props { episodes: CollectionEntry<'episodes'>[] }
+const { episodes } = Astro.props;
+
+const n = episodes.length;
+const real = episodes.filter((e) => !e.data.placeholder);
+const released = real.filter((e) => e.data.status === 'published').length;
+const words = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const count = (k: number) => words[k] ?? String(k);
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const conv = (k: number) => (k === 1 ? 'conversation' : 'conversations');
+
+let lede: string;
+if (real.length === 0) {
+  lede = 'The first conversations are being scheduled. Each one becomes a frame here, coming soon.';
+} else if (released === 0) {
+  lede = `${cap(count(real.length))} ${conv(real.length)} ${real.length === 1 ? 'is' : 'are'} being scheduled; each becomes a frame here on release.`;
+} else if (released < real.length) {
+  lede = `${cap(count(released))} of ${count(real.length)} ${conv(real.length)} released so far; the rest are being scheduled.`;
+} else {
+  lede = `${cap(count(real.length))} ${conv(real.length)} so far, each one a frame on the reel.`;
+}
+
+// Placeholder files are not production progress: no frame count while every entry is one.
+const stripCode =
+  n > 0 && real.length === 0
+    ? edgeCode('Reel 01', 'Placeholder frames')
+    : edgeCode('Reel 01', `${n} ${n === 1 ? 'frame' : 'frames'}`, released < n ? 'developing' : undefined);
+
+// One lit frame per strip, and it means something: before launch the lowest-numbered episode
+// (next to develop); once anything is out, the highest-numbered published one (latest).
+const publishedEps = episodes.filter((e) => e.data.status === 'published');
+const litEp = publishedEps.length > 0
+  ? publishedEps.reduce((a, b) => (b.data.number > a.data.number ? b : a))
+  : n > 0 ? episodes.reduce((a, b) => (b.data.number < a.data.number ? b : a)) : undefined;
+const litMark = publishedEps.length > 0 ? 'Latest' : 'Next to develop';
+---
+<section class="reel" id="first-reel" aria-labelledby="reel-title">
+  <div class="container reel__head" data-reveal>
+    <h2 id="reel-title" class="display display--sm">The first reel</h2>
+    <p class="lede">{lede}</p>
+  </div>
+
+  {n > 0 ? (
+    <div class="reel__strip" data-reveal>
+      <Strip label="The first reel" code={stripCode}>
+        {episodes.map((e) => {
+          const soon = e.data.status === 'coming-soon';
+          const ph = e.data.placeholder;
+          const lit = e.id === litEp?.id;
+          const code = ph
+            ? edgeCode('Placeholder', 'Date to confirm', soon && 'Coming soon', lit && litMark)
+            : edgeCode(fmtDate(e.data.date), e.data.duration, soon && 'Coming soon', lit && litMark);
+          const guest = e.data.guest ? [e.data.guest.name, e.data.guest.role].filter(Boolean).join(' · ') : 'Guest to be announced';
+          return (
+            <Frame
+              as="a"
+              href={withBase(`/episodes/${e.id}`)}
+              class={lit ? 'is-interactive is-lit' : 'is-interactive'}
+              leak
+              state={soon ? 'latent' : 'projected'}
+              numeral={pad2(e.data.number)}
+              numeralLabel="Episode"
+              code={code}
+              data-placeholder={ph ? 'episode' : undefined}
+              title={ph ? `Placeholder entry: replace src/content/episodes/${e.id}.md` : undefined}
+            >
+              <Fragment slot="media">
+                {e.data.cover ? (
+                  <img class="reel__cover" src={withBase(e.data.cover)} alt="" width="800" height="600" loading="lazy" decoding="async" />
+                ) : (
+                  <Placeholder kind="cover" label="Episode cover" ratio="4 / 3" />
+                )}
+              </Fragment>
+              <h3 class="title title--lg reel__title" transition:name={`ep-title-${e.id}`}>{e.data.title}</h3>
+              <p class:list={['small', ph ? 'reel__ph' : 'muted']}>{guest}</p>
+            </Frame>
+          );
+        })}
+      </Strip>
+    </div>
+  ) : (
+    <div class="container reel__empty" data-reveal>
+      <Frame as="article" state="latent" leak code={edgeCode('Reel 01', 'Developing')}>
+        <h3 class="title title--lg">The first reel is developing</h3>
+        <p class="measure">The first conversations are being scheduled. When an episode is released, it becomes a frame here.</p>
+        <div class="reel__empty-actions">
+          <Button variant="ghost" href="/get-involved" iconAfter="arrow-right">Help make it</Button>
+        </div>
+      </Frame>
+    </div>
+  )}
+
+  <div class="container reel__more" data-reveal>
+    <Button variant="ghost" href="/episodes" iconAfter="arrow-right">All episodes</Button>
+  </div>
+</section>
+
+<style>
+  .reel { padding-block-start: var(--s-9); scroll-margin-top: var(--s-6); }
+  .reel__head { display: grid; gap: var(--s-4); }
+  .reel__head .lede { max-width: 50ch; }
+  .reel__strip { margin-block-start: var(--s-7); }
+  .reel__cover { aspect-ratio: 4 / 3; object-fit: cover; }
+  /* titles develop with the frame: latent → projected */
+  .reel__title { transition: color var(--dur-3) var(--ease-out); }
+  .reel__strip :global(.frame.is-latent) .reel__title { color: inherit; }
+  .reel__strip :global(.frame.is-latent:is(:hover, :focus-within, .is-active)) .reel__title { color: var(--fg-strong); }
+  .reel__ph { color: var(--sepia); }
+  .reel__empty { margin-block-start: var(--s-7); }
+  .reel__empty :global(.frame) { max-width: 44rem; }
+  .reel__empty-actions { margin-block-start: var(--s-3); }
+  .reel__more { display: flex; margin-block-start: var(--s-6); }
+  @media (min-width: 60em) {
+    .reel { padding-block-start: var(--s-10); }
+  }
+</style>

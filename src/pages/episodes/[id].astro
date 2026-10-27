@@ -1,0 +1,221 @@
+---
+/**
+ * /episodes/<id> — one frame held in the gate: the projected episode, how to listen,
+ * the show notes, the guest, and the frames on either side of it.
+ */
+import Base from '../../layouts/Base.astro';
+import Frame from '../../components/Frame.astro';
+import Placeholder from '../../components/Placeholder.astro';
+import Button from '../../components/Button.astro';
+import SocialLinks from '../../components/SocialLinks.astro';
+import Icon from '../../components/Icon.astro';
+import Cover from '../../components/episodes/Cover.astro';
+import Topics from '../../components/episodes/Topics.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { fmtDate, pad2, edgeCode } from '../../lib/format';
+import { withBase } from '../../lib/url';
+
+export async function getStaticPaths() {
+  const episodes = (await getCollection('episodes')).sort((a, b) => a.data.number - b.data.number);
+  return episodes.map((episode, i) => ({
+    params: { id: episode.id },
+    props: { episode, prev: episodes[i - 1], next: episodes[i + 1] },
+  }));
+}
+
+type Episode = CollectionEntry<'episodes'>;
+interface Props { episode: Episode; prev?: Episode; next?: Episode }
+const { episode, prev, next } = Astro.props;
+const { data } = episode;
+const { Content } = await render(episode);
+
+const soon = data.status === 'coming-soon';
+const ph = data.placeholder;
+// A placeholder entry's date and duration are not facts yet; stamp the frame undated.
+const code = edgeCode(`Reel ${pad2(data.reel)}`, ph ? 'Undated' : fmtDate(data.date), ph ? undefined : data.duration, soon ? 'Coming soon' : undefined);
+const guest = data.guest;
+// A no-break space before each separator keeps a wrapped line from starting with "·".
+const guestMeta = guest ? [guest.role, guest.affiliation].filter(Boolean).join(' · ') : '';
+
+const listenLinks = [
+  data.links.spotify ? { name: 'Spotify', href: data.links.spotify } : null,
+  data.links.apple ? { name: 'Apple Podcasts', href: data.links.apple } : null,
+  data.links.youtube ? { name: 'YouTube', href: data.links.youtube } : null,
+].filter((l): l is { name: string; href: string } => l !== null);
+const hasAudio = Boolean(data.audioUrl);
+
+const neighbourState = (e: Episode) => (e.data.status === 'coming-soon' ? 'latent' : 'projected');
+const neighbourCode = (e: Episode, label: string) => edgeCode(label, e.data.placeholder ? undefined : fmtDate(e.data.date));
+---
+<Base title={data.title} description={data.description}>
+  <div class="ep-top container">
+    <a class="ep-back edge-code edge-code--bright" href={withBase('/episodes')}>
+      <Icon name="arrow-left" size={14} />All episodes
+    </a>
+  </div>
+
+  <section class="ep-hero container" aria-labelledby="ep-title">
+    <Frame as="article" class="is-lit ep-hero__frame" leak numeral={pad2(data.number)} numeralLabel="Episode" code={code}>
+      <Cover slot="media" cover={data.cover} ratio="16 / 9" alt="Episode cover art" loading="eager" />
+      <div
+        class="ep-hero__head"
+        data-placeholder={ph ? 'episode' : undefined}
+        title={ph ? `Placeholder episode: replace src/content/episodes/${episode.id}.md` : undefined}
+      >
+        <h1 id="ep-title" class="display display--sm" transition:name={`ep-title-${episode.id}`}>{data.title}</h1>
+        {guest && (
+          <p class="ep-hero__guest">
+            <span class="ep-hero__name">{guest.name}</span>
+            {guestMeta && <span class="muted">{' · '}{guestMeta}</span>}
+          </p>
+        )}
+      </div>
+      <p class="lede">{data.description}</p>
+      <Topics topics={data.topics} />
+    </Frame>
+  </section>
+
+  <div class="ep-body container">
+    <section class="ep-listen" aria-labelledby="listen-h" data-reveal>
+      <h2 id="listen-h" class="title title--lg">Listen</h2>
+      {hasAudio ? (
+        <div class="ep-player">
+          <audio controls preload="none" src={data.audioUrl}></audio>
+          {listenLinks.length > 0 && (
+            <ul class="ep-player__links" role="list" aria-label="Listen elsewhere">
+              {listenLinks.map((l) => (
+                <li><Button variant="ghost" size="sm" href={l.href} external iconAfter="arrow-up-right">{l.name}</Button></li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ) : (
+        <div class="ep-listen__soon">
+          <Placeholder kind="audio" label="Episode audio" />
+          <p class="small muted">Listen links appear here when the episode is out.</p>
+          <SocialLinks only={['spotify', 'apple', 'youtube']} />
+        </div>
+      )}
+    </section>
+
+    <section class="ep-notes" aria-labelledby="notes-h" data-reveal>
+      <h2 id="notes-h" class="title title--lg">Show notes</h2>
+      {ph && (
+        <p class="small muted ep-notes__note" data-placeholder="show-notes">
+          These notes are a template until the episode is recorded.
+        </p>
+      )}
+      <div class="prose"><Content /></div>
+    </section>
+
+    <aside class="ep-aside" aria-label="The guest" data-reveal>
+      {guest && (
+        <Frame as="div" state="latent" leak code="Guest" class="ep-guest">
+          <Fragment slot="media">
+            {guest.photo ? (
+              <img src={withBase(guest.photo)} alt={guest.name} loading="lazy" decoding="async" />
+            ) : (
+              <Placeholder kind="photo" label="Guest photo" ratio="4 / 5" />
+            )}
+          </Fragment>
+          <div class="ep-guest__body" data-placeholder={ph ? 'guest' : undefined} title={ph ? 'Placeholder guest: replace in the episode file' : undefined}>
+            <h2 class="title title--lg">{guest.name}</h2>
+            {guest.role && <p class="muted">{guest.role}</p>}
+            {guest.affiliation && <p class="muted small">{guest.affiliation}</p>}
+          </div>
+        </Frame>
+      )}
+      <div class="ep-aside__more">
+        {data.topics.length > 0 && (
+          <div class="ep-aside__topics">
+            <p class="edge-code">Topics</p>
+            <Topics topics={data.topics} />
+          </div>
+        )}
+        <Button variant="ghost" size="sm" href="/get-involved#guest" iconAfter="arrow-right">Suggest a guest</Button>
+      </div>
+    </aside>
+  </div>
+
+  {(prev || next) && (
+    <nav class="ep-nav container" aria-label="Previous and next episodes" data-reveal>
+      <ul class="ep-nav__list" role="list">
+        {prev && (
+          <li class="ep-nav__prev">
+            <Frame as="a" href={withBase(`/episodes/${prev.id}`)} rel="prev" class="is-interactive ep-nav__frame" leak state={neighbourState(prev)} numeral={pad2(prev.data.number)} numeralLabel="Episode" code={neighbourCode(prev, 'Previous frame')}>
+              <span class="title" transition:name={`ep-title-${prev.id}`}>{prev.data.title}</span>
+            </Frame>
+          </li>
+        )}
+        {next && (
+          <li class="ep-nav__next">
+            <Frame as="a" href={withBase(`/episodes/${next.id}`)} rel="next" class="is-interactive ep-nav__frame" leak state={neighbourState(next)} numeral={pad2(next.data.number)} numeralLabel="Episode" code={neighbourCode(next, 'Next frame')}>
+              <span class="title" transition:name={`ep-title-${next.id}`}>{next.data.title}</span>
+            </Frame>
+          </li>
+        )}
+      </ul>
+    </nav>
+  )}
+</Base>
+
+<style>
+  /* ---------- back row ---------- */
+  .ep-top { padding-block-start: var(--s-6); }
+  .ep-back { display: inline-flex; align-items: center; gap: var(--s-2); padding-block: var(--s-2); text-decoration: none; }
+  .ep-back:hover { color: var(--fg-strong); }
+  .ep-back :global(.icon) { transition: translate var(--dur-2) var(--ease-out); }
+  .ep-back:hover :global(.icon) { translate: -2px 0; }
+
+  /* ---------- the projected frame ---------- */
+  .ep-hero { margin-block-start: var(--s-5); }
+  .ep-hero :global(.frame__body) { gap: var(--s-5); }
+  .ep-hero__head { display: grid; gap: var(--s-3); }
+  .ep-hero__guest { font-size: var(--text-lg); line-height: 1.4; }
+  .ep-hero__name { color: var(--fg-strong); font-weight: 600; }
+  .ep-hero :global(.lede) { max-width: 52ch; }
+  @media (min-width: 60em) {
+    /* body left, cover right: the leak floods the picture and the rail, the words stay clean */
+    .ep-hero :global(.frame.has-media) { grid-template-columns: var(--perf-w) minmax(0, 11fr) minmax(0, 9fr) var(--perf-w); grid-template-rows: minmax(0, 1fr) auto; }
+    .ep-hero :global(.frame.has-media > .frame__rail--r) { grid-column: 4; }
+    .ep-hero :global(.frame.has-media > .frame__media) { grid-column: 3; grid-row: 1 / -1; }
+    .ep-hero :global(.frame.has-media > .frame__body) { grid-column: 2; grid-row: 1; padding: var(--s-8) var(--s-8) var(--s-7) var(--s-7); }
+    .ep-hero :global(.frame.has-media > .frame__code) { grid-column: 2; grid-row: 2; padding: 0 var(--s-7) var(--s-6); }
+    .ep-hero :global(.frame.has-media > .frame__numeral) { top: var(--s-4); left: calc(var(--perf-w) + var(--s-5)); color: var(--grease); }
+  }
+
+  /* ---------- listen, notes, guest ---------- */
+  .ep-body { display: grid; gap: var(--s-9); margin-block-start: var(--s-9); }
+  .ep-body > section > h2, .ep-notes__note { margin-block-end: var(--s-4); }
+  .ep-notes__note + .prose { margin-block-start: 0; }
+  .ep-listen__soon { display: grid; gap: var(--s-4); max-width: 40rem; justify-items: start; }
+  .ep-listen__soon :global(.placeholder) { justify-self: stretch; }
+  .ep-player { display: grid; gap: var(--s-4); max-width: 40rem; padding: var(--s-4); background: var(--shadow-2); border-radius: var(--radius-frame); box-shadow: var(--shadow-frame); }
+  .ep-player audio { display: block; width: 100%; height: 2.75rem; color-scheme: dark; accent-color: var(--leak); border-radius: var(--radius-plate); }
+  .ep-player__links { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+  .ep-aside { display: grid; gap: var(--s-6); align-content: start; }
+  .ep-guest__body { display: grid; gap: var(--s-2); }
+  .ep-guest :global(.frame__media > img) { aspect-ratio: 4 / 5; }
+  .ep-guest :global(.title) { color: inherit; transition: color var(--dur-3) var(--ease-out); }
+  .ep-guest:is(:hover, :focus-within) :global(.title) { color: var(--fg-strong); }
+  .ep-aside__more { display: grid; gap: var(--s-5); justify-items: start; }
+  .ep-aside__topics { display: grid; gap: var(--s-3); }
+  @media (min-width: 60em) {
+    .ep-body { grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem); column-gap: var(--s-10); row-gap: var(--s-9); align-items: start; margin-block-start: var(--s-10); }
+    .ep-listen { grid-column: 1; grid-row: 1; }
+    .ep-notes { grid-column: 1; grid-row: 2; }
+    .ep-aside { grid-column: 2; grid-row: 1 / span 2; }
+  }
+
+  /* ---------- the frames on either side ---------- */
+  .ep-nav { margin-block-start: var(--s-10); }
+  .ep-nav__list { display: grid; gap: var(--s-4); }
+  .ep-nav__frame { height: 100%; }
+  .ep-nav :global(.frame.is-latent .title) { color: inherit; transition: color var(--dur-3) var(--ease-out); }
+  .ep-nav :global(.frame.is-latent:is(:hover, :focus-within) .title) { color: var(--fg-strong); }
+  @media (min-width: 48em) {
+    .ep-nav__list { grid-template-columns: 1fr 1fr; gap: var(--s-6); }
+    .ep-nav__next { grid-column: 2; text-align: end; }
+    .ep-nav__next :global(.frame__numeral) { left: auto; right: calc(var(--perf-w) + var(--s-3)); }
+  }
+</style>

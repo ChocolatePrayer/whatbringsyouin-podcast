@@ -1,0 +1,87 @@
+---
+/**
+ * HangingStrip — one processed strip on the drying line (About page only).
+ *
+ * The wire is drawn by the strip itself (a full-bleed hairline at its top), so strips that
+ * share a grid row compose one continuous wire and every row below gets its own. Under the
+ * wire: the <Clip>, a short leader whose length is `--hang` + `offset`, then a flush column
+ * of <Frame>s that share ONE pair of perforation rails (the frames' own rails hide, as they
+ * do inside <Strip>). Hovering or focusing anything in the strip lights every frame's leak.
+ *
+ *  offset  extra leader length so the strips hang at different heights (CSS length)
+ *  delay   base reveal delay for the whole strip; the authored moment runs strip by strip
+ *
+ *  <HangingStrip offset="var(--s-7)" delay="140ms">
+ *    <Frame leak code="Strip B · 3 frames" data-reveal>…</Frame>
+ *    <Frame leak code="Strip B · Frame 2" data-reveal>…</Frame>
+ *  </HangingStrip>
+ *
+ * Frames inside should carry `leak` and `data-reveal`; the column carries the stagger.
+ * Must be rendered inside a `ul[role=list]`; the parent owns the grid.
+ */
+import Clip from './Clip.astro';
+interface Props { offset?: string; delay?: string; class?: string }
+const { offset = '0px', delay = '0ms', class: cls = '' } = Astro.props;
+---
+<li class:list={['hung', cls]} style={`--offset: ${offset}; --delay: ${delay};`}>
+  <div class="hung__hanger" aria-hidden="true">
+    <Clip />
+    <span class="hung__leader"></span>
+  </div>
+  <div class="hung__frames" data-reveal-stagger="160">
+    <span class="hung__rail hung__rail--l perf" aria-hidden="true"></span>
+    <slot />
+    <span class="hung__rail hung__rail--r perf" aria-hidden="true"></span>
+  </div>
+</li>
+
+<style>
+  .hung {
+    --hang: var(--s-7);
+    --offset-scale: 1;
+    --strip-delay: var(--delay, 0ms);
+    --wire: color-mix(in oklab, var(--emulsion) 52%, transparent);
+    position: relative;
+    display: grid;
+    align-content: start;
+    min-width: 0;
+  }
+  /* the wire: full-bleed, drawn by each strip at its own top; the section clips the overhang */
+  .hung::before {
+    content: '';
+    position: absolute; top: 0; left: -100vw; right: -100vw; height: 1px;
+    background: var(--wire);
+    pointer-events: none;
+  }
+
+  .hung__hanger { display: grid; justify-items: center; }
+  .hung__hanger :global(.clip) { margin-block-start: -0.5rem; color: var(--emulsion); }
+  .hung__leader { width: 1px; height: calc(var(--hang) + var(--offset) * var(--offset-scale)); background: var(--wire); }
+
+  /* the column is the strip: one body, one shadow, one pair of rails */
+  .hung__frames {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    background: var(--shadow-2);
+    border-radius: var(--radius-frame);
+    box-shadow: var(--shadow-frame);
+    overflow: clip;
+  }
+  .hung__rail { position: absolute; top: 0; bottom: 0; width: var(--perf-w); z-index: 2; pointer-events: none; }
+  .hung__rail--l { left: 0; }
+  .hung__rail--r { right: 0; }
+  .hung__frames > :global(.frame) { border-radius: 0; box-shadow: none; }
+  .hung__frames > :global(.frame + .frame) { border-block-start: 2px solid var(--leader); }
+  .hung__frames :global(.frame__rail) { display: none; }
+
+  /* authored moment: each strip develops after the one before it, top-down inside */
+  .hung__frames > :global([data-reveal]) { transition-delay: calc(var(--reveal-delay, 0ms) + var(--strip-delay)); }
+
+  /* hover develops: the light leaks through every frame of the strip, not one */
+  .hung:is(:hover, :focus-within) .hung__frames :global(.frame[data-leak] .frame__leak) { opacity: 0.85; }
+
+  @media (max-width: 47.99em) {
+    .hung { --offset-scale: 0.34; --strip-delay: 0ms; }
+  }
+</style>

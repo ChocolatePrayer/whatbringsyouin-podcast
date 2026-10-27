@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.astro';
+import Mark from './Mark.astro';
+import { site } from '../site';
+import { withBase, isCurrent } from '../lib/url';
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <span class="site-header__rail perf perf--h" aria-hidden="true"></span>
+  <div class="site-header__inner container">
+    <a class="brand" href={withBase('/')} aria-label={`${site.name} — home`}>
+      <Mark />
+      <span class="brand__name">{site.name}</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <ul role="list">
+        {site.nav.map((item) => (
+          <li><a href={withBase(item.href)} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <details class="nav-menu">
+      <summary class="nav-menu__toggle" aria-label="Menu">
+        <span class="edge-code edge-code--bright">Menu</span>
+        <Icon name="menu" class="nav-menu__icon nav-menu__icon--open" />
+        <Icon name="close" class="nav-menu__icon nav-menu__icon--close" />
+      </summary>
+      <nav class="nav-menu__panel" aria-label="Primary">
+        <ul role="list">
+          {site.nav.map((item, i) => (
+            <li style={`--i: ${i}`}><a href={withBase(item.href)} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>{item.label}</a></li>
+          ))}
+        </ul>
+        <p class="edge-code nav-menu__foot">{site.affiliation}</p>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<style>
+  .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .site-header__rail { display: block; height: var(--perf-w); width: 100%; }
+  .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--s-6); min-height: 4.5rem; padding-block: var(--s-3); }
+
+  .brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; color: var(--fg-strong); }
+  .brand__name { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 1.25rem; line-height: 1; translate: 0 1px; }
+  .brand :global(.mark) { transition: rotate var(--dur-3) var(--ease-out); }
+  .brand:hover :global(.mark) { rotate: -4deg; }
+
+  .site-nav ul { display: flex; gap: var(--s-6); }
+  .site-nav a {
+    position: relative; display: inline-block; padding-block: var(--s-2);
+    font-weight: 600; font-stretch: 80%; font-size: var(--text-sm); letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fg-muted); text-decoration: none;
+    transition: color var(--dur-2) var(--ease-out);
+  }
+  .site-nav a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 1px;
+    background: var(--leak); transform-origin: left; scale: 0 1;
+    transition: scale var(--dur-3) var(--ease-out), background var(--dur-2);
+  }
+  .site-nav a:hover { color: var(--fg-strong); }
+  .site-nav a:hover::after { scale: 1 1; background: var(--emulsion); }
+  .site-nav a[aria-current='page'] { color: var(--fg-strong); }
+  .site-nav a[aria-current='page']::after { scale: 1 1; background: var(--leak); box-shadow: 0 0.25rem 0.75rem -0.125rem color-mix(in oklab, var(--leak) 70%, transparent); }
+
+  /* mobile menu: a native disclosure, no JS */
+  .nav-menu { display: none; }
+  .nav-menu__toggle { list-style: none; display: inline-flex; align-items: center; gap: var(--s-3); padding: var(--s-2) var(--s-3); border-radius: var(--radius-plate); cursor: pointer; }
+  .nav-menu__toggle::-webkit-details-marker { display: none; }
+  .nav-menu__icon { color: var(--fg-strong); }
+  .nav-menu__icon--close, .nav-menu[open] .nav-menu__icon--open { display: none; }
+  .nav-menu[open] .nav-menu__icon--close { display: block; }
+  .nav-menu__panel {
+    position: absolute; left: 0; right: 0; top: 100%;
+    padding: var(--s-5) var(--gutter) var(--s-7);
+    background: var(--leader-2); border-bottom: 1px solid var(--line);
+    box-shadow: 0 2rem 3rem -2rem rgb(0 0 0 / 0.9);
+  }
+  .nav-menu__panel ul { display: grid; gap: var(--s-2); }
+  .nav-menu__panel a {
+    display: block; padding: var(--s-3) 0; text-decoration: none;
+    font-family: var(--font-display); font-weight: 700; font-size: 1.75rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--fg-muted); border-bottom: 1px solid var(--line);
+  }
+  .nav-menu__panel a[aria-current='page'] { color: var(--leak); }
+  .nav-menu__foot { margin-block-start: var(--s-6); }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-menu[open] .nav-menu__panel li { animation: menu-in var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i) * 40ms); }
+    @keyframes menu-in { from { opacity: 0; translate: 0 -0.5rem; } }
+  }
+  @media (max-width: 47.99em) {
+    .site-nav { display: none; }
+    .nav-menu { display: block; }
+  }
+</style>

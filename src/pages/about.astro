@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import Frame from '../components/Frame.astro';
+import Placeholder from '../components/Placeholder.astro';
+import Button from '../components/Button.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import HangingStrip from '../components/about/HangingStrip.astro';
+import { site } from '../site';
+import { withBase } from '../lib/url';
+import { edgeCode } from '../lib/format';
+
+const description =
+  'The premise, the people and the place behind What Brings You In, a student-run podcast affiliated with McGill University.';
+---
+<Base title="About" description={description}>
+  <section class="about-head container container--narrow" aria-labelledby="about-title">
+    <h1 id="about-title" class="display display--md">About the show</h1>
+    <p class="lede">
+      “What brings you in?” is the first thing a clinician asks a patient. On this show, the
+      students ask it of the clinicians: how they got here, the decisions along the way, and the
+      medicine itself. For medical students and aspiring medical students.
+    </p>
+  </section>
+
+  <section class="line-section" aria-labelledby="line-title">
+    <h2 id="line-title" class="visually-hidden">The show, in four strips</h2>
+    <ul class="line container container--wide" role="list">
+      <HangingStrip offset="0px" delay="0ms">
+        <Frame leak code={edgeCode('Strip A', '1 frame')} data-reveal>
+          <h3 class="title">The question</h3>
+          <p class="copy">It is the first line of every visit. Here, the students get to ask it: what brought you into medicine, and how did you end up where you are?</p>
+        </Frame>
+      </HangingStrip>
+
+      <HangingStrip offset="var(--s-7)" delay="140ms">
+        <Frame leak code={edgeCode('Strip B', '3 frames')} data-reveal>
+          <h3 class="title">The show</h3>
+          <p class="copy">Long-form conversations with experienced physicians, researchers and leaders in medicine: department chairs, deans, and the veterans students rarely hear from directly.</p>
+        </Frame>
+        <Frame leak code={edgeCode('Strip B', 'Frame 2')} data-reveal>
+          <Placeholder slot="media" kind="photo" label="Recording session photo" ratio="4 / 3" />
+          <p class="copy">One guest, one sit-down, asked from the student’s side of the table.</p>
+        </Frame>
+        <Frame leak code={edgeCode('Strip B', 'Frame 3')} data-reveal>
+          <p class="copy">Three threads run through every conversation.</p>
+          <ul class="threads" role="list">
+            <li class="copy"><strong>Career paths.</strong> Specialty choice, admissions, residency.</li>
+            <li class="copy"><strong>The decisions.</strong> How the real ones along the way got made.</li>
+            <li class="copy"><strong>The medicine.</strong> Knowledge and research, carried by the guests’ own work.</li>
+          </ul>
+        </Frame>
+      </HangingStrip>
+
+      <HangingStrip offset="var(--s-4)" delay="280ms">
+        <Frame leak code={edgeCode('Strip C', '2 frames')} data-reveal>
+          <h3 class="title">Who makes it</h3>
+          <p class="copy">A student organization. Its members host the conversations, produce and edit the episodes, and organize the events around them.</p>
+        </Frame>
+        <Frame leak code={edgeCode('Strip C', 'Frame 2')} data-reveal>
+          <Placeholder slot="media" kind="photo" label="Team photo" ratio="4 / 3" />
+          <p class="copy">Hosts, producers, editors, organizers: all students.</p>
+          <p class="copy"><a href={withBase('/team')}>Meet the team</a></p>
+        </Frame>
+      </HangingStrip>
+
+      <HangingStrip offset="var(--s-9)" delay="420ms">
+        <Frame leak code={edgeCode('Strip D', '2 frames')} data-reveal>
+          <h3 class="title">Where it lives</h3>
+          <p class="copy">Montréal. The show is made here, and its events happen in the city.</p>
+          <p class="copy"><a href={withBase('/events')}>See the events</a></p>
+        </Frame>
+        <Frame leak code={edgeCode('Strip D', 'Frame 2')} data-reveal>
+          <p class="copy">Episodes go online as they come out. Follow links will appear here once the show is live.</p>
+          <SocialLinks only={['spotify', 'apple', 'youtube']} variant="column" class="follow" />
+        </Frame>
+      </HangingStrip>
+    </ul>
+  </section>
+
+  <section class="story container container--narrow" aria-labelledby="story-title">
+    <h2 id="story-title" class="display display--sm">The longer story</h2>
+    <div class="prose">
+      <p>
+        <em>What Brings You In</em> is made for medical students and aspiring medical students. A
+        listener gets time with the senior people in medicine that students rarely hear from
+        directly: how they got where they are, how specialty, admissions and residency decisions
+        really get made, and what is moving in medical knowledge and research.
+      </p>
+      <p>
+        Our guests are experienced physicians, researchers and leaders: department chairs, deans,
+        veterans of their fields. We ask from the student’s side of the table, so the conversations
+        stay close to the decisions a student is about to face, and to the medicine itself, carried
+        by the guests’ own work.
+      </p>
+      <p data-placeholder="copy" class="muted" title="Replace with the founding story">[Founding story — when the team started, who started it, and why.]</p>
+      <p>
+        The show is made by students. We are pre-launch: the first episodes are coming soon, and
+        this site will grow with them, episode by episode, event by event.
+      </p>
+    </div>
+
+    <div class="affil">
+      <p class="muted">{site.affiliation} Students host it, produce it, edit it, and organize its events.</p>
+    </div>
+
+    <nav class="close" aria-label="Where to next">
+      <Button variant="ghost" href="/team" iconAfter="arrow-right">Meet the team</Button>
+      <Button variant="ghost" href="/get-involved" iconAfter="arrow-right">Get involved</Button>
+    </nav>
+  </section>
+</Base>
+
+<style>
+  /* ---- header: the premise, in a narrow room ---- */
+  .about-head { padding-block: var(--s-9) var(--s-8); }
+  .about-head .lede { margin-block-start: var(--s-5); }
+  @media (min-width: 60em) { .about-head { padding-block: var(--s-10) var(--s-8); } }
+
+  /* ---- the drying line ---- */
+  .line-section { overflow-x: clip; padding-block: 0 var(--s-9); }
+  @media (min-width: 60em) { .line-section { padding-block-end: var(--s-10); } }
+  .line {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-9) var(--s-5);
+    align-items: start;
+  }
+  @media (min-width: 48em) { .line { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 80em) { .line { grid-template-columns: minmax(0, 5.5fr) minmax(0, 7fr) minmax(0, 5.75fr) minmax(0, 5.75fr); } }
+
+  /* frame copy: a notch under body size, so a narrow strip still holds a readable line */
+  .copy { font-size: 0.9375rem; line-height: 1.55; color: var(--fg-muted); }
+  .copy strong { color: var(--fg); font-weight: 600; }
+  .threads { display: grid; gap: var(--s-2); margin-block-start: var(--s-1); }
+  .line :global(.follow) { margin-block-start: var(--s-2); }
+
+  /* ---- the longer story ---- */
+  .story { padding-block: 0; }
+  .story .prose { margin-block-start: var(--s-6); }
+  .story [data-placeholder='copy'] { color: var(--sepia); font-style: italic; cursor: help; }
+  .affil { display: grid; gap: var(--s-3); max-width: var(--measure); margin-block-start: var(--s-9); }
+  .close { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-block-start: var(--s-8); }
+</style>

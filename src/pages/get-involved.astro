@@ -1,0 +1,348 @@
+---
+/**
+ * Get involved — "the splice bench". Three ways in (join the team, suggest a guest, say hello),
+ * spliced onto the strip as three entry frames, all leading to one lit bench: the form.
+ *
+ * Anchors other pages rely on: #team, #guest, #hello (entry frames) and #form (the form section).
+ * Authored moment: changing the topic develops the topic's extra fields in and lights the matching
+ * entry frame's leak. Pure CSS (:has); without :has support every extra field is simply visible.
+ */
+import Base from '../layouts/Base.astro';
+import Frame from '../components/Frame.astro';
+import Button from '../components/Button.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { site } from '../site';
+import { withBase } from '../lib/url';
+import { edgeCode } from '../lib/format';
+
+// What a student can offer to do: activities, not team roles (the roster is placeholders until launch).
+const activities = ['Hosting', 'Producing', 'Audio editing', 'Events and outreach', 'Design and social', 'Not sure yet'];
+
+const endpointReal = !site.formEndpoint.placeholder && Boolean(site.formEndpoint.url);
+const emailReal = !site.email.placeholder && Boolean(site.email.address);
+const action = endpointReal ? site.formEndpoint.url : '#';
+---
+<Base title="Get involved" description="Join the team behind What Brings You In, suggest a guest a medical student should hear from, or just say hello.">
+  <div class="gi">
+    <!-- 1. Header -->
+    <section class="gi-intro container" aria-labelledby="gi-title">
+      <div class="gi-intro__head" data-reveal>
+        <h1 class="display display--md gi-intro__title" id="gi-title">Get involved</h1>
+        <p class="lede gi-intro__lede">Three ways in — join the team, suggest a guest, or just say hello. Each one leads to the same short form below.</p>
+      </div>
+
+      <!-- 2. Three entry frames, spliced on at different heights -->
+      <div class="gi-ways" data-reveal-stagger="90">
+        <div class="gi-ways__cell gi-ways__cell--team" data-reveal>
+          <Frame as="section" leak id="team" aria-labelledby="team-title" class="gi-way" code="Topic · Team" wear={0}>
+            <h2 class="title title--lg" id="team-title">Join the team</h2>
+            <p class="muted">The show is made by students who host, produce, edit audio, run events and outreach, and design and run social. Tell us which of those sounds like you, and what you're studying.</p>
+            <p class="small faint">The people doing it now are on <a href={withBase('/team')}>the team page</a>.</p>
+            <div class="gi-way__act"><Button href="#form" data-pick="topic-team" iconAfter="arrow-down">I'd like to join</Button></div>
+          </Frame>
+        </div>
+        <div class="gi-ways__cell gi-ways__cell--guest" data-reveal>
+          <Frame as="section" leak id="guest" aria-labelledby="guest-title" class="gi-way" code="Topic · Guest" wear={0}>
+            <h2 class="title title--lg" id="guest-title">Suggest a guest</h2>
+            <p class="muted">A physician, researcher or leader in medicine a student should hear from: someone whose path you can't stop thinking about. Tell us who they are and why; if you can introduce us, even better.</p>
+            <div class="gi-way__act"><Button href="#form" data-pick="topic-guest" iconAfter="arrow-down">Suggest someone</Button></div>
+          </Frame>
+        </div>
+        <div class="gi-ways__cell gi-ways__cell--hello" data-reveal>
+          <Frame as="section" leak id="hello" aria-labelledby="hello-title" class="gi-way" code="Topic · Hello" wear={0}>
+            <h2 class="title title--lg" id="hello-title">Say hello</h2>
+            <p class="muted">Questions, collaborations, press, or something that doesn't fit the other two. Write what's on your mind; short is fine.</p>
+            <div class="gi-way__act"><Button href="#form" data-pick="topic-hello" iconAfter="arrow-down">Say hello</Button></div>
+          </Frame>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. The form: one wide, lit bench -->
+    <section class="gi-write container" id="form" aria-labelledby="write-title" data-reveal>
+      <div class="gi-write__head">
+        <h2 class="display display--sm" id="write-title">Write to us</h2>
+        <p class="muted">Pick what it's about, then a few lines are enough.</p>
+      </div>
+
+      <Frame as="div" class="is-lit gi-bench" leak wear={0} code={edgeCode('Form', endpointReal ? 'Connected' : 'Not connected yet')}>
+        <form
+          class="gi-form"
+          method="post"
+          action={action}
+          accept-charset="utf-8"
+          data-astro-reload
+          data-placeholder={endpointReal ? undefined : 'form-endpoint'}
+        >
+          <!-- honeypot: humans never see or reach it -->
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="gi-gotcha">Leave this field empty</label>
+            <input id="gi-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="gi-rows">
+            <fieldset class="gi-topics gi-row">
+              <legend class="field__label">I'm writing about</legend>
+              <div class="gi-topics__row">
+                <input class="visually-hidden gi-topic" type="radio" name="topic" id="topic-team" value="Joining the team" checked />
+                <label class="btn btn--ghost gi-plate" for="topic-team">Joining the team</label>
+                <input class="visually-hidden gi-topic" type="radio" name="topic" id="topic-guest" value="Suggesting a guest" />
+                <label class="btn btn--ghost gi-plate" for="topic-guest">Suggesting a guest</label>
+                <input class="visually-hidden gi-topic" type="radio" name="topic" id="topic-hello" value="Saying hello" />
+                <label class="btn btn--ghost gi-plate" for="topic-hello">Saying hello</label>
+              </div>
+            </fieldset>
+
+            <div class="gi-pair gi-row">
+              <div class="field">
+                <label for="gi-name">Your name</label>
+                <input id="gi-name" name="name" type="text" required autocomplete="name" aria-describedby="gi-name-err" />
+                <p class="field__error" id="gi-name-err">Tell us what to call you.</p>
+              </div>
+              <div class="field">
+                <label for="gi-email">Email</label>
+                <input id="gi-email" name="email" type="email" required autocomplete="email" inputmode="email" aria-describedby="gi-email-err" />
+                <p class="field__error" id="gi-email-err">Enter an address we can reply to.</p>
+              </div>
+            </div>
+
+            <!-- guest-only fields: develop in when "Suggesting a guest" is chosen -->
+            <div class="gi-extra gi-extra--guest">
+              <div class="gi-extra__in">
+                <div class="gi-pair">
+                  <div class="field">
+                    <label for="gi-guest-name">Guest's name <span class="gi-opt">optional</span></label>
+                    <input id="gi-guest-name" name="guest_name" type="text" autocomplete="off" />
+                  </div>
+                  <div class="field">
+                    <label for="gi-guest-role">Role or affiliation <span class="gi-opt">optional</span></label>
+                    <input id="gi-guest-role" name="guest_affiliation" type="text" autocomplete="off" aria-describedby="gi-guest-role-hint" />
+                    <p class="field__hint" id="gi-guest-role-hint">Where they work, what they do.</p>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="gi-guest-why">Why them <span class="gi-opt">optional</span></label>
+                  <input id="gi-guest-why" name="guest_why" type="text" autocomplete="off" aria-describedby="gi-guest-why-hint" />
+                  <p class="field__hint" id="gi-guest-why-hint">One line is plenty; the message box has room for more.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- team-only fields: develop in when "Joining the team" is chosen -->
+            <div class="gi-extra gi-extra--team">
+              <div class="gi-extra__in">
+                <div class="gi-pair">
+                  <div class="field">
+                    <label for="gi-program">Program and year <span class="gi-opt">optional</span></label>
+                    <input id="gi-program" name="program" type="text" autocomplete="off" aria-describedby="gi-program-hint" />
+                    <p class="field__hint" id="gi-program-hint">e.g. MDCM, Class of 2028</p>
+                  </div>
+                  <div class="field">
+                    <label for="gi-role">What you'd like to do <span class="gi-opt">optional</span></label>
+                    <select id="gi-role" name="role">
+                      <option value="">Choose one</option>
+                      {activities.map((a) => <option value={a}>{a}</option>)}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field gi-row">
+              <label for="gi-message">Message</label>
+              <textarea id="gi-message" name="message" required rows={6} aria-describedby="gi-message-err"></textarea>
+              <p class="field__error" id="gi-message-err">The message is the one thing we can't do without.</p>
+            </div>
+          </div>
+
+          <div class="gi-send">
+            <p class="small muted gi-send__privacy">We only use this to reply to you.</p>
+            <!-- unconnected: the submit stays focusable but reads as disabled, and the notice explains it -->
+            <div class="gi-send__act">
+              <Button
+                type="submit"
+                variant="primary"
+                iconAfter="arrow-right"
+                aria-disabled={endpointReal ? undefined : 'true'}
+                aria-describedby={endpointReal ? undefined : 'gi-form-notice'}
+              >Send it in</Button>
+              {!endpointReal && (
+                <p class="gi-notice small" id="gi-form-notice" role="status" tabindex="-1" data-form-notice data-placeholder="form-endpoint" title="Set formEndpoint.url in src/site.ts">
+                  {emailReal ? (
+                    <>This form isn't connected yet. Until it is, write to us at <a href={`mailto:${site.email.address}`}>{site.email.address}</a>.</>
+                  ) : (
+                    <>This form isn't connected yet. Until it is, reach us by email once the address is posted.</>
+                  )}
+                </p>
+              )}
+            </div>
+          </div>
+        </form>
+      </Frame>
+    </section>
+
+    <!-- 4 + 5. What happens next, and the follow marks -->
+    <section class="gi-coda container" aria-labelledby="next-title" data-reveal>
+      <div class="gi-coda__next">
+        <h2 class="display display--sm" id="next-title">What happens next</h2>
+        <ol class="gi-next" role="list">
+          <li>We read every message.</li>
+          <li>We reply as soon as we can.</li>
+          <li>If it's a guest suggestion, we may ask you for an introduction.</li>
+        </ol>
+      </div>
+      <div class="gi-follow">
+        <p class="edge-code">Follow, once the reel is live</p>
+        <SocialLinks />
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script>
+  // Progressive only. Entry plates pre-select a topic and land focus on it (without JS they are
+  // plain jump links to the form); an unconnected form never leaves the page.
+  const reduce = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.addEventListener(
+    'click',
+    (e) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest<HTMLAnchorElement>('a[data-pick]');
+      if (!a) return;
+      const radio = document.getElementById(a.dataset.pick ?? '') as HTMLInputElement | null;
+      if (!radio) return;
+      e.preventDefault();
+      radio.checked = true;
+      radio.dispatchEvent(new Event('change', { bubbles: true }));
+      (document.getElementById('form') ?? radio).scrollIntoView({ block: 'start', behavior: reduce() ? 'auto' : 'smooth' });
+      radio.focus({ preventScroll: true });
+    },
+    true,
+  );
+
+  document.addEventListener(
+    'submit',
+    (e) => {
+      const form = e.target as HTMLFormElement | null;
+      if (!form || form.dataset.placeholder !== 'form-endpoint') return;
+      e.preventDefault();
+      form.querySelector<HTMLElement>('[data-form-notice]')?.focus();
+    },
+    true,
+  );
+</script>
+
+<style>
+  .gi { --cols: repeat(12, minmax(0, 1fr)); }
+  #team, #guest, #hello { scroll-margin-block-start: var(--s-7); }
+  #form { scroll-margin-block-start: var(--s-6); }
+
+  /* ---------- 1. header ---------- */
+  .gi-intro { padding-block-start: var(--s-8); }
+  .gi-intro__head { display: grid; gap: var(--s-5) var(--s-6); }
+  .gi-intro__lede { max-width: 42ch; }
+
+  /* ---------- 2. the three ways in ---------- */
+  .gi-ways { display: grid; gap: var(--s-6); align-items: start; margin-block-start: var(--s-8); }
+  .gi-way__act { margin-block-start: var(--s-3); }
+  .gi-way :global(a:not(.btn)) { color: inherit; }
+
+  @media (min-width: 60em) {
+    .gi-intro { padding-block-start: var(--s-9); }
+    .gi-intro__head { grid-template-columns: var(--cols); align-items: end; }
+    .gi-intro__title { grid-column: 1 / 8; }
+    .gi-intro__lede { grid-column: 8 / 13; padding-block-end: 0.4rem; }
+    .gi-ways { grid-template-columns: var(--cols); margin-block-start: var(--s-9); }
+    .gi-ways__cell--team { grid-column: 1 / span 5; }
+    .gi-ways__cell--guest { grid-column: span 4; margin-block-start: var(--s-7); }
+    .gi-ways__cell--hello { grid-column: span 3; margin-block-start: var(--s-9); }
+  }
+
+  /* ---------- 3. the bench ---------- */
+  .gi-write { padding-block-start: var(--s-9); }
+  .gi-write__head { display: grid; gap: var(--s-3); max-width: 44ch; margin-block-end: var(--s-6); }
+  .gi-bench > :global(.frame__body) { padding: var(--s-6) var(--s-5) var(--s-7); }
+  .gi-bench > :global(.frame__code) { padding-inline: var(--s-5); }
+  /* the light leaks in from the right; the work stays left of it */
+  .gi-form { max-width: 54rem; }
+
+  .gi-topics { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .gi-topics > legend { padding: 0; margin-block-end: var(--s-3); }
+  .gi-topics__row { position: relative; display: flex; flex-wrap: wrap; gap: var(--s-3); }
+  .gi-plate { cursor: pointer; user-select: none; }
+  .gi-topic:checked + .gi-plate { --btn-bg: var(--shadow); --btn-fg: var(--ink-bright); box-shadow: var(--shadow-plate), inset 0 -2px 0 var(--leak); }
+  .gi-topic:checked + .gi-plate:hover { --btn-bg: var(--shadow-3); }
+  .gi-topic:checked + .gi-plate::before, .gi-topic:checked + .gi-plate::after { background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); }
+  .gi-topic:focus-visible + .gi-plate { outline: 2px solid var(--leak); outline-offset: 3px; }
+
+  .gi-rows > .gi-row + .gi-row, .gi-rows > .gi-extra + .gi-row { margin-block-start: var(--s-5); }
+  .gi-pair { display: grid; gap: var(--s-5); align-items: start; }
+  .gi-opt { color: var(--fg-faint); font-weight: 500; margin-inline-start: var(--s-2); }
+  .gi .field__error { display: none; }
+  .gi .field :user-invalid + .field__error { display: block; }
+
+  /* topic-specific fields: visible by default; with :has they develop in only for their topic */
+  .gi-extra { display: grid; grid-template-rows: 1fr; }
+  .gi-extra__in { min-height: 0; display: grid; gap: var(--s-5); padding-block-start: var(--s-5); }
+
+  .gi-send { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s-4) var(--s-6); margin-block-start: var(--s-7); }
+  .gi-send__privacy { max-width: 36ch; }
+  .gi-send__act { display: grid; gap: var(--s-3); justify-items: start; }
+  .gi-notice { color: var(--sepia); max-width: 44ch; outline-offset: 6px; }
+  .gi-notice a { color: var(--ink-bright); }
+
+  @media (max-width: 47.99em) {
+    .gi-topics__row { flex-direction: column; }
+    .gi-plate { width: 100%; }
+    .gi-send__act { width: 100%; }
+    .gi-send__act > :global(.btn) { width: 100%; }
+  }
+  @media (min-width: 48em) {
+    .gi-pair { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 60em) {
+    .gi-write { padding-block-start: var(--s-10); }
+    .gi-write__head { margin-block-end: var(--s-7); }
+    .gi-bench > :global(.frame__body) { padding: var(--s-7) var(--s-7) var(--s-8); }
+    .gi-bench > :global(.frame__code) { padding-inline: var(--s-7); }
+  }
+
+  /* ---------- the authored moment ---------- */
+  @supports selector(:has(a)) {
+    .gi-extra {
+      grid-template-rows: 0fr; opacity: 0; filter: blur(8px); visibility: hidden;
+      transition:
+        grid-template-rows var(--dur-3) var(--ease-out),
+        opacity var(--dur-2) var(--ease-out),
+        filter var(--dur-2) var(--ease-out),
+        visibility 0s linear var(--dur-3);
+    }
+    .gi-extra__in { overflow: clip; overflow-clip-margin: 1.5rem; }
+    .gi:has(#topic-guest:checked) .gi-extra--guest,
+    .gi:has(#topic-team:checked) .gi-extra--team {
+      grid-template-rows: 1fr; opacity: 1; filter: none; visibility: visible;
+      transition:
+        grid-template-rows var(--dur-3) var(--ease-out),
+        opacity var(--dur-3) var(--ease-out) 120ms,
+        filter var(--dur-4) var(--ease-out) 120ms,
+        visibility 0s;
+    }
+    /* the chosen topic lights its entry frame above */
+    .gi:has(#topic-team:checked) #team :global(.frame__leak),
+    .gi:has(#topic-guest:checked) #guest :global(.frame__leak),
+    .gi:has(#topic-hello:checked) #hello :global(.frame__leak) { opacity: 0.85; }
+  }
+
+  /* ---------- 4 + 5. coda ---------- */
+  .gi-coda { display: grid; gap: var(--s-8) var(--s-6); align-items: end; padding-block-start: var(--s-9); }
+  .gi-next { display: grid; gap: var(--s-3); max-width: 44ch; margin-block-start: var(--s-5); counter-reset: step; }
+  .gi-next li { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: var(--s-3); align-items: baseline; counter-increment: step; color: var(--fg); }
+  .gi-next li::before { content: counter(step); font-family: var(--font-hand); font-weight: 600; font-size: 1.5rem; line-height: 1; color: var(--grease); rotate: -3deg; justify-self: start; }
+  .gi-follow { display: grid; gap: var(--s-4); }
+  @media (min-width: 60em) {
+    .gi-coda { grid-template-columns: var(--cols); padding-block-start: var(--s-10); }
+    .gi-coda__next { grid-column: 1 / span 6; }
+    .gi-follow { grid-column: 8 / span 5; }
+  }
+</style>

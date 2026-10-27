@@ -1,0 +1,52 @@
+---
+import '@fontsource-variable/bricolage-grotesque/standard.css';
+import '@fontsource-variable/big-shoulders-stencil/standard.css';
+import '@fontsource-variable/caveat';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { site } from '../site';
+import { withBase } from '../lib/url';
+
+interface Props { title?: string; description?: string; bodyClass?: string }
+const { title, description = site.description, bodyClass } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · A podcast for medical students`;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+---
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0e0f10" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline data-astro-rerun>document.documentElement.classList.add('js');</script>
+    <ClientRouter />
+  </head>
+  <body class={bodyClass}>
+    <!--
+    THESIS: The podcast as a hand-processed reel: every episode a frame on one strip, the live one blooming orange through its perforations. Refuses the cover-art hero, the "listen on" button row, and the same-size card grid.
+    OWN-WORLD: Leader black ground, emulsion-gray type, chemical sepia for wear and placeholders, one light-leak orange reserved for the active frame, the current page, and the primary action. Perforation rails on every frame and strip; condensed stencil caps for titles, stamped edge codes for metadata, grease-pencil numerals; frames develop from latent to projected.
+    STORY: A med student sees a reel of senior physicians' stories waiting to be developed, understands this show gives them that seat, and follows or joins.
+    FIRST VIEWPORT: One oversized frame right with the leak flooding its rail; the show's name in stencil caps left with one line; primary action to the episodes strip, secondary to Get involved; follow links wait below as honest "soon" marks.
+    FORM: Hand-processed 16mm film, chosen by the user as a challenger over grounded candidate 6; seed ff201de7.
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader />
+    <main id="main" tabindex="-1"><slot /></main>
+    <SiteFooter />
+    <div class="grain" aria-hidden="true"></div>
+    <script>import '../scripts/motion.ts';</script>
+  </body>
+</html>

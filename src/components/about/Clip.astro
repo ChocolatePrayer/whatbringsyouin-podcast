@@ -1,0 +1,19 @@
+---
+/**
+ * Clip — the drawn darkroom clip that hangs a strip from the drying line (About page only).
+ * A hook over the wire, two jaws, one spring bar. One stroke weight, emulsion gray, 28px wide.
+ * The wire runs through the hook at y≈8 of the viewBox, so HangingStrip pulls it up by 0.5rem.
+ * Purely decorative: always aria-hidden.
+ */
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<svg class:list={['clip', cls]} width="28" height="24" viewBox="0 0 28 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <path d="M17.5 11.5V9a3.5 3.5 0 0 0-7 0v2.5" />
+  <path d="M7 12h14l-2.25 10.5H9.25Z" />
+  <path d="M11 17h6" />
+</svg>
+
+<style>
+  .clip { display: block; flex: none; }
+</style>

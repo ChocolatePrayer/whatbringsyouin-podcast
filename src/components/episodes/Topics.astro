@@ -1,0 +1,15 @@
+---
+/** Topics — a quiet row of edge-code chips. Renders nothing when the list is empty. */
+interface Props { topics: string[]; label?: string; class?: string }
+const { topics, label = 'Topics', class: cls = '' } = Astro.props;
+---
+{topics.length > 0 && (
+  <ul class:list={['topics', cls]} role="list" aria-label={label}>
+    {topics.map((t) => <li class="edge-code">{t}</li>)}
+  </ul>
+)}
+
+<style>
+  .topics { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .topics li { padding: 0.4em 0.7em 0.35em; border: 1px solid var(--line); border-radius: var(--radius-plate); transition: border-color var(--dur-3) var(--ease-out); }
+</style>

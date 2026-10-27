@@ -1,0 +1,37 @@
+---
+/** "Join the reel" — the page's close: one wide lit frame, two sentences, two actions. */
+import Frame from '../Frame.astro';
+import Button from '../Button.astro';
+import { edgeCode } from '../../lib/format';
+---
+<section class="join container" aria-labelledby="join-title">
+  <div class="join__frame" data-reveal>
+    <Frame as="div" class="is-lit" leak code={edgeCode('Reel 01', 'Tail')}>
+      <div class="join__inner">
+        <h2 id="join-title" class="display display--md">Join the reel</h2>
+        <p class="lede">The show is made by students, and there is room on the team for more. If there is someone in medicine you have always wanted to hear from, tell us who.</p>
+        <div class="join__actions">
+          <Button variant="primary" href="/get-involved#guest">Suggest a guest</Button>
+          <Button href="/get-involved#team">Join the team</Button>
+        </div>
+      </div>
+    </Frame>
+  </div>
+</section>
+
+<style>
+  .join { padding-block-start: var(--s-9); }
+  .join__frame { display: grid; }
+  .join .join__frame :global(.frame__body) { padding: var(--s-8) var(--s-6); }
+  .join .join__frame :global(.frame__code) { padding-inline: var(--s-6); }
+  .join__inner { display: grid; gap: var(--s-5); max-width: 40rem; padding-inline-end: var(--s-4); }
+  .join__inner .lede { max-width: 46ch; }
+  .join__actions { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); margin-block-start: var(--s-3); }
+
+  @media (min-width: 60em) {
+    .join { padding-block-start: var(--s-10); }
+    .join .join__frame :global(.frame__body) { padding: var(--s-9) var(--s-9); }
+    .join .join__frame :global(.frame__code) { padding-inline: var(--s-9); }
+    .join__inner { max-width: 58%; }
+  }
+</style>

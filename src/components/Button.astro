@@ -1,0 +1,18 @@
+---
+/** Plate button. Renders <a> when href is given, else <button>. Variants: primary | secondary | ghost. */
+import Icon from './Icon.astro';
+import { withBase } from '../lib/url';
+interface Props { href?: string; external?: boolean; variant?: 'primary' | 'secondary' | 'ghost'; size?: 'md' | 'sm'; type?: 'button' | 'submit'; icon?: string; iconAfter?: string; class?: string; [key: string]: unknown }
+const { href, external = false, variant = 'secondary', size = 'md', type = 'button', icon, iconAfter, class: cls = '', ...rest } = Astro.props;
+const classes = ['btn', `btn--${variant}`, size === 'sm' && 'btn--sm', cls];
+const url = href && !external && href.startsWith('/') ? withBase(href) : href;
+---
+{href ? (
+  <a class:list={classes} href={url} rel={external ? 'noopener' : undefined} target={external ? '_blank' : undefined} {...rest}>
+    {icon && <Icon name={icon} size={16} />}<slot />{iconAfter && <Icon name={iconAfter} size={16} />}
+  </a>
+) : (
+  <button class:list={classes} type={type} {...rest}>
+    {icon && <Icon name={icon} size={16} />}<slot />{iconAfter && <Icon name={iconAfter} size={16} />}
+  </button>
+)}

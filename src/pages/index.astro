@@ -1,0 +1,24 @@
+---
+// Home — "the first frame of the reel". Sections live in src/components/home/.
+import Base from '../layouts/Base.astro';
+import Hero from '../components/home/Hero.astro';
+import FirstReel from '../components/home/FirstReel.astro';
+import Premise from '../components/home/Premise.astro';
+import NextScreening from '../components/home/NextScreening.astro';
+import JoinReel from '../components/home/JoinReel.astro';
+import { getCollection } from 'astro:content';
+import { isUpcoming } from '../lib/format';
+import { site } from '../site';
+
+const episodes = (await getCollection('episodes')).sort((a, b) => a.data.number - b.data.number);
+const nextEvent = (await getCollection('events'))
+  .filter((e) => isUpcoming(e.data.date))
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())[0];
+---
+<Base description={site.description}>
+  <Hero />
+  <FirstReel episodes={episodes} />
+  <Premise />
+  <NextScreening event={nextEvent} />
+  <JoinReel />
+</Base>

@@ -1,0 +1,48 @@
+---
+/**
+ * Strip — a run of film: horizontal scroll-snap track between two perforation rails.
+ * Children should be <Frame>s (their own rails hide inside a strip). Width of each
+ * frame is controlled with --strip-item-w on the strip (default min(78vw, 26rem)).
+ * Prev/next plates and keyboard scrolling are wired by src/scripts/motion.ts.
+ * The centred frame receives `.is-active` (develops it; the leak lights only on hover/focus or `.is-lit`).
+ */
+import Icon from './Icon.astro';
+interface Props { label: string; code?: string; controls?: boolean; class?: string; align?: 'start' | 'center'; [key: string]: unknown }
+const { label, code, controls = true, class: cls = '', align = 'start', ...rest } = Astro.props;
+---
+<div class:list={['strip', cls, `strip--${align}`]} data-strip {...rest}>
+  <span class="strip__rail perf perf--h" aria-hidden="true"></span>
+  <div class="strip__track" data-strip-track tabindex="0" role="region" aria-label={label}>
+    <slot />
+  </div>
+  <span class="strip__rail perf perf--h" aria-hidden="true"></span>
+  {controls && (
+    <div class="strip__controls container">
+      {code && <span class="edge-code">{code}</span>}
+      <span class="strip__spacer"></span>
+      <button type="button" class="btn btn--ghost btn--icon strip__btn" data-strip-prev aria-label={`Scroll ${label} back`}><Icon name="arrow-left" /></button>
+      <button type="button" class="btn btn--ghost btn--icon strip__btn" data-strip-next aria-label={`Scroll ${label} forward`}><Icon name="arrow-right" /></button>
+    </div>
+  )}
+</div>
+
+<style>
+  .strip { --strip-item-w: min(78vw, 26rem); position: relative; display: grid; }
+  .strip__rail { height: var(--perf-w); width: 100%; }
+  .strip__track {
+    display: flex; gap: var(--s-6); align-items: stretch;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+    padding: var(--s-6) var(--gutter);
+    scrollbar-width: none;
+  }
+  .strip__track::-webkit-scrollbar { display: none; }
+  .strip__track:focus-visible { outline-offset: -2px; }
+  .strip__track > :global(*) { flex: 0 0 auto; width: var(--strip-item-w); scroll-snap-align: start; }
+  .strip--center .strip__track > :global(*) { scroll-snap-align: center; }
+  /* the leader before the first frame */
+  .strip__track::before, .strip__track::after { content: ''; flex: 0 0 calc(max(0px, (100vw - var(--container)) / 2 - var(--gutter))); }
+  .strip__controls { display: flex; align-items: center; gap: var(--s-3); padding-block-start: var(--s-5); }
+  .strip__spacer { flex: 1; }
+  .strip:not(.has-overflow) .strip__btn { display: none; }
+</style>

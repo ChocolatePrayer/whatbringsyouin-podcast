@@ -1,0 +1,55 @@
+---
+/**
+ * The premise — three facets of the show as three frames of different sizes,
+ * laid loose on a 12-column light table. Copy authored from PRODUCT.md; no numerals, no labels.
+ */
+import Frame from '../Frame.astro';
+---
+<section class="premise container" aria-labelledby="premise-title">
+  <div class="premise__head" data-reveal>
+    <h2 id="premise-title" class="display display--sm">Three things at once</h2>
+    <p class="lede">Access, guidance, and the medicine itself. Made by students, for students.</p>
+  </div>
+
+  <div class="premise__grid" data-reveal-stagger="120">
+    <div class="premise__cell premise__cell--voices" data-reveal>
+      <Frame as="article" leak>
+        <h3 class="title title--lg premise__title">The people students rarely get to ask</h3>
+        <p>Department chairs, deans, researchers and veterans of the ward: the people whose decisions shape medicine, and whom a student almost never gets to sit across from. Each episode is that conversation, asked from the student's side of the table.</p>
+      </Frame>
+    </div>
+    <div class="premise__cell premise__cell--path" data-reveal>
+      <Frame as="article" leak>
+        <h3 class="title title--lg premise__title">The decisions along the way</h3>
+        <p>How a specialty gets chosen, how admissions and residency really work, and which choices mattered in hindsight. Guests walk back through their own path, decision by decision.</p>
+      </Frame>
+    </div>
+    <div class="premise__cell premise__cell--medicine" data-reveal>
+      <Frame as="article" leak>
+        <h3 class="title title--lg premise__title">The medicine itself</h3>
+        <p>The research and clinical knowledge each guest carries, explained to students who are still building their own. What they are working on now, and why it matters.</p>
+      </Frame>
+    </div>
+  </div>
+</section>
+
+<style>
+  .premise { padding-block-start: var(--s-9); }
+  .premise__head { display: grid; gap: var(--s-4); }
+  .premise__grid { display: grid; gap: var(--s-6); margin-block-start: var(--s-8); }
+  .premise__cell { display: grid; }
+  .premise__cell p { max-width: 52ch; color: var(--fg); }
+  .premise .premise__cell :global(.frame__body) { padding: var(--s-7) var(--s-6) var(--s-7); gap: var(--s-4); }
+  .premise__cell--voices .premise__title { font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.5rem); }
+  .premise__cell--voices p { font-size: var(--text-lg); line-height: 1.55; max-width: 46ch; }
+
+  @media (min-width: 60em) {
+    .premise { padding-block-start: var(--s-10); }
+    .premise__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s-7); }
+    .premise__cell--voices { grid-column: 1 / 8; }
+    .premise__cell--path { grid-column: 8 / 13; margin-block-start: var(--s-8); }
+    .premise__cell--medicine { grid-column: 3 / 12; }
+    .premise .premise__cell--voices :global(.frame__body) { padding: var(--s-8) var(--s-8); }
+    .premise .premise__cell--medicine :global(.frame__body) { padding: var(--s-7) var(--s-8); }
+  }
+</style>

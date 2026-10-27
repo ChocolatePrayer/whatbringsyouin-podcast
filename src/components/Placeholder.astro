@@ -1,0 +1,40 @@
+---
+/**
+ * Placeholder — a latent frame where a real asset will go. Unmistakable to the maintainer,
+ * quiet to the visitor. Every instance carries data-placeholder for the README checklist.
+ *  kind   photo | logo | audio | cover | image
+ *  label  what belongs here ("Guest photo", "Episode cover")
+ *  ratio  CSS aspect-ratio value, e.g. "4 / 5", "16 / 9", "1 / 1"
+ */
+interface Props { kind?: 'photo' | 'logo' | 'audio' | 'cover' | 'image'; label: string; ratio?: string; class?: string; note?: string; [key: string]: unknown }
+const { kind = 'photo', label, ratio = '4 / 5', class: cls = '', note, ...rest } = Astro.props;
+const stamp = { photo: 'Add photo', logo: 'Add logo', audio: 'Add audio', cover: 'Add cover', image: 'Add image' }[kind];
+---
+<div class:list={['placeholder', `placeholder--${kind}`, cls]} data-placeholder={kind} role="img" aria-label={`Placeholder for ${label}`} style={`--ratio: ${ratio}`} title={note ?? `${stamp}: ${label}`} {...rest}>
+  <span class="placeholder__label" aria-hidden="true">{label}</span>
+  <span class="placeholder__stamp edge-code edge-code--sepia" aria-hidden="true">{stamp}</span>
+</div>
+
+<style>
+  .placeholder {
+    position: relative; aspect-ratio: var(--ratio); width: 100%; min-height: 4rem;
+    display: grid; place-items: center; padding: var(--s-4);
+    background:
+      radial-gradient(70% 60% at 50% 45%, rgb(166 171 176 / 0.07), transparent 70%),
+      var(--shadow);
+    color: var(--fg-muted);
+    overflow: hidden;
+  }
+  .placeholder::before { content: ''; position: absolute; inset: var(--s-3); border: 1px dashed var(--sepia-dim); border-radius: 2px; pointer-events: none; z-index: 1; }
+  /* chemistry stain: the emulsion that never fixed */
+  .placeholder::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.8; background: url('../assets/textures/stain.png') var(--stain-pos, 30% 70%) / cover no-repeat; }
+  .placeholder--cover::after, .placeholder--image::after { --stain-pos: 70% 20%; }
+  .placeholder--audio::after { --stain-pos: 90% 50%; opacity: 0.5; }
+  .placeholder__label, .placeholder__stamp { position: relative; z-index: 1; }
+  .placeholder__label { font-size: var(--text-sm); font-stretch: 90%; text-align: center; text-wrap: balance; max-width: 18ch; color: var(--fg); padding: 0.3em 0.7em; border-radius: var(--radius-plate); background: rgb(14 15 16 / 0.8); }
+  .placeholder__stamp { position: absolute; left: var(--s-5); bottom: var(--s-4); z-index: 1; padding: 0.35em 0.6em 0.3em; border-radius: var(--radius-plate); background: rgb(14 15 16 / 0.8); }
+  .placeholder--audio { aspect-ratio: auto; min-height: 3.5rem; grid-auto-flow: column; justify-content: start; gap: var(--s-4); padding-inline: var(--s-5); }
+  .placeholder--audio .placeholder__stamp { position: static; }
+  .placeholder--audio .placeholder__label { text-align: start; }
+  .placeholder--logo { aspect-ratio: var(--ratio, 3 / 1); }
+</style>

@@ -1,0 +1,208 @@
+---
+/**
+ * /episodes — the film log. One strip running down the page: every episode a frame between
+ * two perforation rails. One frame is lit, and it means something: the next to develop before
+ * launch, the latest release after it. Hover and focus develop the others.
+ */
+import Base from '../../layouts/Base.astro';
+import Frame from '../../components/Frame.astro';
+import Button from '../../components/Button.astro';
+import SocialLinks from '../../components/SocialLinks.astro';
+import Cover from '../../components/episodes/Cover.astro';
+import Topics from '../../components/episodes/Topics.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { fmtDate, pad2, edgeCode } from '../../lib/format';
+import { withBase } from '../../lib/url';
+
+type Episode = CollectionEntry<'episodes'>;
+
+const all = await getCollection('episodes');
+const total = all.length;
+const published = all.filter((e) => e.data.status === 'published').length;
+const comingSoon = total - published;
+const allDeveloping = total > 0 && published === 0;
+
+// Newest first once anything is out; while everything is still developing, the first
+// conversation leads the strip.
+const newestFirst = published > 0;
+const episodes = [...all].sort((a, b) => (newestFirst ? b.data.number - a.data.number : a.data.number - b.data.number));
+const reels = [...new Set(episodes.map((e) => e.data.reel))];
+const groups = reels.map((reel) => ({ reel, items: episodes.filter((e) => e.data.reel === reel) }));
+const multiReel = groups.length > 1;
+const TitleTag = multiReel ? 'h3' : 'h2';
+
+// Placeholder files are not production progress: no frame count while every entry is one.
+const allPlaceholder = total > 0 && all.every((e) => e.data.placeholder);
+const counts =
+  total === 0
+    ? edgeCode('Reel 01', 'First frames developing')
+    : allPlaceholder
+      ? edgeCode('No episodes yet', 'Placeholder frames')
+      : edgeCode(
+          `${total} ${total === 1 ? 'frame' : 'frames'}`,
+          published > 0 ? `${published} developed` : undefined,
+          comingSoon > 0 ? (allDeveloping ? 'all developing' : `${comingSoon} developing`) : undefined,
+        );
+
+// One lit frame on the strip: before launch the lowest-numbered episode (next to develop);
+// once anything is out, the highest-numbered published one (latest).
+const publishedEps = all.filter((e) => e.data.status === 'published');
+const litEp = publishedEps.length > 0
+  ? publishedEps.reduce((a, b) => (b.data.number > a.data.number ? b : a))
+  : total > 0 ? all.reduce((a, b) => (b.data.number < a.data.number ? b : a)) : undefined;
+const litMark = publishedEps.length > 0 ? 'Latest' : 'Next to develop';
+
+// A no-break space before each separator keeps a wrapped line from starting with "·".
+const guestLine = (e: Episode) => (e.data.guest ? [e.data.guest.name, e.data.guest.role, e.data.guest.affiliation].filter(Boolean).join(' · ') : '');
+const codeFor = (e: Episode) => {
+  const soon = e.data.status === 'coming-soon' ? 'Coming soon' : undefined;
+  const lit = e.id === litEp?.id ? litMark : undefined;
+  // A placeholder entry's date and duration are not facts yet; stamp it undated.
+  return e.data.placeholder ? edgeCode('Undated', soon, lit) : edgeCode(fmtDate(e.data.date), e.data.duration, soon, lit);
+};
+---
+<Base
+  title="Episodes"
+  description="Episodes of What Brings You In: conversations with experienced physicians, researchers and leaders in medicine, recorded for medical students and the students coming up behind them."
+>
+  <section class="ep-head container" data-reveal>
+    <h1 class="display display--md">Episodes</h1>
+    <div class="ep-head__aside">
+      <p class="lede">
+        Conversations with experienced physicians, researchers and leaders in medicine, recorded for the students coming up behind them.
+        {allDeveloping && ' The first episodes are coming soon.'}
+      </p>
+      <p class="edge-code ep-head__counts" aria-label="Episode count">{counts}</p>
+    </div>
+  </section>
+
+  <section class="ep-log container" aria-label="Episode log">
+    <div class="film-log">
+      <div class="film-log__rails" aria-hidden="true">
+        <span class="perf film-log__rail film-log__rail--l"></span>
+        <span class="perf film-log__rail film-log__rail--r"></span>
+      </div>
+
+      {total === 0 ? (
+        <div class="film-log__list" data-reveal>
+          <Frame as="div" state="latent" leak code={edgeCode('Reel 01', 'Developing')} class="film-log__empty">
+            <h2 class="title title--lg">The first reel is developing</h2>
+            <p class="muted">The first conversations are being scheduled. Episodes will appear here, one frame after another, once they are recorded.</p>
+            <p class="small"><a href={withBase('/get-involved#guest')}>Have a guest in mind? Suggest a guest</a></p>
+          </Frame>
+        </div>
+      ) : (
+        groups.map((g) => (
+          <div class="film-log__group">
+            {multiReel && <h2 class="film-log__reel edge-code edge-code--bright">Reel {pad2(g.reel)}</h2>}
+            <ol class="film-log__list" role="list" data-reveal-stagger="70" aria-label={multiReel ? `Reel ${pad2(g.reel)}` : undefined}>
+              {g.items.map((e) => (
+                <li data-reveal>
+                  <Frame
+                    as="a"
+                    href={withBase(`/episodes/${e.id}`)}
+                    class={e.id === litEp?.id ? 'is-interactive film-log__frame is-lit' : 'is-interactive film-log__frame'}
+                    leak
+                    state={e.data.status === 'coming-soon' ? 'latent' : 'projected'}
+                    numeral={pad2(e.data.number)}
+                    numeralLabel="Episode"
+                    code={codeFor(e)}
+                    data-placeholder={e.data.placeholder ? 'episode' : undefined}
+                    title={e.data.placeholder ? `Placeholder episode: replace src/content/episodes/${e.id}.md` : undefined}
+                  >
+                    <Cover slot="media" cover={e.data.cover} ratio="1 / 1" />
+                    <TitleTag class="title title--lg" transition:name={`ep-title-${e.id}`}>{e.data.title}</TitleTag>
+                    {e.data.guest && <p class="muted film-log__guest">{guestLine(e)}</p>}
+                    <p class="small muted film-log__desc">{e.data.description}</p>
+                    <Topics topics={e.data.topics} />
+                  </Frame>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))
+      )}
+    </div>
+  </section>
+
+  <aside class="ep-after container" aria-label="Suggest a guest, and where to listen" data-reveal>
+    <div class="ep-after__guest">
+      <p class="muted">Have a guest in mind?</p>
+      <Button variant="ghost" size="sm" href="/get-involved#guest" iconAfter="arrow-right">Suggest a guest</Button>
+    </div>
+    <div class="ep-after__listen">
+      <p class="edge-code">Where to listen, once the reel is live</p>
+      <SocialLinks only={['spotify', 'apple', 'youtube', 'rss']} />
+    </div>
+  </aside>
+</Base>
+
+<style>
+  /* ---------- header: title left, lede right, both resting on the same baseline ---------- */
+  .ep-head { display: grid; gap: var(--s-6); align-items: end; padding-block: var(--s-9) var(--s-8); }
+  .ep-head__aside { display: grid; gap: var(--s-4); }
+  .ep-head__counts { margin-block-start: var(--s-1); }
+  @media (min-width: 60em) {
+    .ep-head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-8); padding-block: var(--s-10) var(--s-9); }
+    .ep-head__aside { padding-block-end: var(--s-2); }
+  }
+
+  /* ---------- the strip: one centred column between its own rails ---------- */
+  .ep-log { padding-block: 0; }
+  .film-log {
+    position: relative;
+    width: min(100%, 56rem);
+    margin-inline: auto;
+    padding: var(--s-7) var(--perf-w);
+  }
+  .film-log__rails {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--s-8), #000 calc(100% - var(--s-8)), transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 var(--s-8), #000 calc(100% - var(--s-8)), transparent);
+  }
+  .film-log__rail { position: absolute; top: 0; bottom: 0; width: var(--perf-w); }
+  .film-log__rail--l { left: 0; }
+  .film-log__rail--r { right: 0; }
+  .film-log__group { position: relative; z-index: 1; }
+  .film-log__group + .film-log__group { margin-block-start: var(--s-7); padding-block-start: var(--s-7); border-block-start: 1px solid var(--line); }
+  .film-log__reel { margin-block-end: var(--s-4); padding-inline: var(--s-5); }
+  .film-log__list { display: grid; gap: var(--s-3); position: relative; z-index: 1; }
+
+  /* frames inside the log drop their own rails: this strip's rails carry the perforations */
+  .film-log :global(.frame) { grid-template-columns: 0 minmax(0, 1fr) 0; }
+  .film-log :global(.frame__rail) { display: none; }
+  .film-log :global(.frame__numeral) { left: var(--s-4); }
+  .film-log :global(.frame__body) { gap: var(--s-3); }
+  /* latent frames keep their cover legible enough to read as a cover */
+  .film-log :global(.frame.is-latent .frame__media) { filter: grayscale(1) brightness(0.7) contrast(0.95); }
+  /* the title develops with the frame */
+  .film-log :global(.frame.is-latent .title) { color: inherit; transition: color var(--dur-3) var(--ease-out); }
+  .film-log :global(.frame.is-latent:is(:hover, :focus-within) .title) { color: var(--fg-strong); }
+  .film-log :global(.frame:is(:hover, :focus-within) .topics li) { border-color: var(--line-strong); }
+  .film-log__guest { font-size: var(--text-base); text-wrap: wrap; } /* fill the line; 'pretty' balanced it short */
+  .film-log__desc { max-width: 60ch; }
+
+  @media (max-width: 47.99em) {
+    /* media on top: cap the square cover so the strip stays a strip, and let the leak sit on the picture */
+    .film-log :global(.frame__media) { max-height: 13rem; }
+    .film-log :global(.frame__leak) { inset: -25% -10% 42% 30%; }
+  }
+  @media (min-width: 48em) {
+    /* a horizontal frame: cover left, body right, the right margin left to the light */
+    .film-log :global(.frame.has-media) { grid-template-columns: 0 minmax(0, 34fr) minmax(0, 66fr) 0; grid-template-rows: minmax(0, 1fr) auto; }
+    .film-log :global(.frame.has-media > .frame__media) { grid-column: 2; grid-row: 1 / -1; }
+    .film-log :global(.frame.has-media > .frame__body) { grid-column: 3; grid-row: 1; padding: var(--s-6) clamp(var(--s-6), 22%, 10rem) var(--s-5) var(--s-6); }
+    .film-log :global(.frame.has-media > .frame__code) { grid-column: 3; grid-row: 2; padding-inline-start: var(--s-6); }
+  }
+
+  .film-log__empty :global(.title) { color: var(--fg-strong); }
+
+  /* ---------- below the strip: a quiet row ---------- */
+  .ep-after { display: grid; gap: var(--s-8); margin-block-start: var(--s-9); }
+  .ep-after__guest, .ep-after__listen { display: grid; gap: var(--s-4); justify-items: start; align-content: start; }
+  @media (min-width: 48em) {
+    .ep-after { grid-template-columns: minmax(0, 1fr) auto; gap: var(--s-9); align-items: start; }
+    .ep-after__listen { justify-items: end; text-align: end; }
+    .ep-after__listen :global(.socials) { justify-content: flex-end; }
+  }
+</style>

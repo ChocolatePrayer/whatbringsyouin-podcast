@@ -1,0 +1,137 @@
+---
+/**
+ * Frame — the atom of this world. A cell of 16mm film with perforation rails on both sides.
+ *
+ *  state   latent    → dim, desaturated; "develops" on hover/focus/active (coming-soon, undiscovered)
+ *          projected → full strength (default)
+ *          fogged    → sepia, stained (the past: finished events, archived reels)
+ *  leak    adds a light-leak layer that blooms orange through the right rail on hover/focus
+ *          and when `.is-lit` (the one frame per strip that means something: next to develop, live).
+ *          `.is-active` (set by Strip for the centred frame) only develops a latent frame; it never lights.
+ *  numeral grease-pencil number top-left (episode number, step, date)
+ *  code    stamped edge code along the bottom (metadata, never prose)
+ *  wear    0–2 density of scratches over the media slot
+ *  as      element tag ('article', 'a', 'li', …). Extra attributes pass through (href, id, aria-*).
+ *
+ *  <Frame as="article" state="latent" leak numeral="03" code="REEL 01 · FRAME 03 · COMING SOON">
+ *    <Placeholder slot="media" kind="photo" label="Guest photo" ratio="16 / 10" />
+ *    <h3 class="title">…</h3><p>…</p>
+ *  </Frame>
+ *
+ *  Inside a <Strip>, frames drop their own rails; the strip's rails carry the perforations.
+ */
+interface Props {
+  as?: string;
+  state?: 'latent' | 'projected' | 'fogged';
+  leak?: boolean;
+  numeral?: string | number;
+  numeralLabel?: string;
+  code?: string;
+  wear?: 0 | 1 | 2;
+  class?: string;
+  [key: string]: unknown;
+}
+const { as: Tag = 'div', state = 'projected', leak = false, numeral, numeralLabel = 'Frame', code, wear = 1, class: cls = '', ...rest } = Astro.props;
+// A named slot registers even when its condition is false, so render the media wrapper only when it has output.
+const mediaHtml = Astro.slots.has('media') ? (await Astro.slots.render('media')).trim() : '';
+const hasMedia = mediaHtml.length > 0;
+const hasNumeral = numeral !== undefined && numeral !== '';
+---
+<Tag class:list={['frame', `is-${state}`, cls, { 'has-media': hasMedia, 'has-numeral': hasNumeral }]} data-leak={leak ? '' : undefined} data-wear={wear} {...rest}>
+  <span class="frame__rail frame__rail--l perf" aria-hidden="true"></span>
+  {hasMedia && <div class="frame__media" set:html={mediaHtml} />}
+  <div class="frame__body"><slot /></div>
+  {code && <span class="frame__code edge-code">{code}</span>}
+  <span class="frame__rail frame__rail--r perf" aria-hidden="true"></span>
+  {leak && <span class="frame__leak" aria-hidden="true"></span>}
+  {hasNumeral && (
+    <span class="frame__numeral grease"><span class="visually-hidden">{numeralLabel} </span>{numeral}</span>
+  )}
+</Tag>
+
+<style>
+  .frame {
+    --frame-bg: var(--shadow-2);
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--perf-w) minmax(0, 1fr) var(--perf-w);
+    grid-template-rows: auto 1fr auto;
+    background: var(--frame-bg);
+    border-radius: var(--radius-frame);
+    box-shadow: var(--shadow-frame);
+    color: var(--fg);
+    isolation: isolate;
+    overflow: clip;
+    text-decoration: none;
+    /* longhands, not the shorthand: a frame that also carries data-reveal keeps the reveal's delay */
+    transition-property: translate, box-shadow, color;
+    transition-duration: var(--dur-3);
+    transition-timing-function: var(--ease-out);
+  }
+  /* a frame that develops on enter merges the reveal's properties with its own */
+  :global(.js) .frame[data-reveal] { transition-property: opacity, translate, filter, box-shadow, color; }
+  .frame__rail { grid-row: 1 / -1; z-index: 3; }
+  .frame__rail--l { grid-column: 1; }
+  .frame__rail--r { grid-column: 3; }
+  .frame__media { grid-column: 2; grid-row: 1; position: relative; z-index: 1; overflow: hidden; background: var(--shadow); transition: filter var(--dur-4) var(--ease-out); }
+  .frame__media > :global(*) { width: 100%; height: 100%; }
+  .frame__media > :global(img), .frame__media > :global(video) { object-fit: cover; }
+  /* scratches: procedural, per frame, density by data-wear */
+  .frame__media::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; opacity: var(--wear, 0.6);
+    background: url('../assets/textures/scratches.svg') center / cover no-repeat;
+  }
+  .frame[data-wear='2'] .frame__media::after { background-position: 30% 60%; }
+  .frame[data-wear='0'] { --wear: 0; }
+  .frame[data-wear='1'] { --wear: 0.6; }
+  .frame[data-wear='2'] { --wear: 1; }
+  .frame__body { grid-column: 2; grid-row: 2; position: relative; z-index: 1; display: grid; gap: var(--s-3); align-content: start; padding: var(--s-5) var(--s-5) var(--s-6); }
+  .frame.has-numeral:not(.has-media) .frame__body { padding-block-start: var(--s-8); }
+  .frame__code { grid-column: 2; grid-row: 3; position: relative; z-index: 1; padding: 0 var(--s-5) var(--s-4); }
+  .frame__numeral { position: absolute; z-index: 4; top: var(--s-2); left: calc(var(--perf-w) + var(--s-3)); pointer-events: none; text-shadow: 0 1px 0 rgb(0 0 0 / 0.5); }
+  .frame.has-media .frame__numeral { color: var(--ink-bright); }
+
+  /* light leak: lives above media and body, below the rails, so it floods the perforations */
+  .frame__leak {
+    position: absolute; inset: -25% -10% -25% 30%; z-index: 2; pointer-events: none; opacity: 0;
+    background:
+      linear-gradient(to left, color-mix(in oklab, var(--leak-hot) 75%, transparent), transparent 18%),
+      radial-gradient(58% 95% at 100% 50%, var(--leak-hot) 0%, var(--leak) 16%, color-mix(in oklab, var(--leak) 58%, transparent) 36%, transparent 70%);
+    mix-blend-mode: screen;
+    -webkit-mask-image: url('../assets/textures/grain-alpha.png'), url('../assets/textures/blotch-alpha.png');
+    -webkit-mask-size: 256px 256px, 640px 640px;
+    -webkit-mask-composite: source-in;
+    mask-image: url('../assets/textures/grain-alpha.png'), url('../assets/textures/blotch-alpha.png');
+    mask-size: 256px 256px, 640px 640px;
+    mask-composite: intersect;
+    transition: opacity var(--dur-4) var(--ease-out);
+  }
+  /* the leak means something: the lit frame (next to develop / live). Hover and focus preview it; .is-active only develops. */
+  .frame[data-leak]:is(:hover, :focus-within, .is-lit) .frame__leak { opacity: 0.85; }
+  .frame[data-leak].is-lit .frame__leak { opacity: 0.95; }
+
+  /* states */
+  .frame.is-latent { color: var(--fg-muted); }
+  .frame.is-latent .frame__media { filter: grayscale(1) brightness(0.7) contrast(0.95); }
+  .frame.is-latent:is(:hover, :focus-within, .is-active) { color: var(--fg); }
+  .frame.is-latent:is(:hover, :focus-within, .is-active) .frame__media { filter: grayscale(0.15) brightness(0.95); }
+  .frame.is-fogged { --frame-bg: #1a1714; color: var(--fg-muted); }
+  .frame.is-fogged .frame__media { filter: sepia(0.7) brightness(0.6) contrast(0.9); }
+  .frame.is-fogged::before {
+    content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; mix-blend-mode: multiply; opacity: 0.9;
+    background:
+      radial-gradient(40% 50% at 12% 85%, rgb(200 176 137 / 0.35), transparent 70%),
+      radial-gradient(28% 38% at 88% 14%, rgb(200 176 137 / 0.25), transparent 70%),
+      radial-gradient(18% 22% at 60% 60%, rgb(107 90 66 / 0.3), transparent 70%);
+  }
+
+  /* interactive frames lift a touch */
+  .frame.is-interactive { cursor: pointer; }
+  .frame.is-interactive:hover { translate: 0 -2px; box-shadow: 0 2rem 3.5rem -1.5rem rgb(0 0 0 / 0.85), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5); }
+  .frame.is-interactive:focus-visible { outline-offset: 4px; }
+
+  /* inside a strip, the strip's horizontal rails carry the perforations */
+  :global(.strip) .frame { grid-template-columns: 0 minmax(0, 1fr) 0; }
+  :global(.strip) .frame__rail { display: none; }
+  :global(.strip) .frame__numeral { left: var(--s-4); }
+</style>

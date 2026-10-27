@@ -1,0 +1,31 @@
+---
+/** Follow links from src/site.ts. Placeholders render as honest "soon" labels, not dead links. */
+import Icon from './Icon.astro';
+import { site } from '../site';
+interface Props { class?: string; variant?: 'row' | 'column'; only?: string[]; [key: string]: unknown }
+const { class: cls = '', variant = 'row', only, ...rest } = Astro.props;
+const list = only ? site.socials.filter((s) => only.includes(s.id)) : site.socials;
+---
+<ul class:list={['socials', `socials--${variant}`, cls]} role="list" {...rest}>
+  {list.map((s) => (
+    <li>
+      {s.placeholder || !s.href ? (
+        <span class="social is-placeholder edge-code" data-placeholder="link" title={`Add the ${s.name} link in src/site.ts`}>
+          {s.name}<span class="social__soon">soon</span>
+        </span>
+      ) : (
+        <a class="social edge-code edge-code--bright" href={s.href} rel="me noopener" target="_blank">
+          {s.name}<Icon name="arrow-up-right" size={12} />
+        </a>
+      )}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .socials { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-6); }
+  .socials--column { flex-direction: column; gap: var(--s-3); }
+  .social { display: inline-flex; align-items: center; gap: var(--s-2); text-decoration: none; padding-block: var(--s-1); transition: color var(--dur-2) var(--ease-out); }
+  a.social:hover { color: var(--ink-bright); }
+  .social__soon { font-size: 0.6em; letter-spacing: 0.12em; padding: 0.2em 0.5em 0.15em; border: 1px solid var(--sepia-dim); border-radius: 2px; color: var(--sepia); }
+</style>
