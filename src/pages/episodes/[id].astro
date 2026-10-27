@@ -32,7 +32,7 @@ const { Content } = await render(episode);
 const soon = data.status === 'coming-soon';
 const ph = data.placeholder;
 // A placeholder entry's date and duration are not facts yet; stamp the frame undated.
-const code = edgeCode(`Reel ${pad2(data.reel)}`, ph ? 'Undated' : fmtDate(data.date), ph ? undefined : data.duration, soon ? 'Coming soon' : undefined);
+const code = edgeCode(`Season ${pad2(data.reel)}`, ph ? 'Undated' : fmtDate(data.date), ph ? undefined : data.duration, soon ? 'Coming soon' : undefined);
 const guest = data.guest;
 // A no-break space before each separator keeps a wrapped line from starting with "·".
 const guestMeta = guest ? [guest.role, guest.affiliation].filter(Boolean).join(' · ') : '';

@@ -1,14 +1,14 @@
 ---
-/** "Join the reel" — the page's close: one wide frame on a band of film stock that runs into the footer, two sentences, two actions. */
+/** "Get involved" — the page's close: one wide frame on a band of film stock that runs into the footer, two sentences, two actions. */
 import Frame from '../Frame.astro';
 import Button from '../Button.astro';
 import { edgeCode } from '../../lib/format';
 ---
 <section class="join container surface-stock band" aria-labelledby="join-title">
   <div class="join__frame" data-reveal>
-    <Frame as="div" leak class="stock-brown" code={edgeCode('Reel 01', 'Tail')}>
+    <Frame as="div" leak class="stock-brown" code={edgeCode('Season 01', 'Tail')}>
       <div class="join__inner">
-        <h2 id="join-title" class="display display--md">Join the reel</h2>
+        <h2 id="join-title" class="display display--md">Get involved</h2>
         <p class="lede">The show is made by students, and there is room on the team for more. If there is someone in medicine you have always wanted to hear from, tell us who.</p>
         <div class="join__actions">
           <Button variant="primary" href="/get-involved#guest">Suggest a guest</Button>

@@ -35,7 +35,7 @@ const TitleTag = multiReel ? 'h3' : 'h2';
 const allPlaceholder = total > 0 && all.every((e) => e.data.placeholder);
 const counts =
   total === 0
-    ? edgeCode('Reel 01', 'First frames developing')
+    ? edgeCode('Season 01', 'First frames developing')
     : allPlaceholder
       ? edgeCode('No episodes yet', 'Placeholder frames')
       : edgeCode(
@@ -85,8 +85,8 @@ const codeFor = (e: Episode) => {
 
       {total === 0 ? (
         <div class="film-log__list" data-reveal>
-          <Frame as="div" state="latent" leak code={edgeCode('Reel 01', 'Developing')} class="film-log__empty">
-            <h2 class="title title--lg">The first reel is developing</h2>
+          <Frame as="div" state="latent" leak code={edgeCode('Season 01', 'Developing')} class="film-log__empty">
+            <h2 class="title title--lg">The first episodes are developing</h2>
             <p class="muted">The first conversations are being scheduled. Episodes will appear here, one frame after another, once they are recorded.</p>
             <p class="small"><a href={withBase('/get-involved#guest')}>Have a guest in mind? Suggest a guest</a></p>
           </Frame>
@@ -94,8 +94,8 @@ const codeFor = (e: Episode) => {
       ) : (
         groups.map((g) => (
           <div class="film-log__group">
-            {multiReel && <h2 class="film-log__reel edge-code edge-code--bright">Reel {pad2(g.reel)}</h2>}
-            <ol class="film-log__list" role="list" data-reveal-stagger="70" aria-label={multiReel ? `Reel ${pad2(g.reel)}` : undefined}>
+            {multiReel && <h2 class="film-log__reel edge-code edge-code--bright">Season {pad2(g.reel)}</h2>}
+            <ol class="film-log__list" role="list" data-reveal-stagger="70" aria-label={multiReel ? `Season ${pad2(g.reel)}` : undefined}>
               {g.items.map((e) => (
                 <li data-reveal>
                   <Frame
@@ -131,7 +131,7 @@ const codeFor = (e: Episode) => {
       <Button variant="ghost" size="sm" href="/get-involved#guest" iconAfter="arrow-right">Suggest a guest</Button>
     </div>
     <div class="ep-after__listen">
-      <p class="edge-code">Where to listen, once the reel is live</p>
+      <p class="edge-code">Where to listen, once the podcast is live</p>
       <SocialLinks only={['spotify', 'apple', 'youtube', 'rss']} />
     </div>
   </aside>

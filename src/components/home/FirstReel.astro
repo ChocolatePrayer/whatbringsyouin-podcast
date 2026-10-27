@@ -1,6 +1,6 @@
 ---
 /**
- * "The first reel" — every episode as a frame on one strip, sorted by number.
+ * "The newest episodes" — every episode as a frame on one strip, sorted by number.
  * Coming-soon frames are latent; placeholder entries (placeholder: true) never read as real.
  * Empty collection: one latent frame that says what is coming.
  */
@@ -31,14 +31,14 @@ if (real.length === 0) {
 } else if (released < real.length) {
   lede = `${cap(count(released))} of ${count(real.length)} ${conv(real.length)} released so far; the rest are being scheduled.`;
 } else {
-  lede = `${cap(count(real.length))} ${conv(real.length)} so far, each one a frame on the reel.`;
+  lede = `${cap(count(real.length))} ${conv(real.length)} so far, each one a frame here.`;
 }
 
 // Placeholder files are not production progress: no frame count while every entry is one.
 const stripCode =
   n > 0 && real.length === 0
-    ? edgeCode('Reel 01', 'Placeholder frames')
-    : edgeCode('Reel 01', `${n} ${n === 1 ? 'frame' : 'frames'}`, released < n ? 'developing' : undefined);
+    ? edgeCode('Season 01', 'Placeholder frames')
+    : edgeCode('Season 01', `${n} ${n === 1 ? 'frame' : 'frames'}`, released < n ? 'developing' : undefined);
 
 // One lit frame per strip, and it means something: before launch the lowest-numbered episode
 // (next to develop); once anything is out, the highest-numbered published one (latest).
@@ -50,13 +50,13 @@ const litMark = publishedEps.length > 0 ? 'Latest' : 'Next to develop';
 ---
 <section class="reel" id="first-reel" aria-labelledby="reel-title">
   <div class="container reel__head" data-reveal>
-    <h2 id="reel-title" class="display display--sm">The first reel</h2>
+    <h2 id="reel-title" class="display display--sm">The newest episodes</h2>
     <p class="lede">{lede}</p>
   </div>
 
   {n > 0 ? (
     <div class="reel__strip" data-reveal>
-      <Strip label="The first reel" code={stripCode}>
+      <Strip label="The newest episodes" code={stripCode}>
         {episodes.map((e) => {
           const soon = e.data.status === 'coming-soon';
           const ph = e.data.placeholder;
@@ -94,8 +94,8 @@ const litMark = publishedEps.length > 0 ? 'Latest' : 'Next to develop';
     </div>
   ) : (
     <div class="container reel__empty" data-reveal>
-      <Frame as="article" state="latent" leak code={edgeCode('Reel 01', 'Developing')}>
-        <h3 class="title title--lg">The first reel is developing</h3>
+      <Frame as="article" state="latent" leak code={edgeCode('Season 01', 'Developing')}>
+        <h3 class="title title--lg">The first episodes are developing</h3>
         <p class="measure">The first conversations are being scheduled. When an episode is released, it becomes a frame here.</p>
         <div class="reel__empty-actions">
           <Button variant="ghost" href="/get-involved" iconAfter="arrow-right">Help make it</Button>

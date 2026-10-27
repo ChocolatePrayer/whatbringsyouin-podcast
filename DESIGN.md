@@ -239,12 +239,12 @@ Five surfaces remap the same role tokens (background, foreground ladder, line, t
 **Character:** Cinzel's Roman capitals come straight from the logo. It is set in mixed case, so lowercase renders as small capitals and "What Brings You" sets exactly like the logo: a full capital, then small capitals. Source Serif 4 carries every sentence a student actually reads. Libre Franklin plays the film's printed margin, small, uppercase and widely tracked. Caveat is the china marker on the contact sheet, used only for numerals.
 
 ### Hierarchy
-- **Display** (Cinzel 600, `display`, line-height 1.04, tracking 0.02em): page titles ("Episodes", "The team", "About the show") and the closing "Join the reel".
-- **Headline** (Cinzel 600, `headline`): section titles on a page ("The first reel", "Three things at once", "Next screening") and episode or event titles in detail-page hero frames.
+- **Display** (Cinzel 600, `display`, line-height 1.04, tracking 0.02em): page titles ("Episodes", "The team", "About the show") and the closing "Get involved".
+- **Headline** (Cinzel 600, `headline`): section titles on a page ("The newest episodes", "Three things at once", "Next screening") and episode or event titles in detail-page hero frames.
 - **Title** (Source Serif 4 600, `title`, 1.22): the heading inside a frame, such as an episode, event, member or premise facet. The same face at body size (1.125rem) is the compact title in narrow frames and the prev/next frames.
 - **Lede** (Source Serif 4 400, `lede`, 1.5, muted, max 52ch): the one-paragraph introduction under a page or section title. The hero tagline is the single larger instance (fluid 1.25–1.625rem, line-height 1.4, max 26ch).
 - **Body** (Source Serif 4 400, `body`, 1.62, measure 66ch): all reading text, rendered Markdown included. **Small** (`body-sm`) is used for meta rows, hints and frame descriptions.
-- **Label / Edge Code** (Libre Franklin 600, `label`, uppercase, tracking 0.16em, tabular lining figures): metadata stamped along a frame's bottom margin ("REEL 01 · PLACEHOLDER FRAMES"), counts, dates, group labels, field labels and the follow links. The plate size (`label-plate`, 0.75rem) is used for buttons and the primary navigation.
+- **Label / Edge Code** (Libre Franklin 600, `label`, uppercase, tracking 0.16em, tabular lining figures): metadata stamped along a frame's bottom margin ("SEASON 01 · PLACEHOLDER FRAMES"), counts, dates, group labels, field labels and the follow links. The plate size (`label-plate`, 0.75rem) is used for buttons and the primary navigation.
 - **Numeral** (Caveat 600, `numeral`, rotated −3°, graphite): the episode number, step or day written top-left on a frame. `numeral-lg` is used for the day on the home page's next-screening frame.
 
 ### Named Rules
@@ -301,7 +301,7 @@ The form language is the film itself. Frames and plates are rectangles with bare
 ### Buttons (plates)
 A plate is a short length of film stock, tactile and quiet.
 - **Shape:** near-square (3px corners), 2.75rem tall, 3rem side padding, with two pairs of perforations punched at the ends. Labels are Libre Franklin 0.75rem uppercase, tracked 0.16em.
-- **Primary:** McGill red with white label, the one action that matters on a section ("Hear the first reel", "Suggest a guest", "Send it in"). On hover it presses to red-deep, rises 1px and gains the leak shadow. On a stock band a primary plate turns white with a stock label, except when it sits on a print (a frame), where it stays red.
+- **Primary:** McGill red with white label, the one action that matters on a section ("The newest episodes", "Suggest a guest", "Send it in"). On hover it presses to red-deep, rises 1px and gains the leak shadow. On a stock band a primary plate turns white with a stock label, except when it sits on a print (a frame), where it stays red.
 - **Secondary (default):** a graphite stock plate with paper showing through its holes. On hover it becomes raised stock.
 - **Ghost:** transparent with a 1px strong-line outline and outlined holes. On hover it gains a 6% wash, the outline darkens and the holes turn the mark colour. It is used for "All episodes", "Event details" and strip prev/next.
 - **Small:** 2.25rem tall and 1.5rem padding, with label-size type. **Icon:** a square 2.75rem plate without holes.
