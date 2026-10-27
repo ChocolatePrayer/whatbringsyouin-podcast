@@ -7,7 +7,7 @@
  *  state   latent    → underexposed: pale, grey, muted text; develops on hover/focus/active (coming soon)
  *          projected → full print (default)
  *          fogged    → sepia-toned, stained (the past: finished events)
- *  leak    adds a McGill-red light leak that burns in through the right rail on hover/focus and when
+ *  leak    adds a McGill-red light leak that burns in on the print from the right rail on hover/focus and when
  *          `.is-lit` (the one frame per strip that means something: next to develop, latest, live).
  *          A lit frame's numeral is also circled in red china marker (an authored SVG stroke that draws itself).
  *          `.is-active` (set by Strip for the centred frame) only develops a latent frame; it never lights.
@@ -112,25 +112,27 @@ const ring = RINGS[String(numeral ?? '').split('').reduce((n, c) => n + c.charCo
   /* over a real photograph the numeral is written in white marker */
   .frame:has(.frame__media > img) .frame__numeral { color: #ffffff; text-shadow: 0 1px 3px rgb(0 0 0 / 0.55); }
 
-  /* the light leak: McGill red burning in from the right edge. Above the print, below the rails, so it
-     shows through the perforations; multiplied, so the ink stays ink and only the paper turns red. */
+  /* the light leak: McGill red burning in from the right edge of the print. Multiplied, so the ink stays ink and
+     only the paper turns red; clipped at the right rail (the box overhangs the frame by 10%, 1/8 of its width),
+     so the stock and its perforations never redden. */
   .frame__leak {
     position: absolute; inset: -25% -10% -25% 30%; z-index: 2; pointer-events: none; opacity: 0;
+    clip-path: inset(0 calc(12.5% + var(--rail)) 0 0);
     background:
-      linear-gradient(to left, color-mix(in oklab, var(--red-bright) 80%, transparent), transparent 14%),
-      radial-gradient(56% 92% at 100% 50%, var(--red-bright) 0%, var(--red) 14%, color-mix(in oklab, var(--red) 46%, transparent) 34%, color-mix(in oklab, var(--red) 12%, transparent) 54%, transparent 70%);
+      linear-gradient(to left, color-mix(in oklab, var(--red-bright) 90%, transparent), transparent 16%),
+      radial-gradient(60% 96% at 100% 50%, var(--red-bright) 0%, var(--red) 16%, color-mix(in oklab, var(--red) 58%, transparent) 36%, color-mix(in oklab, var(--red) 20%, transparent) 56%, transparent 72%);
     mix-blend-mode: multiply;
     -webkit-mask-image: url('../assets/textures/grain-alpha.png'), url('../assets/textures/blotch-alpha.png');
     -webkit-mask-size: 256px 256px, 640px 640px;
-    -webkit-mask-composite: source-in;
+    -webkit-mask-composite: source-over;
     mask-image: url('../assets/textures/grain-alpha.png'), url('../assets/textures/blotch-alpha.png');
     mask-size: 256px 256px, 640px 640px;
-    mask-composite: intersect;
+    mask-composite: add; /* union, not intersect: the textures mottle the red (83–96% strength) instead of halving it */
     transition: opacity var(--dur-4) var(--ease-out);
   }
   /* the leak means something: the lit frame (next to develop / latest / live). Hover and focus preview it; .is-active only develops. */
-  .frame[data-leak]:is(:hover, :focus-within) .frame__leak { opacity: 0.6; }
-  .frame[data-leak].is-lit .frame__leak { opacity: 0.85; }
+  .frame[data-leak].is-lit .frame__leak { opacity: 0.55; }
+  .frame[data-leak]:is(:hover, :focus-within) .frame__leak { opacity: 0.72; }
 
   /* the china-marker ring: an authored, open, double-pass stroke that draws itself round the numeral.
      Lit frames carry it; it draws when the print develops (or on load in the hero). */

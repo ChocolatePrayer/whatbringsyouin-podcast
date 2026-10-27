@@ -25,7 +25,7 @@ const description =
   <section class="line-section surface-beige" aria-labelledby="line-title">
     <h2 id="line-title" class="visually-hidden">The show, in four strips</h2>
     <ul class="line container container--wide" role="list">
-      <HangingStrip offset="0px" delay="0ms">
+      <HangingStrip offset="0px" delay="0ms" class="stock-red">
         <Frame leak code={edgeCode('Strip A', '1 frame')} data-reveal>
           <h3 class="title">The question</h3>
           <p class="copy">It is the first line of every visit. Here, the students get to ask it: what brought you into medicine, and how did you end up where you are?</p>
@@ -51,7 +51,7 @@ const description =
         </Frame>
       </HangingStrip>
 
-      <HangingStrip offset="var(--s-4)" delay="280ms">
+      <HangingStrip offset="var(--s-4)" delay="280ms" class="stock-brown">
         <Frame leak code={edgeCode('Strip C', '2 frames')} data-reveal>
           <h3 class="title">Who makes it</h3>
           <p class="copy">A student organization. Its members host the conversations, produce and edit the episodes, and organize the events around them.</p>

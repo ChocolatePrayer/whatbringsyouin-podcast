@@ -17,10 +17,14 @@
   /* Film stock */
   --stock: #33312e;         /* film base: rails, strips, plates, footer */
   --stock-2: #46433f;       /* raised stock: hover plate */
+  --stock-red: #7a1f1c;     /* tinted base: oxblood, McGill red dyed dark; on-stock 8.7:1, muted 5:1 */
+  --stock-brown: #5c3a22;   /* tinted base: dark brown, the archive; on-stock 8.6:1, muted 4.8:1 */
   --grey: #8d8981;          /* decorative grey only (fails body contrast) */
   --on-stock: #efece6;      /* text on stock, 11:1 */
   --on-stock-muted: #b9b3aa;/* 6.2:1 */
   --on-stock-faint: #a29c93;/* 4.8:1 */
+  --plate: var(--stock);     /* resolved here, so plates stay graphite on tinted stock */
+  --plate-2: var(--stock-2);
 
   /* Ink */
   --ink-faint: #66625a;     /* faint text, ≥4.7:1 on every light surface */

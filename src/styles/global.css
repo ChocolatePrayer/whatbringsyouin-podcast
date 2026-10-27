@@ -143,9 +143,14 @@ hr { border: 0; border-top: 1px solid var(--line); }
   mask-repeat: round no-repeat, no-repeat;
 }
 
+/* tinted stock: silent-era reels were dyed, so a strip, frame or hanging strip can run on red or
+   brown base instead of graphite. Everything film-coloured reads --stock; plates read --plate and stay graphite. */
+.stock-red { --stock: var(--stock-red); }
+.stock-brown { --stock: var(--stock-brown); }
+
 /* ---------- plates (buttons): a short length of stock with two perforations ---------- */
 .btn {
-  --btn-bg: var(--stock); --btn-fg: var(--on-stock); --btn-hole: var(--bg); --btn-line: transparent;
+  --btn-bg: var(--plate); --btn-fg: var(--on-stock); --btn-hole: var(--bg); --btn-line: transparent;
   position: relative; isolation: isolate;
   display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2);
   min-height: 2.75rem; padding: 0 var(--s-7);
@@ -159,7 +164,7 @@ hr { border: 0; border-top: 1px solid var(--line); }
 .btn::before, .btn::after { content: ''; position: absolute; top: 0.625rem; width: 0.375rem; height: 0.4375rem; border-radius: var(--radius-hole); background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); transition: background-color var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out); }
 .btn::before { left: 0.625rem; }
 .btn::after { right: 0.625rem; }
-.btn:hover { --btn-bg: var(--stock-2); translate: 0 -1px; color: var(--btn-fg); }
+.btn:hover { --btn-bg: var(--plate-2); translate: 0 -1px; color: var(--btn-fg); }
 .btn:active { translate: 0 1px; transition-duration: var(--dur-1); }
 .btn--primary { --btn-bg: var(--red); --btn-fg: var(--on-red); }
 .btn--primary:hover { --btn-bg: var(--red-deep); box-shadow: var(--shadow-leak), var(--shadow-plate); }

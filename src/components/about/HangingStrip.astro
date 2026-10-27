@@ -80,7 +80,7 @@ const { offset = '0px', delay = '0ms', class: cls = '' } = Astro.props;
   .hung__frames > :global([data-reveal]) { transition-delay: calc(var(--reveal-delay, 0ms) + var(--strip-delay)); }
 
   /* hover develops: the light leaks through every frame of the strip, not one */
-  .hung:is(:hover, :focus-within) .hung__frames :global(.frame[data-leak] .frame__leak) { opacity: 0.85; }
+  .hung:is(:hover, :focus-within) .hung__frames :global(.frame[data-leak] .frame__leak) { opacity: 0.72; }
 
   @media (max-width: 47.99em) {
     .hung { --offset-scale: 0.34; --strip-delay: 0ms; }

@@ -34,7 +34,7 @@ const action = endpointReal ? site.formEndpoint.url : '#';
       <!-- 2. Three entry frames, spliced on at different heights -->
       <div class="gi-ways" data-reveal-stagger="90">
         <div class="gi-ways__cell gi-ways__cell--team" data-reveal>
-          <Frame as="section" id="team" aria-labelledby="team-title" class="gi-way" code="Topic · Team" wear={0}>
+          <Frame as="section" id="team" aria-labelledby="team-title" class="gi-way stock-red" code="Topic · Team" wear={0}>
             <h2 class="title title--lg" id="team-title">Join the team</h2>
             <p class="muted">The show is made by students who host, produce, edit audio, run events and outreach, and design and run social. Tell us which of those sounds like you, and what you're studying.</p>
             <p class="small faint">The people doing it now are on <a href={withBase('/team')}>the team page</a>.</p>
@@ -42,7 +42,7 @@ const action = endpointReal ? site.formEndpoint.url : '#';
           </Frame>
         </div>
         <div class="gi-ways__cell gi-ways__cell--guest" data-reveal>
-          <Frame as="section" id="guest" aria-labelledby="guest-title" class="gi-way" code="Topic · Guest" wear={0}>
+          <Frame as="section" id="guest" aria-labelledby="guest-title" class="gi-way stock-brown" code="Topic · Guest" wear={0}>
             <h2 class="title title--lg" id="guest-title">Suggest a guest</h2>
             <p class="muted">A physician, researcher or leader in medicine a student should hear from: someone whose path you can't stop thinking about. Tell us who they are and why; if you can introduce us, even better.</p>
             <div class="gi-way__act"><Button href="#form" data-pick="topic-guest" iconAfter="arrow-down">Suggest someone</Button></div>
@@ -65,7 +65,7 @@ const action = endpointReal ? site.formEndpoint.url : '#';
         <p class="muted">Pick what it's about, then a few lines are enough.</p>
       </div>
 
-      <Frame as="div" class="gi-bench" wear={0} data-reveal code={edgeCode('Form', endpointReal ? 'Connected' : 'Not connected yet')}>
+      <Frame as="div" class="gi-bench stock-brown" wear={0} data-reveal code={edgeCode('Form', endpointReal ? 'Connected' : 'Not connected yet')}>
         <form
           class="gi-form"
           method="post"
@@ -271,8 +271,8 @@ const action = endpointReal ? site.formEndpoint.url : '#';
   .gi-topics > legend { padding: 0; margin-block-end: var(--s-3); }
   .gi-topics__row { position: relative; display: flex; flex-wrap: wrap; gap: var(--s-3); }
   .gi-plate { cursor: pointer; user-select: none; }
-  .gi-topic:checked + .gi-plate { --btn-bg: var(--stock); --btn-fg: var(--on-stock); box-shadow: var(--shadow-plate), inset 0 -3px 0 var(--red); }
-  .gi-topic:checked + .gi-plate:hover { --btn-bg: var(--stock-2); }
+  .gi-topic:checked + .gi-plate { --btn-bg: var(--plate); --btn-fg: var(--on-stock); box-shadow: var(--shadow-plate), inset 0 -3px 0 var(--red); }
+  .gi-topic:checked + .gi-plate:hover { --btn-bg: var(--plate-2); }
   .gi-topic:checked + .gi-plate::before, .gi-topic:checked + .gi-plate::after { background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); }
   .gi-topic:focus-visible + .gi-plate { outline: 2px solid var(--mark); outline-offset: 3px; }
 

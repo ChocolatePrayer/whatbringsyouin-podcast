@@ -55,7 +55,7 @@ const neighbourCode = (e: Episode, label: string) => edgeCode(label, e.data.plac
   </div>
 
   <section class="ep-hero container" aria-labelledby="ep-title">
-    <Frame as="article" class="is-lit ep-hero__frame" leak numeral={pad2(data.number)} numeralLabel="Episode" code={code}>
+    <Frame as="article" class="is-lit ep-hero__frame stock-red" leak numeral={pad2(data.number)} numeralLabel="Episode" code={code}>
       <Cover slot="media" cover={data.cover} ratio="16 / 9" alt="Episode cover art" loading="eager" />
       <div
         class="ep-hero__head"
@@ -142,14 +142,14 @@ const neighbourCode = (e: Episode, label: string) => edgeCode(label, e.data.plac
       <ul class="ep-nav__list" role="list">
         {prev && (
           <li class="ep-nav__prev">
-            <Frame as="a" href={withBase(`/episodes/${prev.id}`)} rel="prev" class="is-interactive ep-nav__frame" leak state={neighbourState(prev)} numeral={pad2(prev.data.number)} numeralLabel="Episode" code={neighbourCode(prev, 'Previous frame')}>
+            <Frame as="a" href={withBase(`/episodes/${prev.id}`)} rel="prev" class="is-interactive ep-nav__frame stock-brown" leak state={neighbourState(prev)} numeral={pad2(prev.data.number)} numeralLabel="Episode" code={neighbourCode(prev, 'Previous frame')}>
               <span class="title" transition:name={`ep-title-${prev.id}`}>{prev.data.title}</span>
             </Frame>
           </li>
         )}
         {next && (
           <li class="ep-nav__next">
-            <Frame as="a" href={withBase(`/episodes/${next.id}`)} rel="next" class="is-interactive ep-nav__frame" leak state={neighbourState(next)} numeral={pad2(next.data.number)} numeralLabel="Episode" code={neighbourCode(next, 'Next frame')}>
+            <Frame as="a" href={withBase(`/episodes/${next.id}`)} rel="next" class="is-interactive ep-nav__frame stock-brown" leak state={neighbourState(next)} numeral={pad2(next.data.number)} numeralLabel="Episode" code={neighbourCode(next, 'Next frame')}>
               <span class="title" transition:name={`ep-title-${next.id}`}>{next.data.title}</span>
             </Frame>
           </li>

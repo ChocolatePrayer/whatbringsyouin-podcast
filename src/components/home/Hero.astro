@@ -1,34 +1,27 @@
 ---
 /**
- * Home hero — the title card. The podcast's own logo is printed large in one lit frame (left);
+ * Home hero — the title card. The podcast's own logo, large and unframed, straight on the paper (left);
  * the tagline, two actions and the honest follow marks sit beside it (right).
- * The page's one authored motion moment: the print develops out of white paper, then the McGill-red
- * leak burns in through the right rail and a red china-marker ring draws itself round the numeral. Static under reduced motion.
+ * The page's one authored motion moment: the logo develops out of white paper. Static under reduced motion.
  */
 import { Image } from 'astro:assets';
-import Frame from '../Frame.astro';
 import Button from '../Button.astro';
 import SocialLinks from '../SocialLinks.astro';
 import logo from '../../assets/brand/wbyi-logo.png';
 import { site } from '../../site';
-import { edgeCode } from '../../lib/format';
 ---
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__grid container">
-    <div class="hero__card">
-      <Frame as="div" leak class="is-lit hero-frame" numeral="01" numeralLabel="Frame" code={edgeCode('Reel 01', 'Title card', '16 mm')}>
-        <h1 id="hero-title" class="hero__logo">
-          <Image
-            src={logo}
-            alt="What Brings You In: a McGill UGME podcast"
-            widths={[560, 840, 1120, 1651]}
-            sizes="(min-width: 60em) 46rem, 92vw"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </h1>
-      </Frame>
-    </div>
+    <h1 id="hero-title" class="hero__logo">
+      <Image
+        src={logo}
+        alt="What Brings You In: a McGill UGME podcast"
+        widths={[560, 840, 1120, 1651]}
+        sizes="(min-width: 60em) 46rem, 92vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </h1>
 
     <div class="hero__copy">
       <p class="hero__lede">{site.tagline}</p>
@@ -52,13 +45,9 @@ import { edgeCode } from '../../lib/format';
   .hero { position: relative; overflow-x: clip; padding-block: var(--s-6) var(--s-8); }
   .hero__grid { display: grid; gap: var(--s-7); }
 
-  /* the title card: the logo is the print, white on white, held by the stock */
-  .hero .hero__card :global(.frame__body) { padding: var(--s-7) var(--s-5) var(--s-5); }
-  .hero .hero__card :global(.frame__code) { padding-inline: var(--s-5); }
   .hero__logo { margin: 0; line-height: 0; }
-  .hero__logo :global(img) { display: block; width: 100%; height: auto; }
-  /* the leak keeps to the rail and the margin; the mark itself stays clean */
-  .hero__card :global(.frame__leak) { inset: -25% -6% -25% 60%; }
+  /* the logo's white ground multiplies into the paper, so no box shows round it */
+  .hero__logo :global(img) { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
 
   .hero__copy { display: grid; gap: var(--s-6); align-content: center; }
   .hero__lede { font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem); line-height: 1.4; color: var(--fg-strong); max-width: 26ch; text-wrap: pretty; }
@@ -66,29 +55,21 @@ import { edgeCode } from '../../lib/format';
   .hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); }
   .hero__follow { display: grid; gap: var(--s-3); padding-block-start: var(--s-5); border-block-start: 1px solid var(--line); }
 
-  /* THE authored moment, once: the print develops, the leak burns in, the numeral is circled */
+  /* THE authored moment, once: the logo develops out of white paper */
   @media (prefers-reduced-motion: no-preference) {
     @keyframes print-develop {
-      from { opacity: 0.1; filter: brightness(1.9) contrast(0.3) grayscale(1); }
+      /* contrast before brightness: the ink lifts to pale grey while the logo's white ground stays white */
+      from { opacity: 0.1; filter: contrast(0.3) brightness(1.9) grayscale(1); }
       45% { opacity: 1; }
       to { opacity: 1; filter: none; }
     }
-    @keyframes leak-burn { from { opacity: 0; } to { opacity: 0.85; } }
-    @keyframes ring-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
-    @keyframes numeral-mark { from { color: var(--grease); } to { color: var(--red); } }
     .hero__logo :global(img) { animation: print-develop var(--dur-5) var(--ease-out) 120ms both; }
-    .hero__card :global(.frame__leak) { animation: leak-burn 1400ms var(--ease-out) 1000ms both; }
-    .hero__card :global(.frame__numeral) { animation: numeral-mark var(--dur-3) var(--ease-out) 1500ms both; }
-    .hero__card :global(.frame__ring path) { animation: ring-draw 1100ms var(--ease-in-out) 1600ms both; }
-    .hero__card :global(.frame__ring .frame__ring-wax) { animation-delay: 1750ms; }
   }
 
   @media (min-width: 60em) {
     .hero { display: grid; align-items: center; min-height: min(calc(100svh - 6.1rem), 52rem); padding-block: var(--s-7); }
     .hero__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s-7); align-items: center; }
-    .hero__card { grid-column: 1 / 9; }
+    .hero__logo { grid-column: 1 / 9; }
     .hero__copy { grid-column: 9 / 13; }
-    .hero .hero__card :global(.frame__body) { padding: var(--s-8) var(--s-7) var(--s-6); }
-    .hero .hero__card :global(.frame__code) { padding-inline: var(--s-7); }
   }
 </style>

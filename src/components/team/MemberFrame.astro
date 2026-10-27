@@ -20,6 +20,8 @@ const { name, role, program, photo, placeholder } = member.data;
 const { Content } = await render(member);
 const photoLabel = `Photo of ${name === '[Executive name]' ? 'team member' : name}`;
 const nameId = `member-${member.id}`;
+// the contact sheet is printed on mixed stock: brown, graphite, red in turn
+const STOCKS = ['stock-brown', '', 'stock-red'];
 const year = new Date().getFullYear();
 const sheetYears = `${year}–${year + 1}`;
 const hint = (what: string) => (placeholder ? `Add the ${what} in src/content/team/${member.id}.md` : undefined);
@@ -28,6 +30,7 @@ const hint = (what: string) => (placeholder ? `Add the ${what} in src/content/te
   <Frame
     as="article"
     leak
+    class={STOCKS[index % STOCKS.length]}
     state="latent"
     numeral={pad2(index + 1)}
     numeralLabel="Frame"
