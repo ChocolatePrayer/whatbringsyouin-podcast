@@ -38,7 +38,8 @@ grep -rn "\[" src/content --include=*.md | grep -v _template
 ```
 
 Checklist:
-- [ ] Logo: replace `src/components/Mark.astro` with the real mark (keep the component name) and `public/favicon.svg`.
+- [x] Logo: in place. The home hero prints `src/assets/brand/wbyi-logo.png` and the header and footer use the microphone cut from it (`src/assets/brand/wbyi-mic.png`). Both were made from `WBYI-podcast-logo.jpeg`; regenerate them if the logo changes. The favicons are `public/favicon.png` and `public/apple-touch-icon.png`.
+- [x] McGill Faculty of Medicine seal: shown in the footer with permission (`src/assets/brand/mcgill-medicine-seal.png`, from `mcgill-faculty-of-medicine-logo.png`).
 - [ ] Follow links, contact email and the launch note in `src/site.ts` (`placeholder: false` once real).
 - [ ] Form endpoint for Get involved in `src/site.ts` (Formspree, Netlify Forms, Google Forms…).
 - [ ] Team photos, names, programs and bios in `src/content/team/`.

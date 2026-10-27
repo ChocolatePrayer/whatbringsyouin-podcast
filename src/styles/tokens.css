@@ -1,58 +1,61 @@
-/* What Brings You In — design tokens. The world: a hand-processed strip of 16mm film.
-   Leader black ground, emulsion-gray type, chemical sepia for wear, one light-leak orange
-   reserved for the active frame and the primary action. */
+/* What Brings You In — design tokens. The world: the reel laid out on a McGill archive table.
+   Strips of grey film stock with white perforations on white archive paper, beige folder fields,
+   and one McGill red (the logo's own) for the lit frame, the current page and the primary action.
+   Surfaces (paper, print, beige, stock, red) remap the role tokens; see global.css. */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  /* Material */
-  --leader: #0e0f10;        /* page ground: film leader */
-  --leader-2: #141618;      /* slightly raised ground */
-  --shadow-2: #1c1f22;      /* frame fill */
-  --shadow: #2a2e31;        /* rails, plates, borders */
-  --shadow-3: #353a3e;      /* hover plate */
-  --base: #6e7377;          /* decorative gray only (fails body contrast) */
-  --emulsion-dim: #8e9397;  /* faint text, 5.9:1 on leader */
-  --emulsion: #a6abb0;      /* muted text, 7.6:1 */
-  --ink: #d8d6d0;           /* body text, 12.9:1 */
-  --ink-bright: #eceae4;    /* headings */
-  --leak: #ff8a33;          /* light-leak orange: active frame, primary action, current page */
-  --leak-deep: #c4521a;
-  --leak-hot: #ffb070;
-  --sepia: #c8b089;         /* chemical stain: placeholders, wear, dates of the past */
-  --sepia-dim: #6b5a42;
-  --grease: #b8b3a6;        /* grease-pencil numerals */
+  /* Paper and print */
+  --paper: #faf9f7;         /* page ground: archive paper / clear leader */
+  --paper-2: #f3f1ec;       /* raised paper: menus, fogged frames */
+  --print: #ffffff;         /* a frame's print: the brightest white */
+  --beige: #ece5d8;         /* archive folder: whole-band fields */
+  --beige-2: #e2d8c6;       /* placeholder fill, chips on beige */
+  --sepia-dim: #c4b394;     /* decorative only: dashed placeholder borders, stains */
+  --sepia: #715e42;         /* toned text: placeholders, wear, the past (4.96:1 on beige) */
 
-  /* Roles */
-  --bg: var(--leader);
-  --fg: var(--ink);
-  --fg-strong: var(--ink-bright);
-  --fg-muted: var(--emulsion);
-  --fg-faint: var(--emulsion-dim);
-  --accent: var(--leak);
-  --rail: var(--shadow);
-  --line: color-mix(in oklab, var(--emulsion) 16%, transparent);
-  --line-strong: color-mix(in oklab, var(--emulsion) 32%, transparent);
+  /* Film stock */
+  --stock: #33312e;         /* film base: rails, strips, plates, footer */
+  --stock-2: #46433f;       /* raised stock: hover plate */
+  --grey: #8d8981;          /* decorative grey only (fails body contrast) */
+  --on-stock: #efece6;      /* text on stock, 11:1 */
+  --on-stock-muted: #b9b3aa;/* 6.2:1 */
+  --on-stock-faint: #a29c93;/* 4.8:1 */
 
-  /* Type: one family for everything (opsz + wdth axes), one hand for grease pencil */
-  --font-sans: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'Big Shoulders Stencil Variable', 'Bricolage Grotesque Variable', 'Arial Narrow', sans-serif; /* condensed stencil: titles, wordmark, menu */
+  /* Ink */
+  --ink-faint: #66625a;     /* faint text, ≥4.7:1 on every light surface */
+  --ink-muted: #55514b;     /* muted text, 6.3–7.9:1 */
+  --ink: #2a2825;           /* body text */
+  --ink-strong: #171614;    /* headings */
+  --grease: #4f4b45;        /* graphite china-marker numerals */
+
+  /* McGill red: the logo's red, sampled from WBYI-podcast-logo.jpeg */
+  --red: #af2825;           /* lit frame, primary action, current page; 6.3:1 on paper */
+  --red-deep: #8e1f1d;      /* pressed / hover / red text on beige */
+  --red-bright: #d2453c;    /* the leak's hot core only */
+  --on-red: #ffffff;        /* 6.7:1 */
+  --on-red-muted: #f6d9d6;  /* 5:1 */
+
+  /* Type: Roman capitals from the logo for display, a scholarly serif for reading,
+     a Franklin gothic for the film's printed margins, a china-marker hand for numerals */
+  --font-display: 'Cinzel Variable', 'Trajan Pro', 'Times New Roman', serif;
+  --font-serif: 'Source Serif 4 Variable', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Libre Franklin Variable', 'Franklin Gothic Medium', 'Helvetica Neue', Arial, sans-serif;
   --font-hand: 'Caveat Variable', 'Bradley Hand', 'Segoe Print', cursive;
-  --wdth-condensed: 75%;
-  --wdth-narrow: 85%;
   --text-xs: 0.6875rem;
-  --text-sm: 0.8125rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.25rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.3125rem;
   --text-xl: 1.5rem;
-  --display-sm: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem);
-  --display-md: clamp(2.25rem, 1.4rem + 3.8vw, 4rem);
-  --display-lg: clamp(2.75rem, 1.6rem + 5.6vw, 6rem);
-  --leading-tight: 0.95;
-  --leading-snug: 1.2;
-  --leading-body: 1.6;
-  --track-code: 0.18em;
-  --track-display: 0.025em;
-  --measure: 65ch;
+  --display-sm: clamp(1.625rem, 1.15rem + 2vw, 2.5rem);
+  --display-md: clamp(2.125rem, 1.35rem + 3.2vw, 3.75rem);
+  --display-lg: clamp(2.5rem, 1.5rem + 4.6vw, 5rem);
+  --leading-tight: 1.04;
+  --leading-snug: 1.22;
+  --leading-body: 1.62;
+  --track-code: 0.16em;
+  --track-display: 0.02em;
+  --measure: 66ch;
 
   /* Space (4px base). Cozy = sections separated by --s-9/--s-10, groups tight. */
   --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem;
@@ -65,17 +68,19 @@
   --perf-hole-w: 0.5625rem; /* hole across the rail */
   --perf-hole-h: 0.875rem;  /* hole along the rail */
   --perf-period: 1.5rem;    /* hole pitch */
-  --radius-frame: 0.375rem;
-  --radius-plate: 0.25rem;
+  --frame-line: 0.3125rem;  /* the stock above and below a single frame */
+  --radius-frame: 0.1875rem;
+  --radius-plate: 0.1875rem;
   --radius-hole: 0.125rem;
 
-  /* Motion: one authored moment per page, expo ease-out, from a visible default */
+  /* Motion: prints develop out of white paper; one authored moment per page */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-1: 160ms; --dur-2: 320ms; --dur-3: 640ms; --dur-4: 1200ms;
+  --dur-1: 160ms; --dur-2: 320ms; --dur-3: 640ms; --dur-4: 1200ms; --dur-5: 1800ms;
 
-  /* Depth: offset + soft blur, never a flat halo */
-  --shadow-frame: 0 1.5rem 3rem -1.5rem rgb(0 0 0 / 0.8), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5);
-  --shadow-plate: 0 0.5rem 1rem -0.6rem rgb(0 0 0 / 0.7);
-  --shadow-leak: 0 1rem 3rem -1rem color-mix(in oklab, var(--leak) 55%, transparent);
+  /* Depth: a print lying on paper. Warm, offset, soft; never a halo */
+  --shadow-frame: 0 1px 1px rgb(40 32 24 / 0.06), 0 1.25rem 2.5rem -1.5rem rgb(40 32 24 / 0.32);
+  --shadow-lift: 0 1px 1px rgb(40 32 24 / 0.06), 0 1.75rem 3rem -1.5rem rgb(40 32 24 / 0.4);
+  --shadow-plate: 0 0.5rem 1rem -0.6rem rgb(40 32 24 / 0.45);
+  --shadow-leak: 0 0.75rem 2rem -1rem color-mix(in oklab, var(--red) 70%, transparent);
 }

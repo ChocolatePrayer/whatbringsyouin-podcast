@@ -90,7 +90,7 @@ const ics = ph
         <div class="actions">
           {d.rsvpUrl && <Button variant="primary" href={d.rsvpUrl} external iconAfter="arrow-up-right">RSVP</Button>}
           {ics && !isPast && <Button variant="ghost" href={ics} download={`${event.id}.ics`} icon="calendar">Add to calendar</Button>}
-          {isPast && <span class="edge-code edge-code--sepia detail__past">This one has already happened</span>}
+          {isPast && <span class="edge-code edge-code--toned detail__past">This one has already happened</span>}
         </div>
       </Frame>
 

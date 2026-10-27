@@ -1,6 +1,6 @@
 ---
 /**
- * Placeholder — a latent frame where a real asset will go. Unmistakable to the maintainer,
+ * Placeholder — an unexposed print where a real asset will go. Unmistakable to the maintainer,
  * quiet to the visitor. Every instance carries data-placeholder for the README checklist.
  *  kind   photo | logo | audio | cover | image
  *  label  what belongs here ("Guest photo", "Episode cover")
@@ -12,7 +12,7 @@ const stamp = { photo: 'Add photo', logo: 'Add logo', audio: 'Add audio', cover:
 ---
 <div class:list={['placeholder', `placeholder--${kind}`, cls]} data-placeholder={kind} role="img" aria-label={`Placeholder for ${label}`} style={`--ratio: ${ratio}`} title={note ?? `${stamp}: ${label}`} {...rest}>
   <span class="placeholder__label" aria-hidden="true">{label}</span>
-  <span class="placeholder__stamp edge-code edge-code--sepia" aria-hidden="true">{stamp}</span>
+  <span class="placeholder__stamp edge-code edge-code--toned" aria-hidden="true">{stamp}</span>
 </div>
 
 <style>
@@ -20,19 +20,19 @@ const stamp = { photo: 'Add photo', logo: 'Add logo', audio: 'Add audio', cover:
     position: relative; aspect-ratio: var(--ratio); width: 100%; min-height: 4rem;
     display: grid; place-items: center; padding: var(--s-4);
     background:
-      radial-gradient(70% 60% at 50% 45%, rgb(166 171 176 / 0.07), transparent 70%),
-      var(--shadow);
-    color: var(--fg-muted);
+      radial-gradient(70% 60% at 50% 45%, rgb(255 255 255 / 0.45), transparent 70%),
+      var(--beige);
+    color: var(--ink-muted);
     overflow: hidden;
   }
   .placeholder::before { content: ''; position: absolute; inset: var(--s-3); border: 1px dashed var(--sepia-dim); border-radius: 2px; pointer-events: none; z-index: 1; }
-  /* chemistry stain: the emulsion that never fixed */
-  .placeholder::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.8; background: url('../assets/textures/stain.png') var(--stain-pos, 30% 70%) / cover no-repeat; }
+  /* toning stain: the print that never fixed */
+  .placeholder::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.45; mix-blend-mode: multiply; background: url('../assets/textures/stain.png') var(--stain-pos, 30% 70%) / cover no-repeat; }
   .placeholder--cover::after, .placeholder--image::after { --stain-pos: 70% 20%; }
-  .placeholder--audio::after { --stain-pos: 90% 50%; opacity: 0.5; }
+  .placeholder--audio::after { --stain-pos: 90% 50%; opacity: 0.3; }
   .placeholder__label, .placeholder__stamp { position: relative; z-index: 1; }
-  .placeholder__label { font-size: var(--text-sm); font-stretch: 90%; text-align: center; text-wrap: balance; max-width: 18ch; color: var(--fg); padding: 0.3em 0.7em; border-radius: var(--radius-plate); background: rgb(14 15 16 / 0.8); }
-  .placeholder__stamp { position: absolute; left: var(--s-5); bottom: var(--s-4); z-index: 1; padding: 0.35em 0.6em 0.3em; border-radius: var(--radius-plate); background: rgb(14 15 16 / 0.8); }
+  .placeholder__label { font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500; text-align: center; text-wrap: balance; max-width: 18ch; color: var(--ink); padding: 0.3em 0.7em; border-radius: var(--radius-plate); background: rgb(255 255 255 / 0.82); }
+  .placeholder__stamp { position: absolute; left: var(--s-5); bottom: var(--s-4); z-index: 1; padding: 0.35em 0.6em 0.3em; border-radius: var(--radius-plate); background: rgb(255 255 255 / 0.82); color: var(--sepia); }
   .placeholder--audio { aspect-ratio: auto; min-height: 3.5rem; grid-auto-flow: column; justify-content: start; gap: var(--s-4); padding-inline: var(--s-5); }
   .placeholder--audio .placeholder__stamp { position: static; }
   .placeholder--audio .placeholder__label { text-align: start; }

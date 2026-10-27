@@ -22,7 +22,7 @@ const description =
     </p>
   </section>
 
-  <section class="line-section" aria-labelledby="line-title">
+  <section class="line-section surface-beige" aria-labelledby="line-title">
     <h2 id="line-title" class="visually-hidden">The show, in four strips</h2>
     <ul class="line container container--wide" role="list">
       <HangingStrip offset="0px" delay="0ms">
@@ -117,8 +117,8 @@ const description =
   @media (min-width: 60em) { .about-head { padding-block: var(--s-10) var(--s-8); } }
 
   /* ---- the drying line ---- */
-  .line-section { overflow-x: clip; padding-block: 0 var(--s-9); }
-  @media (min-width: 60em) { .line-section { padding-block-end: var(--s-10); } }
+  .line-section { overflow-x: clip; padding-block: var(--s-8) var(--s-9); background: var(--bg); }
+  @media (min-width: 60em) { .line-section { padding-block: var(--s-9) var(--s-10); } }
   .line {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -135,9 +135,9 @@ const description =
   .line :global(.follow) { margin-block-start: var(--s-2); }
 
   /* ---- the longer story ---- */
-  .story { padding-block: 0; }
+  .story { padding-block: var(--s-9) 0; }
   .story .prose { margin-block-start: var(--s-6); }
-  .story [data-placeholder='copy'] { color: var(--sepia); font-style: italic; cursor: help; }
+  .story [data-placeholder='copy'] { color: var(--toned); font-style: italic; cursor: help; }
   .affil { display: grid; gap: var(--s-3); max-width: var(--measure); margin-block-start: var(--s-9); }
   .close { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-block-start: var(--s-8); }
 </style>

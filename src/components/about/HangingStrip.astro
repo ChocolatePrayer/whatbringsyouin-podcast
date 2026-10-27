@@ -40,7 +40,7 @@ const { offset = '0px', delay = '0ms', class: cls = '' } = Astro.props;
     --hang: var(--s-7);
     --offset-scale: 1;
     --strip-delay: var(--delay, 0ms);
-    --wire: color-mix(in oklab, var(--emulsion) 52%, transparent);
+    --wire: color-mix(in oklab, var(--ink) 38%, transparent);
     position: relative;
     display: grid;
     align-content: start;
@@ -55,15 +55,16 @@ const { offset = '0px', delay = '0ms', class: cls = '' } = Astro.props;
   }
 
   .hung__hanger { display: grid; justify-items: center; }
-  .hung__hanger :global(.clip) { margin-block-start: -0.5rem; color: var(--emulsion); }
+  .hung__hanger :global(.clip) { margin-block-start: -0.5rem; color: var(--fg-muted); }
   .hung__leader { width: 1px; height: calc(var(--hang) + var(--offset) * var(--offset-scale)); background: var(--wire); }
 
   /* the column is the strip: one body, one shadow, one pair of rails */
   .hung__frames {
     position: relative;
+    padding-block: var(--frame-line);
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    background: var(--shadow-2);
+    background: linear-gradient(to right, transparent var(--perf-w), var(--stock) var(--perf-w) calc(100% - var(--perf-w)), transparent calc(100% - var(--perf-w)));
     border-radius: var(--radius-frame);
     box-shadow: var(--shadow-frame);
     overflow: clip;
@@ -71,8 +72,8 @@ const { offset = '0px', delay = '0ms', class: cls = '' } = Astro.props;
   .hung__rail { position: absolute; top: 0; bottom: 0; width: var(--perf-w); z-index: 2; pointer-events: none; }
   .hung__rail--l { left: 0; }
   .hung__rail--r { right: 0; }
-  .hung__frames > :global(.frame) { border-radius: 0; box-shadow: none; }
-  .hung__frames > :global(.frame + .frame) { border-block-start: 2px solid var(--leader); }
+  .hung__frames > :global(.frame) { border-radius: 0; box-shadow: none; border-block: 0; }
+  .hung__frames > :global(.frame + .frame) { border-block-start: var(--frame-line) solid var(--stock); }
   .hung__frames :global(.frame__rail) { display: none; }
 
   /* authored moment: each strip develops after the one before it, top-down inside */

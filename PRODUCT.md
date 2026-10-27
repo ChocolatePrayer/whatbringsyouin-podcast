@@ -76,13 +76,13 @@ Delivered by students, for students, from within a McGill-affiliated organizatio
 ## Brand Commitments
 
 - **Name:** *What Brings You In*.
-- **Logo:** exists (file not yet in the repo; the user will provide it). Preserve it as the primary mark.
-- **McGill affiliation:** confirmed. The user volunteered that McGill's identity "can maybe inspire the style". Recorded as volunteered, not binding; the visual decision belongs to later design work.
-- **Constraint to verify:** use of McGill's official logo, wordmark, or crest by a student group is governed by McGill's brand guidelines. Confirm permission before placing any official McGill mark on the site. Stating the affiliation in text is the safe default.
+- **Logo:** `WBYI-podcast-logo.jpeg` in the repo root: a microphone whose head is a round tower, with a red cord wound round the stand; "What Brings You" in Roman capitals with "Brings" in red, a red script "in", and the line "A McGill UGME podcast". Preserve it as the primary mark.
+- **McGill affiliation:** confirmed; the show is a McGill UGME (undergraduate medical education) podcast. On 2026-10-26 the user asked for the visual style to fit McGill's Faculty of Medicine, whose colours they described as white, red, grey and beige, while keeping the film-strip symbolism ("I love the film-strip visual symbolism for podcast").
+- **McGill Faculty of Medicine seal:** the user confirmed on 2026-10-26 that the show has permission to display it (`mcgill-faculty-of-medicine-logo.png` in the repo root). Other official McGill marks are not covered by that answer.
 
 ## Evidence on Hand
 
-- Logo (to be added to the repo).
+- The podcast logo and the McGill Faculty of Medicine seal (both in the repo root).
 - Nothing else: **no episodes, no confirmed guests, no team photos or bios, no testimonials, no listener or download numbers, no press, no sponsors.**
 
 Future work must not fabricate guest names, episode titles, quotes, download counts, or endorsements. Any placeholder content must be visibly labelled as placeholder and removed before launch.

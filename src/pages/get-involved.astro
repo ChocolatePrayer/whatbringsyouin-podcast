@@ -4,8 +4,8 @@
  * spliced onto the strip as three entry frames, all leading to one lit bench: the form.
  *
  * Anchors other pages rely on: #team, #guest, #hello (entry frames) and #form (the form section).
- * Authored moment: changing the topic develops the topic's extra fields in and lights the matching
- * entry frame's leak. Pure CSS (:has); without :has support every extra field is simply visible.
+ * Authored moment: changing the topic develops the topic's extra fields in. Pure CSS (:has);
+ * without :has support every extra field is simply visible. No frame on this page is lit.
  */
 import Base from '../layouts/Base.astro';
 import Frame from '../components/Frame.astro';
@@ -34,7 +34,7 @@ const action = endpointReal ? site.formEndpoint.url : '#';
       <!-- 2. Three entry frames, spliced on at different heights -->
       <div class="gi-ways" data-reveal-stagger="90">
         <div class="gi-ways__cell gi-ways__cell--team" data-reveal>
-          <Frame as="section" leak id="team" aria-labelledby="team-title" class="gi-way" code="Topic · Team" wear={0}>
+          <Frame as="section" id="team" aria-labelledby="team-title" class="gi-way" code="Topic · Team" wear={0}>
             <h2 class="title title--lg" id="team-title">Join the team</h2>
             <p class="muted">The show is made by students who host, produce, edit audio, run events and outreach, and design and run social. Tell us which of those sounds like you, and what you're studying.</p>
             <p class="small faint">The people doing it now are on <a href={withBase('/team')}>the team page</a>.</p>
@@ -42,14 +42,14 @@ const action = endpointReal ? site.formEndpoint.url : '#';
           </Frame>
         </div>
         <div class="gi-ways__cell gi-ways__cell--guest" data-reveal>
-          <Frame as="section" leak id="guest" aria-labelledby="guest-title" class="gi-way" code="Topic · Guest" wear={0}>
+          <Frame as="section" id="guest" aria-labelledby="guest-title" class="gi-way" code="Topic · Guest" wear={0}>
             <h2 class="title title--lg" id="guest-title">Suggest a guest</h2>
             <p class="muted">A physician, researcher or leader in medicine a student should hear from: someone whose path you can't stop thinking about. Tell us who they are and why; if you can introduce us, even better.</p>
             <div class="gi-way__act"><Button href="#form" data-pick="topic-guest" iconAfter="arrow-down">Suggest someone</Button></div>
           </Frame>
         </div>
         <div class="gi-ways__cell gi-ways__cell--hello" data-reveal>
-          <Frame as="section" leak id="hello" aria-labelledby="hello-title" class="gi-way" code="Topic · Hello" wear={0}>
+          <Frame as="section" id="hello" aria-labelledby="hello-title" class="gi-way" code="Topic · Hello" wear={0}>
             <h2 class="title title--lg" id="hello-title">Say hello</h2>
             <p class="muted">Questions, collaborations, press, or something that doesn't fit the other two. Write what's on your mind; short is fine.</p>
             <div class="gi-way__act"><Button href="#form" data-pick="topic-hello" iconAfter="arrow-down">Say hello</Button></div>
@@ -59,13 +59,13 @@ const action = endpointReal ? site.formEndpoint.url : '#';
     </section>
 
     <!-- 3. The form: one wide, lit bench -->
-    <section class="gi-write container" id="form" aria-labelledby="write-title" data-reveal>
+    <section class="gi-write container surface-beige band" id="form" aria-labelledby="write-title">
       <div class="gi-write__head">
         <h2 class="display display--sm" id="write-title">Write to us</h2>
         <p class="muted">Pick what it's about, then a few lines are enough.</p>
       </div>
 
-      <Frame as="div" class="is-lit gi-bench" leak wear={0} code={edgeCode('Form', endpointReal ? 'Connected' : 'Not connected yet')}>
+      <Frame as="div" class="gi-bench" wear={0} data-reveal code={edgeCode('Form', endpointReal ? 'Connected' : 'Not connected yet')}>
         <form
           class="gi-form"
           method="post"
@@ -260,21 +260,21 @@ const action = endpointReal ? site.formEndpoint.url : '#';
   }
 
   /* ---------- 3. the bench ---------- */
-  .gi-write { padding-block-start: var(--s-9); }
+  .gi-write { margin-block-start: var(--s-9); padding-block: var(--s-8) var(--s-9); }
   .gi-write__head { display: grid; gap: var(--s-3); max-width: 44ch; margin-block-end: var(--s-6); }
   .gi-bench > :global(.frame__body) { padding: var(--s-6) var(--s-5) var(--s-7); }
   .gi-bench > :global(.frame__code) { padding-inline: var(--s-5); }
-  /* the light leaks in from the right; the work stays left of it */
+  /* the bench is a plain print; the work stays left of the rail */
   .gi-form { max-width: 54rem; }
 
   .gi-topics { border: 0; padding: 0; margin: 0; min-width: 0; }
   .gi-topics > legend { padding: 0; margin-block-end: var(--s-3); }
   .gi-topics__row { position: relative; display: flex; flex-wrap: wrap; gap: var(--s-3); }
   .gi-plate { cursor: pointer; user-select: none; }
-  .gi-topic:checked + .gi-plate { --btn-bg: var(--shadow); --btn-fg: var(--ink-bright); box-shadow: var(--shadow-plate), inset 0 -2px 0 var(--leak); }
-  .gi-topic:checked + .gi-plate:hover { --btn-bg: var(--shadow-3); }
+  .gi-topic:checked + .gi-plate { --btn-bg: var(--stock); --btn-fg: var(--on-stock); box-shadow: var(--shadow-plate), inset 0 -3px 0 var(--red); }
+  .gi-topic:checked + .gi-plate:hover { --btn-bg: var(--stock-2); }
   .gi-topic:checked + .gi-plate::before, .gi-topic:checked + .gi-plate::after { background: var(--btn-hole); box-shadow: 0 1.0625rem 0 var(--btn-hole); }
-  .gi-topic:focus-visible + .gi-plate { outline: 2px solid var(--leak); outline-offset: 3px; }
+  .gi-topic:focus-visible + .gi-plate { outline: 2px solid var(--mark); outline-offset: 3px; }
 
   .gi-rows > .gi-row + .gi-row, .gi-rows > .gi-extra + .gi-row { margin-block-start: var(--s-5); }
   .gi-pair { display: grid; gap: var(--s-5); align-items: start; }
@@ -289,8 +289,8 @@ const action = endpointReal ? site.formEndpoint.url : '#';
   .gi-send { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s-4) var(--s-6); margin-block-start: var(--s-7); }
   .gi-send__privacy { max-width: 36ch; }
   .gi-send__act { display: grid; gap: var(--s-3); justify-items: start; }
-  .gi-notice { color: var(--sepia); max-width: 44ch; outline-offset: 6px; }
-  .gi-notice a { color: var(--ink-bright); }
+  .gi-notice { color: var(--toned); max-width: 44ch; outline-offset: 6px; }
+  .gi-notice a { color: var(--ink-strong); }
 
   @media (max-width: 47.99em) {
     .gi-topics__row { flex-direction: column; }
@@ -302,7 +302,7 @@ const action = endpointReal ? site.formEndpoint.url : '#';
     .gi-pair { grid-template-columns: 1fr 1fr; }
   }
   @media (min-width: 60em) {
-    .gi-write { padding-block-start: var(--s-10); }
+    .gi-write { margin-block-start: var(--s-10); padding-block: var(--s-9) var(--s-10); }
     .gi-write__head { margin-block-end: var(--s-7); }
     .gi-bench > :global(.frame__body) { padding: var(--s-7) var(--s-7) var(--s-8); }
     .gi-bench > :global(.frame__code) { padding-inline: var(--s-7); }
@@ -328,10 +328,6 @@ const action = endpointReal ? site.formEndpoint.url : '#';
         filter var(--dur-4) var(--ease-out) 120ms,
         visibility 0s;
     }
-    /* the chosen topic lights its entry frame above */
-    .gi:has(#topic-team:checked) #team :global(.frame__leak),
-    .gi:has(#topic-guest:checked) #guest :global(.frame__leak),
-    .gi:has(#topic-hello:checked) #hello :global(.frame__leak) { opacity: 0.85; }
   }
 
   /* ---------- 4 + 5. coda ---------- */

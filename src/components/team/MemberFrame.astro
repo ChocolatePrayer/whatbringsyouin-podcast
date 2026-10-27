@@ -2,7 +2,7 @@
 /**
  * MemberFrame — one frame on the team's contact sheet. Owned by the team page.
  * Renders the <li> the sheet grid positions (and the reveal stagger develops) around a
- * shared <Frame>. Placeholder entries stay honest: bracketed copy in chemical sepia,
+ * shared <Frame>. Placeholder entries stay honest: bracketed copy in sepia toning,
  * a photo placeholder in the media slot, and a maintainer hint on hover.
  *
  *  member  a `team` collection entry
@@ -20,6 +20,8 @@ const { name, role, program, photo, placeholder } = member.data;
 const { Content } = await render(member);
 const photoLabel = `Photo of ${name === '[Executive name]' ? 'team member' : name}`;
 const nameId = `member-${member.id}`;
+const year = new Date().getFullYear();
+const sheetYears = `${year}–${year + 1}`;
 const hint = (what: string) => (placeholder ? `Add the ${what} in src/content/team/${member.id}.md` : undefined);
 ---
 <li class="cell" data-reveal>
@@ -29,7 +31,7 @@ const hint = (what: string) => (placeholder ? `Add the ${what} in src/content/te
     state="latent"
     numeral={pad2(index + 1)}
     numeralLabel="Frame"
-    code={edgeCode(role, program)}
+    code={edgeCode('WBYI', 'Team', `Frame ${pad2(index + 1)}`, sheetYears)}
     wear={index % 2 ? 2 : 1}
     aria-labelledby={nameId}
   >
@@ -58,27 +60,12 @@ const hint = (what: string) => (placeholder ? `Add the ${what} in src/content/te
   .who > .edge-code { margin-block-start: var(--s-1); }
   .bio { margin-block-start: var(--s-2); }
 
-  /* placeholder copy is chemical stain until a maintainer replaces it */
+  /* placeholder copy stays sepia-toned until a maintainer replaces it */
   .cell [data-placeholder='name'],
   .cell [data-placeholder='program'],
-  .cell [data-placeholder='bio'] { color: var(--sepia); cursor: help; }
+  .cell [data-placeholder='bio'] { color: var(--toned); cursor: help; }
 
-  /* the editor's loupe: the chosen frame gets its numeral circled in grease pencil.
-     Padding and a transparent border are always present so the glyph never jumps;
-     only colour and the circle develop. */
-  .cell :global(.frame__numeral) {
-    padding: 0.1em 0.45em 0.15em;
-    margin: calc(-0.1em - 2px) 0 0 calc(-0.45em - 2px);
-    border: 2px solid transparent;
-    border-radius: 50% 45% 55% 50% / 55% 50% 45% 50%;
-    transition:
-      color var(--dur-2) var(--ease-out),
-      border-color var(--dur-3) var(--ease-out),
-      rotate var(--dur-3) var(--ease-out);
-  }
-  .cell :global(.frame.has-numeral:is(:hover, :focus-within) .frame__numeral) {
-    color: var(--leak);
-    border-color: var(--leak);
-    rotate: -5deg;
-  }
+  /* the editor's loupe: hovering a frame circles its numeral in red china marker (Frame draws the ring) */
+  .cell :global(.frame.has-numeral:is(:hover, :focus-within) .frame__numeral) { color: var(--red); }
+  .cell :global(.frame.has-numeral:is(:hover, :focus-within) .frame__ring path) { stroke-dashoffset: 0; transition-delay: 0ms; }
 </style>

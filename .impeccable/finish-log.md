@@ -15,3 +15,21 @@ Finish review (reference/degraded/finish-reviewer.md, fresh agent):
 
 Recorded: DESIGN.md (documenter, from the built world). Screenshots: .impeccable/shots/final-*.png.
 Open for the maintainer: everything in README → "Replace the placeholders"; the repo is not yet a git repository.
+
+# Finish log — 2026-10-26 (McGill redesign)
+
+Request: keep every page's structure; revamp colour, type and motion to fit McGill's Faculty of Medicine (white, red, grey,
+beige), academically sophisticated; replace the home hero with the podcast logo. Confirmed answers: keep the film-strip
+devices ("Keep as is or with additional details!"); the McGill Faculty of Medicine seal may be shown; avoid stiff/corporate,
+trendy/flashy, old-fashioned and plain. Direction user-pinned, so no roll (prior seed ff201de7).
+Build: tokens and surfaces (paper, print, beige, stock), Cinzel / Source Serif 4 / Libre Franklin / Caveat, logo title card,
+mic mark and script "in" cut from the logo, seal in the stock footer, prints develop out of white paper.
+Builder inspection: two rounds (capture timing, events headings, film-log ends, team overflow, hero leak). Detector: 23
+design-system drift findings against the outgoing DESIGN.md, no anti-patterns.
+Finish review (reference/degraded/finish-reviewer.md, fresh agent):
+- Round 1: disposition FIX, eight material fixes (red band, CSS ring, lit-frame discipline, Caveat wordmark, grey latent
+  prints, uniform reveal motion, half-hole rail ends, DESIGN.md).
+- Verdict 1: six resolved, one partial (get-involved pairing), DESIGN.md pending; regressions R1 (stock-band holes), R2 (two
+  reds in footer lockup).
+- Verdict 2: fix 3, R1, R2 resolved; no new regressions; only DESIGN.md pending, since written by the documenter.
+Recorded: DESIGN.md and .impeccable/design.json (documenter, from the built world). Screenshots: .impeccable/shots/mcgill/.

@@ -1,12 +1,12 @@
 ---
-/** "Join the reel" — the page's close: one wide lit frame, two sentences, two actions. */
+/** "Join the reel" — the page's close: one wide frame on a band of film stock that runs into the footer, two sentences, two actions. */
 import Frame from '../Frame.astro';
 import Button from '../Button.astro';
 import { edgeCode } from '../../lib/format';
 ---
-<section class="join container" aria-labelledby="join-title">
+<section class="join container surface-stock band" aria-labelledby="join-title">
   <div class="join__frame" data-reveal>
-    <Frame as="div" class="is-lit" leak code={edgeCode('Reel 01', 'Tail')}>
+    <Frame as="div" leak code={edgeCode('Reel 01', 'Tail')}>
       <div class="join__inner">
         <h2 id="join-title" class="display display--md">Join the reel</h2>
         <p class="lede">The show is made by students, and there is room on the team for more. If there is someone in medicine you have always wanted to hear from, tell us who.</p>
@@ -20,7 +20,7 @@ import { edgeCode } from '../../lib/format';
 </section>
 
 <style>
-  .join { padding-block-start: var(--s-9); }
+  .join { margin-block-start: var(--s-9); padding-block: var(--s-9) var(--s-8); }
   .join__frame { display: grid; }
   .join .join__frame :global(.frame__body) { padding: var(--s-8) var(--s-6); }
   .join .join__frame :global(.frame__code) { padding-inline: var(--s-6); }
@@ -29,7 +29,7 @@ import { edgeCode } from '../../lib/format';
   .join__actions { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-4); margin-block-start: var(--s-3); }
 
   @media (min-width: 60em) {
-    .join { padding-block-start: var(--s-10); }
+    .join { margin-block-start: var(--s-10); padding-block: var(--s-10); }
     .join .join__frame :global(.frame__body) { padding: var(--s-9) var(--s-9); }
     .join .join__frame :global(.frame__code) { padding-inline: var(--s-9); }
     .join__inner { max-width: 58%; }

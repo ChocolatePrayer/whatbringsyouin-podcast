@@ -5,7 +5,7 @@
  */
 import Frame from '../Frame.astro';
 ---
-<section class="premise container" aria-labelledby="premise-title">
+<section class="premise container surface-beige band" aria-labelledby="premise-title">
   <div class="premise__head" data-reveal>
     <h2 id="premise-title" class="display display--sm">Three things at once</h2>
     <p class="lede">Access, guidance, and the medicine itself. Made by students, for students.</p>
@@ -34,7 +34,7 @@ import Frame from '../Frame.astro';
 </section>
 
 <style>
-  .premise { padding-block-start: var(--s-9); }
+  .premise { margin-block-start: var(--s-9); padding-block: var(--s-9); }
   .premise__head { display: grid; gap: var(--s-4); }
   .premise__grid { display: grid; gap: var(--s-6); margin-block-start: var(--s-8); }
   .premise__cell { display: grid; }
@@ -44,7 +44,7 @@ import Frame from '../Frame.astro';
   .premise__cell--voices p { font-size: var(--text-lg); line-height: 1.55; max-width: 46ch; }
 
   @media (min-width: 60em) {
-    .premise { padding-block-start: var(--s-10); }
+    .premise { margin-block-start: var(--s-10); padding-block: var(--s-10); }
     .premise__grid { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--s-7); }
     .premise__cell--voices { grid-column: 1 / 8; }
     .premise__cell--path { grid-column: 8 / 13; margin-block-start: var(--s-8); }

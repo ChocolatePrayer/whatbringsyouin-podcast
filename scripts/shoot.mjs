@@ -30,16 +30,16 @@ if (flags.full) {
     // the site scrolls smoothly; the pre-scroll must be instant or it never reaches the bottom
     document.documentElement.style.scrollBehavior = 'auto';
     const total = document.documentElement.scrollHeight;
-    for (let y = 0; y <= total; y += 500) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 70)); }
+    for (let y = 0; y <= total; y += 300) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); }
     scrollTo(0, 0);
     document.documentElement.style.scrollBehavior = '';
     // let the last reveal transitions (duration + stagger + any strip delay) finish
-    await new Promise((r) => setTimeout(r, 1700));
+    await new Promise((r) => setTimeout(r, 2600));
   });
 }
 if (flags.click && typeof flags.click === 'string') { await page.click(flags.click); await page.waitForTimeout(700); }
 if (flags.hover && typeof flags.hover === 'string') { await page.hover(flags.hover); await page.waitForTimeout(700); }
-await page.waitForTimeout(350);
+await page.waitForTimeout(Number(flags.wait) || 350);
 await page.screenshot({ path: out, fullPage: Boolean(flags.full) });
 const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
 await browser.close();

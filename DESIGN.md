@@ -1,86 +1,98 @@
 ---
 name: What Brings You In
-description: A student-run medical podcast hub rendered as one hand-processed strip of 16mm film.
+description: A McGill UGME student podcast hub laid out as a reel on an archive table, with white prints held in graphite perforated stock and one McGill red.
 colors:
-  leader: "#0e0f10"
-  leader-2: "#141618"
-  shadow-2: "#1c1f22"
-  shadow: "#2a2e31"
-  shadow-3: "#353a3e"
-  fogged-fill: "#1a1714"
-  emulsion-dim: "#8e9397"
-  emulsion: "#a6abb0"
-  ink: "#d8d6d0"
-  ink-bright: "#eceae4"
-  leak: "#ff8a33"
-  leak-hot: "#ffb070"
-  sepia: "#c8b089"
-  sepia-dim: "#6b5a42"
-  grease: "#b8b3a6"
+  red: "#af2825"
+  red-deep: "#8e1f1d"
+  red-bright: "#d2453c"
+  on-red: "#ffffff"
+  brand-red-on-stock: "#ec7f77"
+  paper: "#faf9f7"
+  paper-2: "#f3f1ec"
+  print: "#ffffff"
+  beige: "#ece5d8"
+  sepia: "#715e42"
+  sepia-dim: "#c4b394"
+  sepia-on-stock: "#d6c4a3"
+  stock: "#33312e"
+  stock-2: "#46433f"
+  on-stock: "#efece6"
+  on-stock-muted: "#b9b3aa"
+  on-stock-faint: "#a29c93"
+  ink-strong: "#171614"
+  ink: "#2a2825"
+  ink-muted: "#55514b"
+  ink-faint: "#66625a"
+  grease: "#4f4b45"
 typography:
   display:
-    fontFamily: "Big Shoulders Stencil Variable, Bricolage Grotesque Variable, Arial Narrow, sans-serif"
-    fontSize: "clamp(2.75rem, 1.6rem + 5.6vw, 6rem)"
-    fontWeight: 700
-    lineHeight: 0.95
-    letterSpacing: "0.025em"
-  display-md:
-    fontFamily: "Big Shoulders Stencil Variable, Bricolage Grotesque Variable, Arial Narrow, sans-serif"
-    fontSize: "clamp(2.25rem, 1.4rem + 3.8vw, 4rem)"
-    fontWeight: 700
-    lineHeight: 0.95
-    letterSpacing: "0.025em"
-  display-sm:
-    fontFamily: "Big Shoulders Stencil Variable, Bricolage Grotesque Variable, Arial Narrow, sans-serif"
-    fontSize: "clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem)"
-    fontWeight: 700
-    lineHeight: 0.95
-    letterSpacing: "0.025em"
+    fontFamily: "Cinzel Variable, Trajan Pro, Times New Roman, serif"
+    fontSize: "clamp(2.125rem, 1.35rem + 3.2vw, 3.75rem)"
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: "0.02em"
+  headline:
+    fontFamily: "Cinzel Variable, Trajan Pro, Times New Roman, serif"
+    fontSize: "clamp(1.625rem, 1.15rem + 2vw, 2.5rem)"
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: "0.02em"
+  wordmark:
+    fontFamily: "Cinzel Variable, Trajan Pro, Times New Roman, serif"
+    fontSize: "1.3125rem"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "0.03em"
   title:
-    fontFamily: "Bricolage Grotesque Variable, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Source Serif 4 Variable, Iowan Old Style, Georgia, serif"
     fontSize: "1.5rem"
-    fontWeight: 700
-    lineHeight: 1.2
-    fontVariation: "'wdth' 85"
+    fontWeight: 600
+    lineHeight: 1.22
+    letterSpacing: "-0.005em"
   lede:
-    fontFamily: "Bricolage Grotesque Variable, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1.25rem"
+    fontFamily: "Source Serif 4 Variable, Iowan Old Style, Georgia, serif"
+    fontSize: "1.3125rem"
     fontWeight: 400
     lineHeight: 1.5
   body:
-    fontFamily: "Bricolage Grotesque Variable, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1.0625rem"
+    fontFamily: "Source Serif 4 Variable, Iowan Old Style, Georgia, serif"
+    fontSize: "1.125rem"
     fontWeight: 400
-    lineHeight: 1.6
-  small:
-    fontFamily: "Bricolage Grotesque Variable, Helvetica Neue, Arial, sans-serif"
-    fontSize: "0.8125rem"
+    lineHeight: 1.62
+  body-sm:
+    fontFamily: "Source Serif 4 Variable, Iowan Old Style, Georgia, serif"
+    fontSize: "0.875rem"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.62
   label:
-    fontFamily: "Bricolage Grotesque Variable, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Libre Franklin Variable, Franklin Gothic Medium, Helvetica Neue, Arial, sans-serif"
     fontSize: "0.6875rem"
     fontWeight: 600
-    lineHeight: 1.25
-    letterSpacing: "0.18em"
-    fontVariation: "'wdth' 80"
-  plate:
-    fontFamily: "Bricolage Grotesque Variable, Helvetica Neue, Arial, sans-serif"
-    fontSize: "0.8125rem"
+    lineHeight: 1.3
+    letterSpacing: "0.16em"
+    fontFeature: "'tnum' 1, 'lnum' 1"
+  label-plate:
+    fontFamily: "Libre Franklin Variable, Franklin Gothic Medium, Helvetica Neue, Arial, sans-serif"
+    fontSize: "0.75rem"
     fontWeight: 600
     lineHeight: 1
-    letterSpacing: "0.18em"
-    fontVariation: "'wdth' 80"
-  hand:
+    letterSpacing: "0.16em"
+  numeral:
     fontFamily: "Caveat Variable, Bradley Hand, Segoe Print, cursive"
     fontSize: "1.75rem"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "0.02em"
+  numeral-lg:
+    fontFamily: "Caveat Variable, Bradley Hand, Segoe Print, cursive"
+    fontSize: "2.75rem"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "0.02em"
 rounded:
   hole: "0.125rem"
-  plate: "0.25rem"
-  frame: "0.375rem"
+  frame: "0.1875rem"
+  plate: "0.1875rem"
 spacing:
   s-1: "0.25rem"
   s-2: "0.5rem"
@@ -92,33 +104,32 @@ spacing:
   s-8: "4rem"
   s-9: "6rem"
   s-10: "8rem"
-  s-11: "12rem"
   gutter: "clamp(1rem, 4vw, 3rem)"
 components:
   button-primary:
-    backgroundColor: "{colors.leak}"
-    textColor: "{colors.leader}"
-    typography: "{typography.plate}"
+    backgroundColor: "{colors.red}"
+    textColor: "{colors.on-red}"
+    typography: "{typography.label-plate}"
     rounded: "{rounded.plate}"
     padding: "0 3rem"
     height: "2.75rem"
   button-primary-hover:
-    backgroundColor: "{colors.leak-hot}"
-    textColor: "{colors.leader}"
+    backgroundColor: "{colors.red-deep}"
+    textColor: "{colors.on-red}"
   button-secondary:
-    backgroundColor: "{colors.shadow}"
-    textColor: "{colors.ink-bright}"
-    typography: "{typography.plate}"
+    backgroundColor: "{colors.stock}"
+    textColor: "{colors.on-stock}"
+    typography: "{typography.label-plate}"
     rounded: "{rounded.plate}"
     padding: "0 3rem"
     height: "2.75rem"
   button-secondary-hover:
-    backgroundColor: "{colors.shadow-3}"
-    textColor: "{colors.ink-bright}"
+    backgroundColor: "{colors.stock-2}"
+    textColor: "{colors.on-stock}"
   button-ghost:
     backgroundColor: "transparent"
-    textColor: "{colors.ink-bright}"
-    typography: "{typography.plate}"
+    textColor: "{colors.ink-strong}"
+    typography: "{typography.label-plate}"
     rounded: "{rounded.plate}"
     padding: "0 3rem"
     height: "2.75rem"
@@ -126,279 +137,241 @@ components:
     typography: "{typography.label}"
     padding: "0 1.5rem"
     height: "2.25rem"
-  button-icon:
-    padding: "0"
-    width: "2.75rem"
-    height: "2.75rem"
-  input:
-    backgroundColor: "{colors.shadow-2}"
-    textColor: "{colors.ink-bright}"
-    typography: "{typography.body}"
-    rounded: "{rounded.plate}"
-    padding: "0.75rem 1rem"
-    height: "3rem"
   frame:
-    backgroundColor: "{colors.shadow-2}"
+    backgroundColor: "{colors.print}"
     textColor: "{colors.ink}"
     rounded: "{rounded.frame}"
     padding: "1.5rem 1.5rem 2rem"
   frame-latent:
-    backgroundColor: "{colors.shadow-2}"
-    textColor: "{colors.emulsion}"
-    rounded: "{rounded.frame}"
-    padding: "1.5rem 1.5rem 2rem"
+    backgroundColor: "{colors.print}"
+    textColor: "{colors.ink-muted}"
   frame-fogged:
-    backgroundColor: "{colors.fogged-fill}"
-    textColor: "{colors.emulsion}"
-    rounded: "{rounded.frame}"
-    padding: "1.5rem 1.5rem 2rem"
+    backgroundColor: "{colors.paper-2}"
+    textColor: "{colors.ink-muted}"
   placeholder:
-    backgroundColor: "{colors.shadow}"
-    textColor: "{colors.emulsion}"
-    typography: "{typography.small}"
-    padding: "1rem"
+    backgroundColor: "{colors.beige}"
+    textColor: "{colors.ink-muted}"
+  input:
+    backgroundColor: "{colors.print}"
+    textColor: "{colors.ink-strong}"
+    rounded: "{rounded.plate}"
+    padding: "0.75rem 1rem"
+    height: "3rem"
   nav-link:
-    textColor: "{colors.emulsion}"
+    textColor: "{colors.ink-muted}"
+    typography: "{typography.label-plate}"
     padding: "0.5rem 0"
   nav-link-current:
-    textColor: "{colors.ink-bright}"
-    padding: "0.5rem 0"
+    textColor: "{colors.ink-strong}"
   topic-chip:
-    backgroundColor: "transparent"
-    textColor: "{colors.emulsion-dim}"
+    textColor: "{colors.ink-faint}"
     typography: "{typography.label}"
     rounded: "{rounded.plate}"
     padding: "0.4em 0.7em 0.35em"
-  edge-code:
-    textColor: "{colors.emulsion-dim}"
-    typography: "{typography.label}"
+  footer:
+    backgroundColor: "{colors.stock}"
+    textColor: "{colors.on-stock}"
 ---
 
 # Design System: What Brings You In
 
 ## Overview
 
-**Creative North Star: "The Hand-Processed Reel"**
+**Creative North Star: "The Reel on the Archive Table"**
 
-The whole site is one strip of 16mm film that a student processed by hand. The page ground is film leader, type is the gray of emulsion, and every unit of content is a *frame*: a cell with perforation rails on both sides, a grease-pencil numeral in the corner, and a stamped edge code along the bottom. Frames are *latent* until something develops them (hover, focus, becoming the active frame), *projected* when they are real, and *fogged* when they belong to the past. One orange exists in the world, a light leak, and it is spent on exactly the things that are live right now: the lit frame, the current page, the primary action.
+The site is a reel of 16mm film laid out on a McGill archive table. The page is near-white archive paper. Every episode, event, team member and statement is a white print held between graphite perforated stock. Whole sections sit in beige archive-folder bands, and the reel's tail is a closing band of graphite stock that runs straight into the footer. One McGill red, the logo's own, marks the frame that matters: it burns in from the right edge as a light leak, shows through the perforations, and comes with a red china-marker ring drawn around the frame's numeral. Prints develop out of white paper as they scroll into view. Type never moves.
 
-The build refuses the podcast-site defaults: no cover-art hero, no "listen on" button row, no same-size card grid. Instead each of the six page types has its own film-handling structure (a title card, a strip, a drying line, a contact sheet, a film log, a ledger, a splice bench), all made from the same Frame atom. Density is cozy on purpose: sections sit 6 to 8rem apart, groups inside them are tight, and every page is a quiet room rather than a control panel.
+The density is cozy rather than airy. Sections are 6–8rem apart and groups inside them are tight (0.75–1.5rem), so each frame reads as a dense object on an open table. Composition is loose and asymmetric: a twelve-column table with frames offset, staggered, hung at different heights or run in a strip. It is never a uniform card grid. The show's own logo is the title card. The McGill Faculty of Medicine seal (displayed with permission) appears only in the footer colophon, reversed to white. The system rejects two defaults by name: the university-template banner-crest-card-grid page, and the cream-paper, serif-headline editorial look.
 
-Material is literal, not implied. Grain sits over the whole page and inside the stencil letterforms; rails are sooted at their edges; the light leak is masked through grain and chemical blotches; media slots carry authored scratches; placeholders carry an unfixed chemistry stain. Motion is "developing": content arrives faint and blurred and resolves into projection, once, with an expo ease-out. Nothing loops.
+The material vocabulary is literal and consistent. Perforation holes are real holes, so the surface beneath shows through them. Edge codes are printed in the film margin. Numerals are written by hand in graphite. Unfinished content is an unexposed print, and finished events are fogged and sepia-toned. Every device on the page comes from the darkroom or the contact sheet.
 
 **Key Characteristics:**
-- One dark world only (`color-scheme: dark`); there is no light theme.
-- Frame grammar everywhere: rails, numeral, edge code, media gate, body.
-- Orange is a semantic signal (live / current / primary), never decoration.
-- Sepia marks wear, placeholders, and the past; placeholders are visible to maintainers and honest to visitors.
-- Three faces with fixed jobs: stencil caps for titles, one grotesque for everything read, one hand for numerals.
-- Pages differ structurally; the atom does not.
+- White prints on near-white paper, held by graphite stock with masked perforations
+- One McGill red (the logo's #af2825), reserved for meaning, never laid down as a field
+- Four type voices with strict roles: Roman capitals, reading serif, Franklin edge codes, china-marker numerals
+- At most one lit frame per view: red leak plus drawn red ring
+- Motion only develops prints; one authored moment per page; reduced motion is fully static
+- Honest placeholders that look unexposed, never fake content
 
 ## Colors
 
-A near-monochrome darkroom palette: five grays of leader and shadow, four grays of emulsion and ink, one orange that leaks in, and a sepia pair for chemistry stains.
+The palette is restrained: warm near-white paper, beige folders, warm graphite stock and ink, plus a single saturated McGill red that appears only where something means something.
 
 ### Primary
-- **Light Leak** (`leak`, #ff8a33): the only saturated color. Spent on the lit frame's leak bloom (through the right rail), the current nav page underline and mobile-menu item, the primary button plate, link underline color, focus rings (`2px solid`, offset `3px`), text selection, the skip link, the field focus border, the checked topic plate's inset underline, and the single orange cell of the mark. Never a section background, never an arbitrary glow.
-- **Leak Hot** (`leak-hot`, #ffb070): the bright core of the bloom and the primary button's hover plate; also link underline on hover.
-
-### Secondary
-- **Chemical Sepia** (`sepia`, #c8b089): the stain of emulsion that never fixed. Placeholder stamps ("Add photo"), bracketed placeholder copy, "soon" marks, invalid field borders and error text, the launch note, past-event counts, the "already happened" line.
-- **Sepia Dim** (`sepia-dim`, #6b5a42): dashed placeholder outlines and the border of "soon" tags.
-
-### Tertiary
-- **Grease Pencil** (`grease`, #b8b3a6): the hand-written numeral on every frame and the step counters on Get involved. Brightens to `ink-bright` when it sits over media.
+- **McGill Red** (`red`): the logo's own red. It is used for the lit frame's light leak, its drawn ring and its numeral; the current-page stroke in the navigation; the primary plate; and the wordmark's "Brings" and script "in" on paper. It measures 6.3:1 on paper and 6.7:1 on print, so it can carry text.
+- **Pressed Red** (`red-deep`): hover and pressed state of the primary plate, field error text, and the link and focus mark on beige bands, where it holds 7.1:1.
+- **Leak Core** (`red-bright`): appears only at the hot core of the light-leak gradient, never as a fill or text colour.
+- **On Red** (`on-red`): label colour on the primary plate (6.7:1), the skip link, and text selection.
+- **Wordmark Red on Stock** (`brand-red-on-stock`): the wordmark's red lifted for legibility on graphite (4.9:1; the base red would be 1.95:1). Used only by the footer wordmark.
 
 ### Neutral
-- **Leader** (`leader`, #0e0f10): the page ground (`--bg`), perforation holes on plates, and the text color on orange.
-- **Leader 2** (`leader-2`, #141618): the slightly raised ground of the footer and the mobile menu panel.
-- **Shadow 2** (`shadow-2`, #1c1f22): frame fill (`--frame-bg`), input fill, the audio player plate, inline code.
-- **Shadow** (`shadow`, #2a2e31): rails (`--rail`), secondary button plates, placeholder fill, media-slot fill behind images.
-- **Shadow 3** (`shadow-3`, #353a3e): the hovered plate.
-- **Fogged Fill** (`fogged-fill`, #1a1714): a warm-black frame fill used only by the fogged state (a literal in `Frame.astro`, not a root token).
-- **Emulsion Dim** (`emulsion-dim`, #8e9397): faint text (`--fg-faint`); edge codes, hints, input placeholder text, meta icons. 5.9:1 on leader.
-- **Emulsion** (`emulsion`, #a6abb0): muted text (`--fg-muted`); ledes, nav links at rest, latent frame copy, the drying-line wire and clips. 7.6:1 on leader.
-- **Ink** (`ink`, #d8d6d0): body text (`--fg`). 12.9:1 on leader.
-- **Ink Bright** (`ink-bright`, #eceae4): headings, titles, display ink (`--fg-strong`), plate text, link text.
-- **Hairlines**: `--line` is emulsion at 16% (`color-mix(in oklab, var(--emulsion) 16%, transparent)`) for dividers, header/footer borders and topic chips; `--line-strong` is emulsion at 32% for input borders, ghost-button rings and blockquote bars.
+- **Archive Paper** (`paper`): the page ground and the theme colour. It is near-white, not cream. It also shows through the perforations of a frame lying on stock.
+- **Raised Paper** (`paper-2`): the mobile menu panel, the fogged print, and the hover of the white primary plate.
+- **Print White** (`print`): the inside of every frame, plus inputs and the audio player. It is the brightest surface on the page, so a frame always reads as a print lying on paper.
+- **Archive Folder Beige** (`beige`): whole-section bands (Premise, the About drying line, the Team light table, the Get Involved form), placeholder fills, and the media slot behind an image.
+- **Sepia Toning** (`sepia`): toned text for placeholders, launch notes and the past, at 5.0:1 on beige. **Faded Sepia** (`sepia-dim`) is decorative only: dashed placeholder borders and fogged-print stains. **Sepia on Stock** (`sepia-on-stock`) is the toned role on graphite (7.6:1).
+- **Film Stock** (`stock`): rails, strips, plates (secondary buttons), the frame lines above and below each print, the closing band and the footer. **Raised Stock** (`stock-2`) is the hover plate.
+- **On Stock** (`on-stock`, 11:1), **On Stock Muted** (`on-stock-muted`, 6.2:1), **On Stock Faint** (`on-stock-faint`, 4.8:1): the text ladder on graphite.
+- **Ink Strong** (`ink-strong`, 17:1 on paper): headings. **Ink** (`ink`, 14:1): body. **Ink Muted** (`ink-muted`, 7.5:1): ledes and secondary copy. **Ink Faint** (`ink-faint`, ≥4.85:1 on every light surface): edge codes and hints.
+- **Graphite** (`grease`): china-marker numerals and step numbers, at 8.7:1 on print.
+
+### Surfaces
+Five surfaces remap the same role tokens (background, foreground ladder, line, toned, mark), so components never need to know where they sit. **Paper** is the default. **Beige** keeps paper's text and switches the mark to pressed red. **Stock** inverts the text ladder, turns the mark white, and sets `color-scheme: dark`. **Print** is set by every frame, and it resets the roles to light whatever lies beneath, so a frame reads the same on paper, beige or stock. A fifth surface, **red**, is defined in the global stylesheet but used on no page (see the No Red Field Rule).
 
 ### Named Rules
-**The One Leak Rule.** Orange means *live*: the one lit frame per strip, the current page, the primary action, and the small emphasis marks listed above. A strip has at most one `.is-lit` frame, and the lit frame always means something that can be named in its edge code ("Next to develop", "Latest", "Next screening", "Open frame", "Tail"). Hover and focus only *preview* the leak; they never make a second frame permanently lit.
+**The One Red Rule.** McGill red is reserved for the lit frame (leak, ring, numeral), the current page, the primary action and the brand wordmark. Beyond those four, it appears only at hairline scale: the 1px underline of an inline link, and interaction state (link hover, the focus ring, a focused field's border, a ghost plate's perforation dots on hover, the selected topic plate's 3px underline, error text). Hover and focus may also preview a frame's leak at reduced strength.
 
-**The Sepia Is Wear Rule.** Anything that is not real yet, or no longer current, reads in sepia: placeholder stamps and bracketed copy, "soon" marks, past events, invalid input. Sepia never decorates a live element.
+**The No Red Field Rule.** Red is never laid down as a field: no full-bleed red bands, red section backgrounds or red cards. A red surface exists in the global stylesheet but no page uses it, and new work should not start.
 
-**The Pre-Checked Contrast Rule.** Text colors are checked on `leader`: use `emulsion-dim` and up for any text; keep text off the orange bloom core (bodies inside lit frames stop before the right rail with extra right padding).
+**The One Wordmark Red Rule.** The wordmark carries exactly one red per surface. "Brings" and the script "in" (the logo's own script, used as a mask) share it: McGill red on paper, Wordmark Red on Stock on graphite.
+
+**The Print Resets Rule.** A frame is always a print. It resets every role token to the light set, so its contents never inherit stock or beige colours from the band it sits in.
 
 ## Typography
 
-**Display Font:** Big Shoulders Stencil Variable (fallback Bricolage Grotesque Variable, Arial Narrow)
-**Body Font:** Bricolage Grotesque Variable (fallback Helvetica Neue, Arial), optical sizing on
-**Hand Font:** Caveat Variable (fallback Bradley Hand, Segoe Print)
+**Display Font:** Cinzel (with Trajan Pro, Times New Roman, serif)
+**Body Font:** Source Serif 4, optical sizing on (with Iowan Old Style, Georgia, serif)
+**Label Font:** Libre Franklin (with Franklin Gothic Medium, Helvetica Neue, Arial)
+**Numeral Font:** Caveat (with Bradley Hand, Segoe Print, cursive)
 
-**Character:** Stencil caps are the lettering sprayed on a film can; the grotesque is set narrow (85% width for headings, 80% for codes and plates) so it reads as print on the strip's margin; the hand is a grease pencil, always slightly rotated. There is no monospace anywhere.
+**Character:** Cinzel's Roman capitals come straight from the logo. It is set in mixed case, so lowercase renders as small capitals and "What Brings You" sets exactly like the logo: a full capital, then small capitals. Source Serif 4 carries every sentence a student actually reads. Libre Franklin plays the film's printed margin, small, uppercase and widely tracked. Caveat is the china marker on the contact sheet, used only for numerals.
 
 ### Hierarchy
-- **Display** (`.display`, 700, uppercase, `--display-lg` clamp(2.75rem, 1.6rem + 5.6vw, 6rem), line-height 0.95, tracking 0.025em): the home h1 only. `.display--md` (clamp(2.25rem, 1.4rem + 3.8vw, 4rem)) is every other page h1 and the "Join the reel" h2. `.display--sm` (clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem)) is section h2s, sticky ledger markers, the episode detail h1 inside its frame, and the footer wordmark (1.5rem there).
-- **Title** (`.title`, 700, width 85%, line-height 1.2; `.title--lg` 1.5rem): frame headings (h2/h3 inside frames), guest names, team names. Default `h1–h4` share the weight, width and `ink-bright`.
-- **Lede** (`.lede`, 400, 1.25rem / 1.5, `emulsion`, max 55ch): the one paragraph under every page title and section title.
-- **Body** (400, 1.0625rem / 1.6, `ink`): paragraphs and `.prose`. `--measure` is 65ch; `.lede` ≤ 55ch; frame descriptions are capped at 46–60ch by their pages. About's frame copy drops to 0.9375rem / 1.55 (`.copy`) so a narrow strip still holds a line.
-- **Small** (`.small`, 0.8125rem): meta lines, hints, privacy note, bios on the team sheet.
-- **Label / Edge code** (`.edge-code`, 600, width 80%, 0.6875rem / 1.25, tracking 0.18em, uppercase, tabular numerals, `emulsion-dim`): the film's margin print. Used for frame codes, section markers, field labels, strip counts, footer column heads, topic chips. Variants: `--bright` (`emulsion`), `--leak`, `--sepia`. Parts are joined with ` · ` by `edgeCode()` in `src/lib/format.ts`.
-- **Plate** (`.btn`, 600, width 80%, 0.8125rem / 1, tracking 0.18em, uppercase): button lettering; `.btn--sm` drops to 0.6875rem. Desktop nav links are the same voice at 0.14em tracking.
-- **Hand** (`.grease`, Caveat 600, 1.75rem / 1, rotate −3deg, `grease`; `.grease--lg` 2.75rem): frame numerals (episode number, day of month, sheet position), the hero's "What brings you in?" line (clamp to 3.75rem), the Next-screening day (clamp 3.25–5rem), Get-involved step counters (1.5rem). `.grease--circled` draws a wobbly 2px orange ellipse around it; `.grease--leak` colors it orange.
+- **Display** (Cinzel 600, `display`, line-height 1.04, tracking 0.02em): page titles ("Episodes", "The team", "About the show") and the closing "Join the reel".
+- **Headline** (Cinzel 600, `headline`): section titles on a page ("The first reel", "Three things at once", "Next screening") and episode or event titles in detail-page hero frames.
+- **Title** (Source Serif 4 600, `title`, 1.22): the heading inside a frame, such as an episode, event, member or premise facet. The same face at body size (1.125rem) is the compact title in narrow frames and the prev/next frames.
+- **Lede** (Source Serif 4 400, `lede`, 1.5, muted, max 52ch): the one-paragraph introduction under a page or section title. The hero tagline is the single larger instance (fluid 1.25–1.625rem, line-height 1.4, max 26ch).
+- **Body** (Source Serif 4 400, `body`, 1.62, measure 66ch): all reading text, rendered Markdown included. **Small** (`body-sm`) is used for meta rows, hints and frame descriptions.
+- **Label / Edge Code** (Libre Franklin 600, `label`, uppercase, tracking 0.16em, tabular lining figures): metadata stamped along a frame's bottom margin ("REEL 01 · TITLE CARD · 16 MM"), counts, dates, group labels, field labels and the follow links. The plate size (`label-plate`, 0.75rem) is used for buttons and the primary navigation.
+- **Numeral** (Caveat 600, `numeral`, rotated −3°, graphite): the episode number, step or day written top-left on a frame. `numeral-lg` is used for the day on the home page's next-screening frame.
 
 ### Named Rules
-**The Grain-In-The-Letterform Rule.** `.display` paints `grain-dark.png` (256px tile) through `background-clip: text` over `--display-ink` so the stencil letters carry emulsion grain. Recolor display type by setting `--display-ink`, never `color`. Browsers without `background-clip: text` get solid `--display-ink` via `@supports`.
+**The Logo Capitals Rule.** Cinzel is always set in mixed case and never forced to uppercase. The small capitals are the point.
 
-**The Edge Code Is Metadata Rule.** `.edge-code` carries dates, counts, states, kinds and labels. It is never used for prose, and never placed above a heading as an eyebrow; it sits at the bottom of a frame, beside a list, or as a column head.
+**The Edge Code Rule.** Libre Franklin uppercase is metadata only: stamps, counts, dates, labels, buttons, navigation. It never carries a sentence of prose.
 
-**The Numeral Must Mean Something Rule.** A grease numeral is the episode number, the day of the month, a position on the sheet, or a step the reader takes. "TBC" is the only non-numeric numeral and marks an unconfirmed date. There are no decorative 01/02/03.
+**The China Marker Rule.** Caveat is used only for numerals (frame numbers, days, form steps). It is graphite at rest and turns red only when its frame is lit or held under the loupe (hover on the team sheet).
 
 ## Layout
 
-**Container.** `.container` is `min(100% − 2·gutter, 80rem)` centered, gutter `clamp(1rem, 4vw, 3rem)`. `.container--narrow` sets 56rem (About head and story), `.container--wide` 96rem (the drying line). The Events page overrides `--container` to 72rem for its ledger.
+The spatial model is a light table: a centred container of 80rem (narrow rooms 56rem, wide rows 96rem; Events tightens to 72rem) with a fluid gutter, on which frames are laid loose. From 60em up, the key compositions use twelve columns:
 
-**Vertical rhythm.** 4px base (`--s-1` 0.25rem … `--s-11` 12rem). Sections are separated by `--s-9` (6rem) and `--s-10` (8rem) at ≥60em; `.section` applies that as block padding. Inside a section: head to content `--s-7`/`--s-8`, title to lede `--s-4`/`--s-5`, groups `--s-3`, flow `--s-4`. More space sits above a heading than below it (`.prose h2`: `--s-8` above, `--s-3` below). The footer stands off by `--s-10`.
+- **Home hero:** the title-card frame spans columns 1–8 and the tagline, actions and follow marks take 9–12, vertically centred, at viewport height minus the header (capped at 52rem).
+- **Premise:** three frames of different sizes, offset (1–7, then 8–12 dropped 4rem, then 3–11).
+- **Team:** the contact sheet sits in thirds, with every second and third frame dropped (4rem and 1rem) so the sheet reads as hand-laid. The sheet's edge code runs vertically down its left margin and stays sticky.
 
-**Breakpoints in use.** 40em (team sheet goes two-up), 48em / 47.99em (desktop nav vs. menu; horizontal frames; two-column grids; ledger margin column), 60em (hero two columns, 12-column pages, larger section padding), 64em (wider ledger margin), 80em (four-strip drying line). Check 1440 and 390 wide.
+Other pages use their own one-off structures rather than a shared grid. Events is a ledger with a sticky margin column (13rem, then 17rem from 64em) holding month markers, with frames running down the right. The Episodes log is one centred strip at most 56rem wide, its frames turning horizontal (cover left, body right) from 48em. About is a drying line where four strips hang from a wire at different heights (one column, two from 48em, four from 80em). The home reel is a horizontal strip with scroll-snap, each frame min(78vw, 26rem) wide, with prev/next plates that appear only when it overflows.
 
-**Grids that break the grid.** Pages lay frames on a 12-column light table and then offset individual cells with `margin-block-start` (`--s-4`, `--s-7`, `--s-8`, `--s-9`) so no two rows read as a card grid. Sticky margin markers (`position: sticky; top: var(--s-6)`) ride alongside long lists.
+Rhythm is cozy. Sections are separated by `s-9` (6rem), rising to `s-10` (8rem) from 60em. Heads to content take `s-7`/`s-8`, groups inside take `s-3`–`s-5`, and frame bodies pad `s-5`–`s-8` depending on frame size. Bands (beige or stock) bleed to the viewport edge behind contained content without extra markup. A page that ends on a band runs straight into the footer's perforations.
 
-**Page structures (all distinct; the atom is shared).**
-1. **Home — title card + strip + trio.** Hero is an 11fr/13fr split at ≥60em with the show's name in `.display--lg` left and one oversized always-lit frame right (min-height clamp(28rem, 60vh, 40rem)) that overhangs the container by up to 10rem like a strip leaving the gate; below 60em the copy dissolves (`display: contents`) so the frame sits between the actions and the follow marks. Then "The first reel" (a horizontal `Strip` of episode frames), "Three things at once" (three frames at columns 1/8, 8/13 offset `--s-8`, 3/12), "Next screening" (one wide frame with a 9rem date column), and "Join the reel" (one wide lit frame, the tail).
-2. **About — the drying line.** Narrow head, then a `ul` of `HangingStrip`s: 1 column, 2 at ≥48em, 4 at ≥80em (5.5fr 7fr 5.75fr 5.75fr). Each strip draws a full-bleed 1px wire at its top (emulsion at 52%), a drawn clip, a leader of `--s-7` plus its own offset (0, `--s-7`, `--s-4`, `--s-9`; scaled ×0.34 under 48em), and a flush column of frames that share one pair of rails, separated by 2px of leader. The longer story follows in a narrow `.prose`.
-3. **Team — the contact sheet.** Head splits h1 (cols 1–6) and lede (cols 7–11) on one baseline. A soft radial backlight sits under the sheet; the sheet's edge code runs vertically (`writing-mode: vertical-rl`, rotated 180°, sticky) in a 2.5rem margin pulled left of the container. Frames span 6 columns at ≥40em (even ones offset `--s-7`) and 4 at ≥60em (3n+2 offset `--s-8`, 3n+3 offset `--s-4`). Every member frame is latent with alternating wear. The close is a lit "open frame" numbered one past the roster.
-4. **Episodes — the film log.** Head: h1 left, lede + count right, baseline-aligned. One centered 56rem column carries its own two vertical rails (fade-masked over `--s-8` at both ends); frames stack with `--s-3` gaps and drop their own rails. At ≥48em each frame turns horizontal: cover 34fr left, body 66fr right with right padding `clamp(--s-6, 22%, 10rem)` reserved for the leak; under 48em the cover is capped at 13rem and the leak is pulled onto the picture. Multiple reels become groups with a `Reel 02` edge-code heading. Below: a suggest-a-guest line and "Where to listen" as soon marks.
-5. **Episode detail — the frame in the gate.** Back link, then one lit hero frame: body left (11fr), cover right (9fr) at ≥60em so the leak floods the picture. Body is a 1fr / 16–22rem grid (column gap `--s-10`) of Listen, Show notes, and an aside with a latent guest frame and topics. Prev/next are two interactive frames, the next one right-aligned with its numeral on the right rail.
-6. **Events — the screening ledger.** A margin column (11rem; 14rem at ≥64em) holds the h1, a sticky month marker per group with its year and count, and the "Already screened" marker; frames run down the right with `--s-6` gaps. The first upcoming event is lit and its leak blooms in after its frame develops. Placeholder events group under "To be scheduled" with a "TBC" numeral. Past events are fogged, wear 2, in a two-up grid. The close sits in column 2.
-7. **Event detail.** One wide frame, body 7fr / image 5fr at ≥60em, fogged with no leak when past. Facts are a `dl` with icon + edge-code terms. Details and the close are indented to the frame's text column (`perf-w + --s-6`).
-8. **Get involved — the splice bench.** Head splits h1 (cols 1–7) and lede (8–12). Three entry frames span 5/4/3 columns with offsets 0, `--s-7`, `--s-9`, all wear 0. One lit bench frame holds the form (max 54rem) with topic radios rendered as ghost plates; topic-specific fields develop in through `:has()` (grid rows 0fr→1fr plus blur), and the chosen topic lights its entry frame above. A coda pairs grease-numbered next steps with the follow marks.
-
-**Chrome.** Header: a horizontal rail, then a 4.5rem bar with the mark and stencil wordmark (1.25rem, tracking 0.08em) left and the five nav links right at ≥48em; under 48em a native `<details>` menu drops a `leader-2` panel of 1.75rem stencil links. Footer: a rail, `leader-2` ground, a 1.6fr 1fr 1fr 1.2fr grid at ≥48em (brand, Reels, Follow, Write to us) and a colophon row.
+Responsive behaviour is a stack: under 60em everything is one column, with the hero frame above its copy. The primary navigation collapses into a native disclosure menu (no JS) at 52em, set in large Cinzel. The wordmark shrinks below 26em. A perforation rail runs along the top edge of every page, and the footer's rail opens onto the page above it.
 
 ## Elevation & Depth
 
-Depth is physical: a frame is a piece of film lying on a black table, so it casts an offset, soft shadow, and the light leak is a glow only because it is light. There are no flat halos, no borders-as-elevation, and no hard offset shadows. Tonal steps (`leader` → `leader-2` → `shadow-2` → `shadow` → `shadow-3`) do the rest: the footer and menu are one step up, frames two, rails and plates three, hover four.
+Depth means a print lying on paper. Shadows are warm (the brown-black rgb 40 32 24), offset downward with negative spread, and never a halo. Surfaces are otherwise flat. A frame inside a strip or the episode log loses its own shadow, because the strip carries one shadow for the whole run. The page also carries a faint fixed paper tooth: a grain texture at 12% opacity, multiplied, hidden under reduced transparency.
 
 ### Shadow Vocabulary
-- **Frame** (`--shadow-frame`: `0 1.5rem 3rem -1.5rem rgb(0 0 0 / 0.8), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5)`): every Frame, HangingStrip column, and the audio player plate.
-- **Frame, lifted** (`0 2rem 3.5rem -1.5rem rgb(0 0 0 / 0.85), 0 0.25rem 0.5rem -0.25rem rgb(0 0 0 / 0.5)` with `translate: 0 -2px`): `.is-interactive` frames on hover.
-- **Plate** (`--shadow-plate`: `0 0.5rem 1rem -0.6rem rgb(0 0 0 / 0.7)`): buttons and checked topic plates.
-- **Leak** (`--shadow-leak`: `0 1rem 3rem -1rem color-mix(in oklab, var(--leak) 55%, transparent)`): the primary button on hover only, layered over the plate shadow. The current nav underline carries a smaller leak glow (`0 0.25rem 0.75rem -0.125rem`, leak at 70%); focused inputs carry `0 0.5rem 1.5rem -0.75rem` leak at 60%.
-- **Menu panel** (`0 2rem 3rem -2rem rgb(0 0 0 / 0.9)`): the mobile nav panel.
+- **Print on paper** (`box-shadow: 0 1px 1px rgb(40 32 24 / 0.06), 0 1.25rem 2.5rem -1.5rem rgb(40 32 24 / 0.32)`): every standalone frame, the episode log, a hanging strip, the audio player.
+- **Lifted print** (`box-shadow: 0 1px 1px rgb(40 32 24 / 0.06), 0 1.75rem 3rem -1.5rem rgb(40 32 24 / 0.4)`): an interactive frame on hover, together with a 3px rise.
+- **Plate** (`box-shadow: 0 0.5rem 1rem -0.6rem rgb(40 32 24 / 0.45)`): every button plate at rest.
+- **Leak under plate** (`box-shadow: 0 0.75rem 2rem -1rem color-mix(in oklab, var(--red) 70%, transparent)`): only under a hovered primary plate. It is the one coloured shadow in the system.
+- **Field focus** (`box-shadow: 0 0 0 1px var(--red), 0 0.5rem 1.25rem -0.75rem color-mix(in oklab, var(--red) 55%, transparent)`): a focused input, sitting beneath a faint inset (`inset 0 1px 2px rgb(40 32 24 / 0.06)`) that every field carries at rest.
 
 ### Named Rules
-**The Light Is The Only Glow Rule.** Colored shadows exist only where orange is already present and live (primary hover, current page, focused field). Nothing else glows.
+**The Print on Paper Rule.** Shadows fall down and away, warm and soft, with negative spread. There are no zero-offset glows, no grey drop shadows, and no hard offset shadows.
 
-**The Grain Over Everything Rule.** `.grain` is a fixed, pointer-transparent overlay at `z-index: 90`, opacity 0.3, `mix-blend-mode: screen`, tiling `grain-light.png` at 512px. It is removed under `prefers-reduced-transparency: reduce`. Texture is layered, never faked with opacity on content.
+**The Light Leak Is Light Rule.** The red leak is light, not paint. It is a radial red gradient, multiply-blended and masked through grain and blotch textures. It sits above the print and below the rails, so ink stays ink, only the paper turns red, and the red shows through the perforations.
 
 ## Shapes
 
-The form language is cut film and stamped metal: small radii, straight edges, masked holes.
+The form language is the film itself. Frames and plates are rectangles with barely softened corners (`rounded.frame` and `rounded.plate`, 3px). Nothing is pill-shaped, and the only round form is the hand-drawn ring.
 
-- **Frame corners** (`--radius-frame`, 0.375rem): frames, the audio plate, the HangingStrip column.
-- **Plate corners** (`--radius-plate`, 0.25rem): buttons, inputs, chips, placeholder label plates, the skip link, the menu toggle, inline code.
-- **Hole corners** (`--radius-hole`, 0.125rem): the perforation holes on plates. Focus rings use 2px.
-- **Perforation rail** (`.perf` / `.perf--h`): a `--perf-w` (1.25rem) band of `shadow`, grained with `grain-dark.png` and sooted with a 55%-black edge gradient, with holes `--perf-hole-w` × `--perf-hole-h` (0.5625rem × 0.875rem) on a `--perf-period` (1.5rem) pitch masked out by a repeating-linear-gradient mask. Because the holes are masked rather than painted, whatever sits behind the rail shows through (the page ground, or a light leak). Vertical rails on frames and film logs, horizontal rails on strips, the header and the footer.
-- **Plate holes**: buttons carry two small leader-colored holes at each end (`0.375rem × 0.4375rem`, duplicated 1.0625rem below with `box-shadow`), drawn by `::before`/`::after`; ghost plates draw them in `--line-strong`; icon buttons drop them.
-- **Dashed outline**: placeholders inset a 1px dashed `sepia-dim` rectangle (`inset: var(--s-3)`, 2px radius): the registration edge of an unexposed frame.
-- **Grease circle**: `border-radius: 50% 45% 55% 50% / 55% 50% 45% 50%`, 2px, hand-drawn ellipse around a numeral.
-- **Wire and clip**: 1px hairline (emulsion at 52%) and a 28×24 stroke-drawn clip at 1.5px, on About only.
+- **Perforation rail:** a band of stock 1.25rem across, punched with 0.5625 × 0.875rem holes at a 1.5rem pitch. The holes are cut with a CSS mask, never painted, so whatever lies beneath (paper, beige, the leak) shows through. The mask repeats with `round`, so a rail of any length ends on whole holes. Rails run vertically on each side of a frame or hanging strip, and horizontally on strips, the header and the footer.
+- **Frame:** a print between two rails, with 0.3125rem stock frame lines above and below. Its edge code is separated from the body by a dashed hairline. On stock, a frame paints paper under its rails so its holes still read as holes.
+- **Plate:** a short length of stock with two pairs of punched holes (0.375 × 0.4375rem, 2px corners) inset 0.625rem from each end. On a ghost plate the holes are outlined dots.
+- **China-marker ring:** an open, double-pass ellipse with overlapping ends, drawn as an SVG stroke (4.2 and 1.6 units, round caps) and roughened by a shared turbulence displacement filter. Three hand-authored ring paths exist, and the numeral picks one, so a sheet never repeats a stroke.
+- **Placeholder:** an unexposed print in beige with a dashed sepia border inset 0.75rem, a toning stain, a centred label chip and an "Add photo" stamp.
 
-**The No Nested Frames Rule.** Frames do not sit inside frames. Inside a `Strip`, `HangingStrip` or the film log, a frame drops its own rails (`grid-template-columns: 0 1fr 0; .frame__rail { display: none }`) and the parent's single pair of rails carries the perforations.
+**The Whole Hole Rule.** Perforations always end on whole holes and always open onto the surface beneath. Never crop a rail mid-hole and never paint a hole white.
 
 ## Components
 
-### Frame (the atom; `src/components/Frame.astro`)
-A cell of 16mm film: left rail, media gate, body, edge code, right rail, light-leak layer, numeral. Rendered as any tag (`as="article" | "a" | "figure" | "section" | "div"`).
-- **Anatomy:** CSS grid `perf-w | 1fr | perf-w` × `media | body | code`. Fill `shadow-2`, `--radius-frame`, `--shadow-frame`, `overflow: clip`, `isolation: isolate`. Body: `gap --s-3`, padding `--s-5 --s-5 --s-6` (pages open this up to `--s-7`–`--s-9` for wide frames); a numeral with no media pushes the body down to `--s-8`. Code sits at `0 --s-5 --s-4`. Numeral is absolute at `top --s-2, left perf-w + --s-3` with a 1px black text-shadow, bright over media. Rails are `z-index: 3`, the leak `2`, media and body `1`.
-- **Media gate:** `shadow` fill, images `object-fit: cover`; `::after` lays `scratches.svg` with `mix-blend-mode: screen` at opacity 0 / 0.6 / 1 for `wear` 0 / 1 / 2 (wear 2 also shifts the scratch position). Use `wear={0}` for text-only frames that should read clean (the Get involved frames).
-- **Leak (`leak` prop):** a layer inset `-25% -10% -25% 30%` painting `leak-hot` → `leak` → transparent from the right edge, `mix-blend-mode: screen`, masked by `grain-alpha.png` (256px) intersected with `blotch-alpha.png` (640px). Opacity 0 at rest; **0.85 on `:hover` / `:focus-within`; 0.95 when `.is-lit`**; transition `--dur-4` (1200ms). It lives above media and body and below the rails, so it floods the perforations.
-- **States:** `state="latent"` sets copy to `emulsion` and desaturates media (`grayscale(1) brightness(0.7) contrast(0.95)`); on hover, focus-within or `.is-active` it develops to `ink` and `grayscale(0.15) brightness(0.95)` over `--dur-4`. `state="projected"` is the default, full strength. `state="fogged"` uses `fogged-fill`, `emulsion` copy, `sepia(0.7) brightness(0.6) contrast(0.9)` media, and a multiplied sepia-stain layer. **`.is-active` (set by `Strip` on the centred frame) develops a latent frame; it does not light the leak.** `.is-lit` lights it permanently; `.is-interactive` adds the pointer, the hover lift and a 4px focus-ring offset.
-- **Titles develop with the frame:** pages set `.frame.is-latent .title { color: inherit }` and brighten it to `--fg-strong` on hover/focus so the heading resolves with the frame.
-- **Horizontal frames:** at ≥48em / ≥60em pages re-grid `.frame.has-media` to four columns (`perf-w | body | media | perf-w` or `0 | media | body | 0`) so the cover sits on the leak side. Keep the rails in columns 1 and 4.
+### Buttons (plates)
+A plate is a short length of film stock, tactile and quiet.
+- **Shape:** near-square (3px corners), 2.75rem tall, 3rem side padding, with two pairs of perforations punched at the ends. Labels are Libre Franklin 0.75rem uppercase, tracked 0.16em.
+- **Primary:** McGill red with white label, the one action that matters on a section ("Hear the first reel", "Suggest a guest", "Send it in"). On hover it presses to red-deep, rises 1px and gains the leak shadow. On a stock band a primary plate turns white with a stock label, except when it sits on a print (a frame), where it stays red.
+- **Secondary (default):** a graphite stock plate with paper showing through its holes. On hover it becomes raised stock.
+- **Ghost:** transparent with a 1px strong-line outline and outlined holes. On hover it gains a 6% wash, the outline darkens and the holes turn the mark colour. It is used for "All episodes", "Event details" and strip prev/next.
+- **Small:** 2.25rem tall and 1.5rem padding, with label-size type. **Icon:** a square 2.75rem plate without holes.
+- **Focus / Active:** a 2px mark-colour outline at a 3px offset. Pressing sinks the plate 1px over 160ms. Disabled plates sit at 50% opacity.
 
-### Strip (`src/components/Strip.astro`)
-A horizontal run between two `.perf--h` rails: a flex track with `scroll-snap-type: x mandatory`, `--s-6` gaps, `--s-6 gutter` padding, item width `--strip-item-w` (default `min(78vw, 26rem)`), hidden scrollbar, and leader spacers before and after so the first frame aligns with the container. `tabindex="0"` region labelled by `label`. Controls: an edge-code count left, ghost icon plates right, hidden until `.has-overflow`, disabled at the ends. `src/scripts/motion.ts` scrolls by one frame plus gap and marks the frame nearest the track centre `.is-active` on a `requestAnimationFrame`.
+### Topic chips
+- **Style:** an edge-code label in a 1px hairline box with 3px corners. Hairlines strengthen when the parent frame is hovered. Chips never carry red.
 
-### Buttons (`.btn`, `src/components/Button.astro`)
-Stamped metal plates with two perforation holes at each end; `<a>` when `href` is given (internal hrefs pass through `withBase`), else `<button>`.
-- **Shape:** plate corners (0.25rem), `min-height 2.75rem`, padding `0 --s-7` (3rem), inline-flex with `--s-2` gap for 16px icons, grained with `grain-dark.png`, `--shadow-plate`.
-- **Secondary (default):** `shadow` plate, `ink-bright` lettering; hover `shadow-3` and `translate: 0 -1px`; active `translate: 0 1px` at `--dur-1`.
-- **Primary:** `leak` plate, `leader` lettering; hover `leak-hot` with `--shadow-leak` layered over the plate shadow. One primary action per view.
-- **Ghost:** transparent, `inset 0 0 0 1px --line-strong` ring, holes in `--line-strong`; hover a 60% `shadow` wash and an `emulsion-dim` ring. Used for "All episodes", "Event details", back-and-forward actions, and the Strip controls.
-- **Sizes:** `--sm` 2.25rem high, `--s-5` padding, 0.6875rem lettering; `--icon` a 2.75rem square with no holes.
-- **Disabled / `aria-disabled="true"`:** opacity 0.45, `not-allowed`, no lift. The Get involved submit stays focusable while the endpoint is a placeholder and is described by the notice.
-- **Checked topic plate** (Get involved): a ghost plate that, when its hidden radio is checked, takes the `shadow` fill, `ink-bright` lettering and an `inset 0 -2px 0 var(--leak)` underline; focus-visible on the radio draws the orange ring on the plate.
+### Frames (the atom)
+Everything that is content is a Frame: a white print between graphite rails with a stamped edge code. It is not a card.
+- **States:** a *projected* frame is the full print (default). A *latent* frame is underexposed, with muted text and media pale and half grey; it develops on hover, on focus, or when it is the centred frame of a strip, and is used for anything coming soon. A *fogged* frame is raised paper with sepia-toned media and warm stains; it is used for the past (finished events).
+- **Media slot:** sits on top, on a beige ground, with procedural dust and scratches at three densities. A numeral over a real photograph is written in white marker.
+- **Numeral:** written top-left in graphite china marker.
+- **Edge code:** the bottom margin, as metadata only.
+- **Leak:** at rest, a frame shows no leak. Hover or focus previews it at 60%. A lit frame burns at 85%.
+- **Lit:** the frame that means something right now: the hero title card, the next episode to develop (or the latest once anything is released), the next screening, an upcoming event's detail frame, or the team's open frame. Its numeral turns red and the ring draws itself around it.
+- **Interactive:** a frame that is a link rises 3px on hover onto the lifted shadow, with a 2px red focus outline.
+- **In a strip:** a frame drops its own rails, frame lines and shadow, and the strip's rails carry the perforations.
 
-### Fields (`.field`)
-- **Label:** edge-code voice in `emulsion` (`.field__label`); optional marker `.gi-opt` in `emulsion-dim` at weight 500.
-- **Input / textarea / select:** `shadow-2` fill, 1px `--line-strong` border, plate corners, `min-height 3rem`, padding `--s-3 --s-4`, `ink-bright` text, `emulsion-dim` placeholder; textarea `min-height 9rem`, vertical resize.
-- **Hover:** border `emulsion-dim`. **Focus:** outline off, border `leak`, soft leak shadow. **Invalid (`:user-invalid`):** border `sepia`; `.field__error` (0.8125rem, `sepia`) shows only after interaction. **Hint:** `.field__hint` in `emulsion-dim`.
+**The One Lit Frame Rule.** At most one frame is lit per view. A lit frame with a numeral always carries the drawn ring. The centred frame in a strip is only *active*: it develops but never lights.
 
-### Placeholder (`src/components/Placeholder.astro`)
-A latent frame where a real asset will go: `shadow` fill with a faint radial lift, a dashed `sepia-dim` inset rectangle, `stain.png` at 0.8 (position by kind), a centered label on an 80% leader plate (0.8125rem, width 90%, ≤18ch), and a sepia edge-code stamp ("Add photo / logo / audio / cover / image") bottom-left. `role="img"` with `aria-label="Placeholder for …"`, a `title` hint for the maintainer, and `data-placeholder="<kind>"` for the README grep. Kinds: `photo` (4/5 default), `cover`, `image`, `logo` (3/1), `audio` (a horizontal 3.5rem bar).
+### Strips and the episode log
+- **Strip:** a run of graphite stock between two horizontal perforation rails, with frames riding inside as prints. It scrolls horizontally with snap, keyboard focus and ghost icon plates for prev/next, and the leader before the first frame aligns with the page container.
+- **Episode log:** one vertical strip down the page. Its rails sit on the paper and its frames are flush prints between them.
+- **Hanging strip (About):** a strip clipped to a full-bleed graphite wire by a drawn darkroom clip on a leader of varying length. Its frames share one pair of rails, and hovering any frame lights the whole strip's leak.
 
-**Placeholder discipline (as built).** Text that is not real yet is bracketed in the content file, colored `sepia` with `cursor: help`, and carries `data-placeholder="<what>"` plus a `title` naming the file to edit. Follow links with `placeholder: true` in `src/site.ts` render as an edge-code name plus a bordered sepia **soon** tag, never as a dead link. Placeholder episodes and events are stamped "Undated" / "Date to confirm" with a "TBC" numeral and get no weekday, clock or calendar file; counts read "Placeholder frames" and never count them as real. Empty collections render one latent frame that says what is coming. The founding story is one bracketed sepia paragraph in About. The mark (`Mark.astro`, `favicon.svg`) is a stand-in: one orange cell between two rails.
-
-### Edge code and chips
-`.edge-code` is the metadata voice everywhere (see Typography). `Topics` renders a quiet row of edge-code chips: 1px `--line` border, plate corners, `0.4em 0.7em 0.35em` padding, border brightening to `--line-strong` when the frame is hovered. Chips are never interactive.
+### Inputs / Fields
+- **Style:** a print-white field with a 1px strong-line border, 3px corners, 3rem minimum height, 0.75 × 1rem padding and a faint inset. Labels are edge codes above the field; hints are small and faint.
+- **Hover:** the border darkens to faint ink.
+- **Focus:** the border turns McGill red with a 1px red ring and a soft red under-shadow, and the default outline is removed.
+- **Error:** after user interaction, the border and the error text turn red-deep.
+- **Choice plates:** radio options are ghost plates. When selected, a plate becomes a stock plate with a 3px red underline.
 
 ### Navigation
-- **Desktop (≥48em):** plate-voice links at 0.14em tracking in `emulsion`; a 2px orange underline scales in from the left on hover (recolored `emulsion`) and stays orange with a small leak glow for `aria-current="page"`, whose text turns `ink-bright`. Current page is computed by `isCurrent()` in `src/lib/url.ts` and includes child routes.
-- **Mobile (<48em):** a `<details>` disclosure with a "Menu" edge code and swapped menu/close icons. The panel is `leader-2` with a hairline bottom border, 1.75rem stencil links separated by hairlines, the current page in `leak`, and the affiliation as a footer edge code. Items fade down in with a 40ms stagger under `prefers-reduced-motion: no-preference` only.
-- **Brand:** the mark rotates −4deg on hover (`--dur-3`).
+- **Header:** a perforation rail runs across the top. Below it sit the mic mark and the wordmark in Cinzel (21px, tracking 0.03em, with a red "Brings" and the logo's red script "in" swinging below the baseline), and on the right the primary links in muted edge-code type at plate size.
+- **States:** hover darkens a link to strong ink and draws a grey stroke under it. The current page is strong ink with a hand-drawn McGill red double stroke beneath it, the only red in the header besides the wordmark.
+- **Mobile (≤52em):** a native disclosure labelled "Menu" opens a raised-paper panel of large Cinzel links (current page in red). The links fade in with a 40ms stagger when motion is allowed.
 
-### Social follow marks (`SocialLinks.astro`)
-A wrapping row (or column) of edge-code names. Real links get `edge-code--bright`, an arrow-up-right icon and `rel="me noopener"`; placeholders get the sepia **soon** tag. Always introduced by an edge code such as "Follow, once the reel is live".
+### Footer
+- **Style:** a graphite stock field whose top rail opens onto the page above. It holds the reversed mark and the wordmark (in Wordmark Red on Stock), the affiliation line, the nav, follow marks and contact. The colophon carries the McGill Faculty of Medicine seal reversed to white at 92% opacity beside "A McGill UGME podcast."
 
-### Icons (`Icon.astro`)
-One stroke set, 24-grid, 1.5px stroke, round caps, `currentColor`; default 20px, 16px inside buttons and meta rows, 12–14px beside edge codes. Decorative unless `label` is passed. Add icons to the set; never inline SVG in a page.
+### Placeholders
+Placeholders are honest by construction: an unexposed beige print, a sepia "Add …" stamp, sepia italic bracketed copy for text that is not real yet, and a boxed "soon" chip on follow links without a URL. Every one carries a data marker and a maintainer tooltip, so a maintainer can find and replace it.
 
-### Motion (`src/scripts/motion.ts`, `global.css`)
-- **Develop on enter:** `[data-reveal]` starts at opacity 0, `translate 0 0.75rem`, `blur(6px)` only once `html.js` is set, and resolves over `--dur-3` (640ms) with `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`) when an IntersectionObserver (`rootMargin 0 0 -8% 0`, threshold 0.05) sees it. `data-reveal-stagger="ms"` on a parent sets `--reveal-delay` per child (default 60ms step, capped at 600ms). Frames that also reveal merge the reveal properties into their own transition so the delay survives.
-- **One authored moment per page:** Home, the hero leak blooms in once (`hero-bloom`, `--dur-4`, 200ms delay) while the title-card lines develop at 140ms steps. About, strips develop one after another (0 / 140 / 280 / 420ms) and top-down inside (160ms). Team, the sheet reveals at 70ms steps and a hovered frame's numeral is circled in grease pencil. Episodes, the log reveals at 70ms steps. Events, the next screening's leak blooms in `--dur-2` after its frame develops. Get involved, topic fields develop in and the chosen entry frame lights.
-- **Durations:** `--dur-1` 160ms (press), `--dur-2` 320ms (color, underline, lift), `--dur-3` 640ms (reveal, shadow, rotate), `--dur-4` 1200ms (leak, media develop). `--ease-out` is the only easing in use.
-- **Reduced motion:** `[data-reveal]` is shown immediately, the hero bloom is removed, strips scroll `auto`, menu items do not animate, and a global rule sets every animation and transition to 0.01ms. `prefers-reduced-transparency` removes the page grain. Smooth scroll is opt-in under `no-preference` only.
-- **Nothing loops, nothing parallaxes, nothing auto-plays, and hover never moves layout** (lifts are `translate`, underlines are `scale`).
-- **View transitions:** `ClientRouter` is on; episode and event titles carry `transition:name` so a title travels from list to detail. The motion script re-runs on `astro:page-load`.
+### Motion
+Motion is restrained. Prints develop out of white paper: a frame, or anything holding one, enters from 0.75rem below, overexposed (brightness 1.45, contrast 0.55, grayscale 0.6). It fades in over 640ms and its print darkens last over 1.8s on the out-curve (`cubic-bezier(0.16, 1, 0.3, 1)`), with optional staggers capped at 600ms. Each page has one authored moment. On the home page it is the hero: the logo develops (1.8s), then the leak burns in (1.4s at 1s), the numeral turns red, and the ring draws itself (1.1s at 1.6s). On Events the next screening's leak blooms after its frame develops, and on About the strips develop one after another. Under reduced motion all of this is static and complete.
+
+**The Only Prints Develop Rule.** Only prints animate on scroll. Headings, ledes and action rows are type on paper and stay still, even where a reveal attribute sits on them.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** build every unit of content as a `Frame` and give it a real state: `latent` for coming-soon or undiscovered, `projected` for real, `fogged` for the past.
-- **Do** light at most one frame per strip with `.is-lit`, and name why in its edge code ("Next to develop", "Latest", "Next screening", "Open frame", "Tail").
-- **Do** keep copy out of the leak: bodies inside lit or horizontal frames stop before the right rail (`padding-inline-end` of 8–22% or `clamp(--s-6, 22%, 10rem)`).
-- **Do** set titles with `.display` and recolor them through `--display-ink`; set frame headings with `.title`; set metadata with `.edge-code` joined by `edgeCode()`; set numerals with `.grease`.
-- **Do** separate sections by `--s-9` / `--s-10`, keep groups at `--s-3` / `--s-4`, and offset cells on the 12-column table so no row reads as a card grid.
-- **Do** route every internal `href` and `src` through `withBase()`.
-- **Do** use `<Placeholder>` for any missing image or audio, `<SocialLinks>` for follow links, and `data-placeholder="<what>"` plus a `title` hint on any copy, endpoint or date a maintainer must replace; render placeholder text in `sepia`.
-- **Do** branch on `placeholder: true` and missing fields, and design the real state too (real image → `<img>` in the media slot; real link → bright edge-code link).
-- **Do** put `data-reveal` on sections and `data-reveal-stagger` on lists, and keep any further motion inside one authored moment per page that is static under `prefers-reduced-motion: reduce`.
-- **Do** keep one `h1` per page, real landmarks with `aria-labelledby`, lists as `role="list"`, buttons for actions and links for navigation, a `visually-hidden` label before every numeral, `alt` or `aria-label` on anything visual, and text at `emulsion-dim` or brighter on `leader`.
-- **Do** add new icons to `Icon.astro` and new site facts to `src/site.ts`.
+- **Do** put every piece of content (an episode, event, person or premise) in a Frame: a white print between graphite rails, with its metadata in the edge code.
+- **Do** light at most one frame per view, and only one that means something (next to develop, latest, next screening, the open frame). Give it the leak at 85%, and if it has a numeral, the drawn red ring.
+- **Do** keep McGill red to the lit frame, the current page, the primary action and the wordmark, plus hairlines: link underlines, the focus ring, field focus and error text.
+- **Do** use one red per surface for the wordmark: McGill red on paper, Wordmark Red on Stock on graphite, shared by "Brings" and the script "in".
+- **Do** lay pages on archive paper, give whole sections beige folder bands, and keep graphite stock for rails, strips, plates, the closing band and the footer.
+- **Do** cut perforations with a mask, repeat them with `round` so they end on whole holes, and let the surface beneath show through.
+- **Do** keep each type voice to its role: Cinzel in mixed case for titles, Source Serif 4 for reading (66ch measure), Libre Franklin uppercase at 0.16em for metadata and controls, Caveat for numerals only.
+- **Do** keep sections 6–8rem apart and groups tight, and lay frames loose and offset on the twelve-column table.
+- **Do** keep shadows warm and falling (rgb 40 32 24, negative spread).
+- **Do** make unfinished content visibly unexposed: a beige placeholder print with a dashed sepia border and an "Add …" stamp, sepia bracketed copy, and "soon" chips.
+- **Do** develop only prints on scroll, keep one authored motion moment per page, and make reduced motion fully static.
 
 ### Don't:
-- **Don't** paint a section, card or background orange, and don't add orange glows to anything that is not live (the primary hover, the current page and a focused field are the only glows).
-- **Don't** use sepia on a live element; it marks wear, placeholders and the past only.
-- **Don't** nest a frame inside a frame, and don't add perforation rails to arbitrary boxes; rails belong to frames, strips, the film log, the header and the footer.
-- **Don't** build a same-size card grid, a cover-art hero, or a "listen on" button row.
-- **Don't** put an eyebrow, kicker or label above a heading; edge codes sit at the bottom of a frame, beside a list, or as a column head.
-- **Don't** add decorative 01 / 02 / 03; a numeral is an episode number, a date, a sheet position or a step.
-- **Don't** use monospace, a system display face, or inline SVG in pages.
-- **Don't** invent guest names, episode titles, dates, times, quotes, counts, partners or a founding story; don't count placeholder entries as real; don't place McGill marks (affiliation is text only).
-- **Don't** add loops, parallax, auto-play, hover effects that move layout, or any animation that bypasses the shared reduced-motion rules.
-- **Don't** redefine tokens or shared classes locally; page CSS stays scoped in the page and its `src/components/<page>/` folder, with `:global()` only inside a wrapper the page owns.
-- **Don't** use `--base` (#6e7377) for text; it fails body contrast and is currently unused.
-
-## Known Gaps
-
-Recorded from the built code; none of these is a system rule.
-
-- **Image-less upcoming event frames render an empty media gate.** `src/pages/events/index.astro` passes `{d.image && <img slot="media" …/>}` straight into `Frame`, and a conditional slot inside an expression still counts as filled, so each "To be scheduled" frame gets a `has-media` layout with an empty right-hand gate (visible in `.impeccable/shots/final-events-desktop.png`). `src/components/events/EventFrame.astro` exists to branch at the Frame and avoid exactly this, but nothing imports it.
-- **Stale comments about `.is-active`.** The `Frame.astro` header and `Strip.astro` say the centred frame "lights its leak"; the CSS lights the leak only on `:hover`, `:focus-within` and `.is-lit`, and `.is-active` only develops a latent frame. The CSS is the rule recorded above.
-- **Reserved, unused tokens:** `--accent`, `--base`, `--leak-deep` (#c4521a), `--ease-in-out`, `--wdth-condensed`. They are defined in `tokens.css` and consumed nowhere.
-- **Fogged fill is a literal.** `#1a1714` lives in `Frame.astro`, not in `tokens.css`.
-- **Stand-ins awaiting real assets:** the mark (`Mark.astro`, `public/favicon.svg`), every team photo, episode cover and event image (`public/images/` does not exist yet), the contact email, the form endpoint, all five follow links, the launch note, the founding story, and the three placeholder entries in each content collection.
-- **No light theme and no theme toggle;** `color-scheme: dark` is the only scheme. Grain and the `background-clip: text` lettering are built for a dark ground.
-- **`src/pages/kit.astro`** (the living reference named in the build contract) no longer exists; this file is the reference.
+- **Don't** lay red down as a field: no full-bleed red bands, red section backgrounds or red cards. The red surface in the global stylesheet is unused; leave it that way.
+- **Don't** use red for headings, icons, decoration or secondary actions, and don't put a second red-filled plate next to the primary.
+- **Don't** light two frames in one view, and don't light a numbered frame without its ring.
+- **Don't** animate headings, ledes or button rows, and don't add parallax or scroll-linked motion beyond the develop.
+- **Don't** paint perforation holes, crop a rail mid-hole, or let a rail sit on a surface its holes can't show.
+- **Don't** build the university-template page: no banner hero, no crest-led header, no uniform card grid. The Faculty of Medicine seal stays in the footer colophon, reversed to white.
+- **Don't** drift into the cream-paper, serif-headline editorial look: the paper is near-white and display type is the logo's Roman capitals.
+- **Don't** force Cinzel to uppercase, set prose in Libre Franklin capitals, or use Caveat for anything but numerals.
+- **Don't** round corners past 3px or use pills, and don't use zero-offset glows or grey drop shadows. The only coloured shadow is the leak under a hovered primary plate.
+- **Don't** fabricate guests, episodes, dates or counts to fill a frame. Use a latent frame or a placeholder print.

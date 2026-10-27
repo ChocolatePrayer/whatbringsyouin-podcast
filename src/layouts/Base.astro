@@ -1,6 +1,8 @@
 ---
-import '@fontsource-variable/bricolage-grotesque/standard.css';
-import '@fontsource-variable/big-shoulders-stencil/standard.css';
+import '@fontsource-variable/cinzel/wght.css';
+import '@fontsource-variable/source-serif-4/opsz.css';
+import '@fontsource-variable/source-serif-4/opsz-italic.css';
+import '@fontsource-variable/libre-franklin/wght.css';
 import '@fontsource-variable/caveat';
 import '../styles/tokens.css';
 import '../styles/global.css';
@@ -22,8 +24,9 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0e0f10" />
-    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <meta name="theme-color" content="#faf9f7" />
+    <link rel="icon" href={withBase('/favicon.png')} type="image/png" sizes="64x64" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
     {canonical && <link rel="canonical" href={canonical} />}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
@@ -35,13 +38,14 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
   </head>
   <body class={bodyClass}>
     <!--
-    THESIS: The podcast as a hand-processed reel: every episode a frame on one strip, the live one blooming orange through its perforations. Refuses the cover-art hero, the "listen on" button row, and the same-size card grid.
-    OWN-WORLD: Leader black ground, emulsion-gray type, chemical sepia for wear and placeholders, one light-leak orange reserved for the active frame, the current page, and the primary action. Perforation rails on every frame and strip; condensed stencil caps for titles, stamped edge codes for metadata, grease-pencil numerals; frames develop from latent to projected.
-    STORY: A med student sees a reel of senior physicians' stories waiting to be developed, understands this show gives them that seat, and follows or joins.
-    FIRST VIEWPORT: One oversized frame right with the leak flooding its rail; the show's name in stencil caps left with one line; primary action to the episodes strip, secondary to Get involved; follow links wait below as honest "soon" marks.
-    FORM: Hand-processed 16mm film, chosen by the user as a challenger over grounded candidate 6; seed ff201de7.
+    THESIS: The reel laid out on a McGill archive table: every episode a white print held in grey perforated stock, the frame that matters burned McGill red through its perforations and circled in red china marker. Refuses the university-template banner, crest and card grid, and the cream-serif editorial default.
+    OWN-WORLD: White archive paper, beige folder bands, graphite film stock for rails, strips, plates and the footer; one McGill red, the logo's own #AF2825, for the lit frame, current page and primary action. Cinzel Roman capitals from the logo, Source Serif 4 for reading, Libre Franklin edge codes, china-marker numerals. Prints develop out of white paper.
+    STORY: A med student meets the show's own logo as the title card, sees a reel of senior voices waiting to develop, and follows or joins.
+    FIRST VIEWPORT: The logo printed large in a title-card frame, left, eight of twelve columns, its red leak burning in once; tagline, primary "Hear the first reel", secondary "Join the team" and follow marks right.
+    FORM: User-pinned 16mm film world, recoloured for McGill's Faculty of Medicine (no roll: the pin beats it); prior seed ff201de7.
     FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
     -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="wax" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" /><feDisplacementMap in="SourceGraphic" scale="1.8" /></filter></svg>
     <a class="skip-link" href="#main">Skip to content</a>
     <SiteHeader />
     <main id="main" tabindex="-1"><slot /></main>

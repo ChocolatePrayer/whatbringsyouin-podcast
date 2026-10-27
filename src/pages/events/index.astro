@@ -115,7 +115,7 @@ const dayOf = (d: Date) => String(d.getUTCDate());
       <section class="ledger-row screened container" aria-labelledby="screened-h">
         <div class="ledger__marker ledger__marker--sticky" data-reveal>
           <h2 id="screened-h" class="display display--sm">Already screened</h2>
-          <p class="edge-code edge-code--sepia">{countLabel(past.length)}</p>
+          <p class="edge-code edge-code--toned">{countLabel(past.length)}</p>
         </div>
         <ul class="screened__grid" role="list" data-reveal-stagger="90">
           {past.map((e) => {
@@ -164,7 +164,7 @@ const dayOf = (d: Date) => String(d.getUTCDate());
 <style>
   .events {
     --container: 72rem;
-    --ledger-col: 11rem;
+    --ledger-col: 13rem;
     --ledger-gap: var(--s-7);
     padding-block: var(--s-9) 0;
   }
@@ -175,10 +175,12 @@ const dayOf = (d: Date) => String(d.getUTCDate());
     .ledger-row { grid-template-columns: var(--ledger-col) minmax(0, 1fr); column-gap: var(--ledger-gap); }
   }
   @media (min-width: 64em) {
-    .events { --ledger-col: 14rem; --ledger-gap: var(--s-8); }
+    .events { --ledger-col: 17rem; --ledger-gap: var(--s-8); }
   }
 
   /* head */
+  .events__head h1 { font-size: clamp(2.125rem, 1.45rem + 2.1vw, 3.25rem); }
+  .ledger__marker .display--sm { font-size: clamp(1.5rem, 1.15rem + 1vw, 2rem); }
   .events__head { align-items: end; }
   .events__head .lede { margin-block-start: 0; }
   @media (min-width: 48em) {

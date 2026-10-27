@@ -1,18 +1,25 @@
 ---
+// The tail of the reel: a field of film stock, perforated where it meets the page,
+// carrying the show's mark, the McGill Faculty of Medicine seal (used with permission), and the follow marks.
+import { Image } from 'astro:assets';
 import Mark from './Mark.astro';
+import scriptIn from '../assets/brand/wbyi-in.png';
 import SocialLinks from './SocialLinks.astro';
+import seal from '../assets/brand/mcgill-medicine-seal.png';
 import { site } from '../site';
 import { withBase } from '../lib/url';
 const year = new Date().getFullYear();
 ---
-<footer class="site-footer">
+<footer class="site-footer surface-stock">
   <span class="site-footer__rail perf perf--h" aria-hidden="true"></span>
   <div class="site-footer__inner container">
     <div class="site-footer__brand">
-      <a class="brand" href={withBase('/')} aria-label={`${site.name} — home`}><Mark size={36} /></a>
-      <p class="site-footer__name display display--sm">{site.name}</p>
+      <a class="brand" href={withBase('/')} aria-label={`${site.name}, home`}>
+        <Mark size={56} tone="white" />
+        <span class="brand__name" aria-hidden="true">What <span class="brand__red">Brings</span> You<span class="brand__in" style={`--script-in: url(${scriptIn.src})`}></span></span>
+      </a>
       <p class="muted measure">{site.affiliation}</p>
-      <p class="edge-code edge-code--sepia" data-placeholder={site.launch.placeholder ? 'launch' : undefined}>{site.launch.label}</p>
+      <p class="edge-code edge-code--toned" data-placeholder={site.launch.placeholder ? 'launch' : undefined}>{site.launch.label}</p>
     </div>
 
     <nav class="site-footer__nav" aria-label="Footer">
@@ -38,22 +45,34 @@ const year = new Date().getFullYear();
     </div>
   </div>
   <div class="site-footer__colophon container">
-    <p class="edge-code">© {year} {site.name} · Student-run · Affiliated with McGill University</p>
-    <p class="edge-code">Montréal, QC</p>
+    <div class="site-footer__affil">
+      <Image src={seal} alt="McGill University Faculty of Medicine and Health Sciences seal" width={72} densities={[1, 2]} class="site-footer__seal" />
+      <p class="small muted">A McGill UGME podcast.<br />Student-run, in Montréal.</p>
+    </div>
+    <p class="edge-code">© {year} {site.name}</p>
   </div>
 </footer>
 
 <style>
-  .site-footer { margin-block-start: var(--s-10); background: var(--leader-2); border-top: 1px solid var(--line); }
+  /* the stock starts below the rail, so the perforations show the page above */
+  .site-footer { margin-block-start: var(--s-10); background: linear-gradient(to bottom, transparent var(--perf-w), var(--bg) var(--perf-w)); }
   .site-footer__rail { display: block; height: var(--perf-w); width: 100%; }
   .site-footer__inner { display: grid; grid-template-columns: 1fr; gap: var(--s-8) var(--s-7); padding-block: var(--s-8) var(--s-7); }
   @media (min-width: 48em) { .site-footer__inner { grid-template-columns: 1.6fr 1fr 1fr 1.2fr; } }
-  .site-footer__brand { display: grid; gap: var(--s-3); align-content: start; }
-  .site-footer__name { font-size: 1.5rem; }
-  .site-footer__nav ul, .site-footer__contact { display: grid; gap: var(--s-2); margin-block-start: var(--s-3); }
+  .site-footer__brand { display: grid; gap: var(--s-4); align-content: start; justify-items: start; }
+  .brand { display: inline-flex; align-items: center; gap: var(--s-3); text-decoration: none; color: var(--fg-strong); }
+  .brand__name { font-family: var(--font-display); font-weight: 600; font-size: 1.375rem; letter-spacing: 0.03em; line-height: 1; white-space: nowrap; }
+  /* on stock the wordmark's red is lifted so it reads; Brings and the script "in" share it */
+  .brand { --brand-red: #ec7f77; }
+  .brand__red { color: var(--brand-red); }
+  .brand__in { display: inline-block; height: 1.5em; aspect-ratio: 300 / 249; margin-inline-start: 0.12em; vertical-align: -0.42em; background: var(--brand-red); -webkit-mask: var(--script-in) center / contain no-repeat; mask: var(--script-in) center / contain no-repeat; }
+  .site-footer__nav ul { display: grid; gap: var(--s-2); margin-block-start: var(--s-3); }
+  .site-footer__contact { display: grid; gap: var(--s-3); align-content: start; }
   .site-footer__follow :global(.socials) { margin-block-start: var(--s-3); }
   .site-footer a:not(.brand) { text-decoration: none; color: var(--fg-muted); }
-  .site-footer a:not(.brand):hover { color: var(--fg-strong); }
+  .site-footer a:not(.brand):hover { color: var(--fg-strong); text-decoration: underline; text-decoration-color: var(--line-strong); }
   .site-footer__contact p { margin: 0; }
-  .site-footer__colophon { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-3); padding-block: var(--s-5) var(--s-6); border-top: 1px solid var(--line); }
+  .site-footer__colophon { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-5); padding-block: var(--s-6) var(--s-7); border-top: 1px solid var(--line); }
+  .site-footer__affil { display: flex; align-items: center; gap: var(--s-4); }
+  .site-footer__seal { width: 4.5rem; height: auto; filter: brightness(0) invert(1); opacity: 0.92; }
 </style>

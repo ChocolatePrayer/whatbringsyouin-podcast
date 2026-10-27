@@ -1,6 +1,7 @@
 ---
 /**
- * Strip — a run of film: horizontal scroll-snap track between two perforation rails.
+ * Strip — a run of film laid across the sheet: a band of grey stock between two perforation rails,
+ * the frames riding inside it as prints. Horizontal scroll-snap; the holes show the paper beneath.
  * Children should be <Frame>s (their own rails hide inside a strip). Width of each
  * frame is controlled with --strip-item-w on the strip (default min(78vw, 26rem)).
  * Prev/next plates and keyboard scrolling are wired by src/scripts/motion.ts.
@@ -33,11 +34,14 @@ const { label, code, controls = true, class: cls = '', align = 'start', ...rest 
     display: flex; gap: var(--s-6); align-items: stretch;
     overflow-x: auto; overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
-    padding: var(--s-6) var(--gutter);
+    padding: var(--s-5) var(--gutter);
+    background-color: var(--stock);
+    background-image: url('../assets/textures/grain-dark.png');
+    background-size: 256px 256px;
     scrollbar-width: none;
   }
   .strip__track::-webkit-scrollbar { display: none; }
-  .strip__track:focus-visible { outline-offset: -2px; }
+  .strip__track:focus-visible { outline: 2px solid var(--on-stock); outline-offset: -4px; }
   .strip__track > :global(*) { flex: 0 0 auto; width: var(--strip-item-w); scroll-snap-align: start; }
   .strip--center .strip__track > :global(*) { scroll-snap-align: center; }
   /* the leader before the first frame */

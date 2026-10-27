@@ -27,14 +27,14 @@ const description =
     </header>
 
     {count > 0 ? (
-      <div class="light-table">
+      <div class="light-table surface-beige band">
         <p class="sheet-edge edge-code"><span class="visually-hidden">Sheet </span>{sheetCode}</p>
         <ol class="sheet" role="list" data-reveal-stagger="70">
           {team.map((member, i) => <MemberFrame member={member} index={i} />)}
         </ol>
       </div>
     ) : (
-      <div class="light-table light-table--empty">
+      <div class="light-table light-table--empty surface-beige band">
         <p class="sheet-edge edge-code"><span class="visually-hidden">Sheet </span>{sheetCode}</p>
         <Frame as="div" class="empty-frame" state="latent" leak numeral="01" numeralLabel="Frame" code={edgeCode('WBYI', 'Team', 'Coming soon')}>
           <h2 class="title title--lg">The team sheet is being developed</h2>
@@ -70,11 +70,11 @@ const description =
     .team__head > .lede { grid-column: 7 / 12; padding-block-end: 0.3em; }
   }
 
-  /* ---------- the light table: a soft backlight under the sheet, and the film-edge data line ---------- */
-  .light-table { position: relative; isolation: isolate; display: grid; gap: var(--s-6); margin-block-start: var(--s-8); }
+  /* ---------- the light table, switched on: a beige band, a white glow under the sheet, the film-edge data line ---------- */
+  .light-table { position: relative; isolation: isolate; display: grid; gap: var(--s-6); margin-block-start: var(--s-8); padding-block: var(--s-8) var(--s-9); }
   .light-table::before {
-    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-    background: radial-gradient(70% 55% at 50% 42%, rgb(166 171 176 / 0.1), transparent 70%);
+    content: ''; position: absolute; inset: calc(-1 * var(--s-8)) 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(60% 50% at 50% 45%, rgb(255 255 255 / 0.75), transparent 72%);
   }
   .sheet-edge { white-space: nowrap; }
   @media (min-width: 60em) {
@@ -103,7 +103,7 @@ const description =
   .empty-frame__action { margin-block-start: var(--s-3); }
 
   /* ---------- join: one wide, always-lit frame; copy stays left, off the bloom ---------- */
-  .team-join { padding-block: 0; }
+  .team-join { padding-block: var(--s-9) 0; }
   .join-frame__inner { display: grid; gap: var(--s-4); max-width: 56ch; padding: var(--s-2) var(--s-5) var(--s-2) 0; }
   .join-frame__copy { color: var(--fg-muted); }
   .join-frame__action { margin-block-start: var(--s-3); }

@@ -151,30 +151,32 @@ const codeFor = (e: Episode) => {
   .ep-log { padding-block: 0; }
   .film-log {
     position: relative;
+    box-shadow: var(--shadow-frame);
     width: min(100%, 56rem);
     margin-inline: auto;
-    padding: var(--s-7) var(--perf-w);
+    padding: var(--s-5) var(--perf-w);
   }
   .film-log__rails {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--s-8), #000 calc(100% - var(--s-8)), transparent);
-    mask-image: linear-gradient(to bottom, transparent, #000 var(--s-8), #000 calc(100% - var(--s-8)), transparent);
   }
   .film-log__rail { position: absolute; top: 0; bottom: 0; width: var(--perf-w); }
   .film-log__rail--l { left: 0; }
   .film-log__rail--r { right: 0; }
+  /* the stock between the rails; under the rails the paper shows through the perforations */
+  .film-log::before {
+    content: ''; position: absolute; inset: 0 var(--perf-w); z-index: 0; pointer-events: none;
+    background: var(--stock) url('../../assets/textures/grain-dark.png') 0 0 / 256px 256px;
+  }
   .film-log__group { position: relative; z-index: 1; }
-  .film-log__group + .film-log__group { margin-block-start: var(--s-7); padding-block-start: var(--s-7); border-block-start: 1px solid var(--line); }
-  .film-log__reel { margin-block-end: var(--s-4); padding-inline: var(--s-5); }
-  .film-log__list { display: grid; gap: var(--s-3); position: relative; z-index: 1; }
+  .film-log__group + .film-log__group { margin-block-start: var(--s-7); padding-block-start: var(--s-7); border-block-start: 1px dashed color-mix(in oklab, var(--on-stock) 30%, transparent); }
+  .film-log__reel { margin-block-end: var(--s-4); padding-inline: var(--s-5); color: var(--on-stock-muted); }
+  .film-log__list { display: grid; gap: var(--s-4); position: relative; z-index: 1; }
 
   /* frames inside the log drop their own rails: this strip's rails carry the perforations */
-  .film-log :global(.frame) { grid-template-columns: 0 minmax(0, 1fr) 0; }
+  .film-log :global(.frame) { --rail: 0px; grid-template-columns: 0 minmax(0, 1fr) 0; border-block: 0; box-shadow: none; border-radius: 0; }
   .film-log :global(.frame__rail) { display: none; }
   .film-log :global(.frame__numeral) { left: var(--s-4); }
   .film-log :global(.frame__body) { gap: var(--s-3); }
-  /* latent frames keep their cover legible enough to read as a cover */
-  .film-log :global(.frame.is-latent .frame__media) { filter: grayscale(1) brightness(0.7) contrast(0.95); }
   /* the title develops with the frame */
   .film-log :global(.frame.is-latent .title) { color: inherit; transition: color var(--dur-3) var(--ease-out); }
   .film-log :global(.frame.is-latent:is(:hover, :focus-within) .title) { color: var(--fg-strong); }
