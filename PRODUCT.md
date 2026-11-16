@@ -51,11 +51,10 @@ Delivered by students, for students, from within a McGill-affiliated organizatio
 
 ## Capabilities and Constraints
 
-**Confirmed pages:** Home, Team, About, Episodes, Events. The user said "etc., all sorts of pages"; additional pages (for example Contact, Get Involved, Sponsors, Resources) are **open**, not confirmed.
+**Confirmed pages:** Home, Team, About, Episodes. Events and Get Involved were built, then removed at the user's request (2026-11-16). The user said "etc., all sorts of pages"; additional pages (for example Contact, Get Involved, Sponsors, Resources) are **open**, not confirmed.
 
 **Confirmed functionality:**
 - Episode listing that works with zero entries and scales to many.
-- Event listing (upcoming and past).
 - Team roster with photos and bios (photos and bios do not exist yet).
 - Static site, no backend, no database.
 
@@ -71,7 +70,7 @@ Delivered by students, for students, from within a McGill-affiliated organizatio
 - Site language(s): English assumed; a French version for a Quebec-based organization is undecided.
 - Contact / join / guest-pitch mechanism.
 - Exact event types and cadence.
-- Additional pages beyond the five confirmed.
+- Additional pages beyond the four confirmed.
 
 ## Brand Commitments
 

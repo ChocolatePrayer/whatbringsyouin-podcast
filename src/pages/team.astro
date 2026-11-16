@@ -1,10 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import Frame from '../components/Frame.astro';
-import Button from '../components/Button.astro';
 import MemberFrame from '../components/team/MemberFrame.astro';
 import { getCollection } from 'astro:content';
-import { pad2, edgeCode } from '../lib/format';
+import { edgeCode } from '../lib/format';
 
 // The contact sheet: every team entry, in the order the maintainer set.
 const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id));
@@ -38,27 +37,11 @@ const description =
         <p class="sheet-edge edge-code"><span class="visually-hidden">Sheet </span>{sheetCode}</p>
         <Frame as="div" class="empty-frame stock-brown" state="latent" leak numeral="01" numeralLabel="Frame" code={edgeCode('WBYI', 'Team', 'Coming soon')}>
           <h2 class="title title--lg">The team sheet is being developed</h2>
-          <p class="muted">Names, photos and bios will appear here as the team comes together. If you would like to be on it, the door is open.</p>
-          <div class="empty-frame__action"><Button variant="primary" href="/get-involved#team" iconAfter="arrow-right">Join the team</Button></div>
+          <p class="muted">Names, photos and bios will appear here as the team comes together.</p>
         </Frame>
       </div>
     )}
   </section>
-
-  {count > 0 && (
-    <section class="team-join container" aria-labelledby="join-h">
-      <Frame as="div" class="is-lit join-frame" leak numeral={pad2(count + 1)} numeralLabel="Open frame" code={edgeCode('WBYI', 'Team', 'Open frame')}>
-        <div class="join-frame__inner">
-          <h2 id="join-h" class="display display--sm">Join the sheet</h2>
-          <p class="join-frame__copy">
-            The show is made by students who host, produce and edit it, and who run its events. If that sounds like you,
-            there is an open frame on this sheet.
-          </p>
-          <div class="join-frame__action"><Button variant="primary" href="/get-involved#team" iconAfter="arrow-right">Join the team</Button></div>
-        </div>
-      </Frame>
-    </section>
-  )}
 </Base>
 
 <style>
@@ -100,14 +83,4 @@ const description =
 
   /* ---------- empty sheet ---------- */
   .light-table--empty .empty-frame { max-width: 40rem; }
-  .empty-frame__action { margin-block-start: var(--s-3); }
-
-  /* ---------- join: one wide, always-lit frame; copy stays left, off the bloom ---------- */
-  .team-join { padding-block: var(--s-9) 0; }
-  .join-frame__inner { display: grid; gap: var(--s-4); max-width: 56ch; padding: var(--s-2) var(--s-5) var(--s-2) 0; }
-  .join-frame__copy { color: var(--fg-muted); }
-  .join-frame__action { margin-block-start: var(--s-3); }
-  @media (min-width: 60em) {
-    .join-frame__inner { padding: var(--s-6) 0 var(--s-6) var(--s-6); }
-  }
 </style>

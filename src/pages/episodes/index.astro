@@ -88,7 +88,6 @@ const codeFor = (e: Episode) => {
           <Frame as="div" state="latent" leak code={edgeCode('Season 01', 'Developing')} class="film-log__empty">
             <h2 class="title title--lg">The first episodes are developing</h2>
             <p class="muted">The first conversations are being scheduled. Episodes will appear here, one frame after another, once they are recorded.</p>
-            <p class="small"><a href={withBase('/get-involved#guest')}>Have a guest in mind? Suggest a guest</a></p>
           </Frame>
         </div>
       ) : (
@@ -125,11 +124,7 @@ const codeFor = (e: Episode) => {
     </div>
   </section>
 
-  <aside class="ep-after container" aria-label="Suggest a guest, and where to listen" data-reveal>
-    <div class="ep-after__guest">
-      <p class="muted">Have a guest in mind?</p>
-      <Button variant="ghost" size="sm" href="/get-involved#guest" iconAfter="arrow-right">Suggest a guest</Button>
-    </div>
+  <aside class="ep-after container" aria-label="Where to listen" data-reveal>
     <div class="ep-after__listen">
       <p class="edge-code">Where to listen, once the podcast is live</p>
       <SocialLinks only={['spotify', 'apple', 'youtube', 'rss']} />
@@ -201,7 +196,7 @@ const codeFor = (e: Episode) => {
 
   /* ---------- below the strip: a quiet row ---------- */
   .ep-after { display: grid; gap: var(--s-8); margin-block-start: var(--s-9); }
-  .ep-after__guest, .ep-after__listen { display: grid; gap: var(--s-4); justify-items: start; align-content: start; }
+  .ep-after__listen { display: grid; gap: var(--s-4); justify-items: start; align-content: start; }
   @media (min-width: 48em) {
     .ep-after { grid-template-columns: minmax(0, 1fr) auto; gap: var(--s-9); align-items: start; }
     .ep-after__listen { justify-items: end; text-align: end; }

@@ -181,11 +181,11 @@ components:
 
 **Creative North Star: "The Reel on the Archive Table"**
 
-The site is a reel of 16mm film laid out on a McGill archive table. The page is near-white archive paper. Every episode, event, team member and statement is a white print held between graphite perforated stock. Whole sections sit in beige archive-folder bands, and the reel's tail is a closing band of graphite stock that runs straight into the footer. One McGill red, the logo's own, marks the frame that matters: it burns in on the print from the right edge as a light leak and comes with a red china-marker ring drawn around the frame's numeral. Prints develop out of white paper as they scroll into view. Type never moves.
+The site is a reel of 16mm film laid out on a McGill archive table. The page is near-white archive paper. Every episode, event, team member and statement is a white print held between graphite perforated stock. Whole sections sit in beige archive-folder bands, and the reel's tail is the graphite-stock footer. One McGill red, the logo's own, marks the frame that matters: it burns in on the print from the right edge as a light leak and comes with a red china-marker ring drawn around the frame's numeral. Prints develop out of white paper as they scroll into view. Type never moves.
 
 The density is cozy rather than airy. Sections are 6–8rem apart and groups inside them are tight (0.75–1.5rem), so each frame reads as a dense object on an open table. Composition is loose and asymmetric: a twelve-column table with frames offset, staggered, hung at different heights or run in a strip. It is never a uniform card grid. The show's own logo is the title card. The McGill Faculty of Medicine seal (displayed with permission) appears only in the footer colophon, reversed to white. The system rejects two defaults by name: the university-template banner-crest-card-grid page, and the cream-paper, serif-headline editorial look.
 
-The material vocabulary is literal and consistent. Perforation holes are real holes, so the surface beneath shows through them. Edge codes are printed in the film margin. Numerals are written by hand in graphite. Unfinished content is an unexposed print, and finished events are fogged and sepia-toned. Every device on the page comes from the darkroom or the contact sheet.
+The material vocabulary is literal and consistent. Perforation holes are real holes, so the surface beneath shows through them. Edge codes are printed in the film margin. Numerals are written by hand in graphite. Unfinished content is an unexposed print, and the past is fogged and sepia-toned. Every device on the page comes from the darkroom or the contact sheet.
 
 **Key Characteristics:**
 - White prints on near-white paper, held by graphite stock with masked perforations
@@ -210,9 +210,9 @@ The palette is restrained: warm near-white paper, beige folders, warm graphite s
 - **Archive Paper** (`paper`): the page ground and the theme colour. It is near-white, not cream. It also shows through the perforations of a frame lying on stock.
 - **Raised Paper** (`paper-2`): the mobile menu panel, the fogged print, and the hover of the white primary plate.
 - **Print White** (`print`): the inside of every frame, plus inputs and the audio player. It is the brightest surface on the page, so a frame always reads as a print lying on paper.
-- **Archive Folder Beige** (`beige`): whole-section bands (Premise, the About drying line, the Team light table, the Get Involved form), placeholder fills, and the media slot behind an image.
+- **Archive Folder Beige** (`beige`): whole-section bands (Premise, the About drying line, the Team light table), placeholder fills, and the media slot behind an image.
 - **Sepia Toning** (`sepia`): toned text for placeholders, launch notes and the past, at 5.0:1 on beige. **Faded Sepia** (`sepia-dim`) is decorative only: dashed placeholder borders and fogged-print stains. **Sepia on Stock** (`sepia-on-stock`) is the toned role on graphite (7.6:1).
-- **Film Stock** (`stock`): rails, strips, plates (secondary buttons), the frame lines above and below each print, the closing band and the footer. **Raised Stock** (`stock-2`) is the hover plate. **Tinted Stock** (`stock-red` oxblood, `stock-brown` dark brown): silent-era reels were dyed, so a strip, frame or hanging strip can run on red or brown base instead of graphite (`.stock-red` / `.stock-brown` remap `--stock`). Graphite stays the default and holds the first-reel strip, the closing band and the footer; plates read `--plate` and stay graphite everywhere, so a secondary button never turns red or brown.
+- **Film Stock** (`stock`): rails, strips, plates (secondary buttons), the frame lines above and below each print, and the footer. **Raised Stock** (`stock-2`) is the hover plate. **Tinted Stock** (`stock-red` oxblood, `stock-brown` dark brown): silent-era reels were dyed, so a strip, frame or hanging strip can run on red or brown base instead of graphite (`.stock-red` / `.stock-brown` remap `--stock`). Graphite stays the default and holds the first-reel strip, the closing band and the footer; plates read `--plate` and stay graphite everywhere, so a secondary button never turns red or brown.
 - **On Stock** (`on-stock`, 11:1), **On Stock Muted** (`on-stock-muted`, 6.2:1), **On Stock Faint** (`on-stock-faint`, 4.8:1): the text ladder on graphite.
 - **Ink Strong** (`ink-strong`, 17:1 on paper): headings. **Ink** (`ink`, 14:1): body. **Ink Muted** (`ink-muted`, 7.5:1): ledes and secondary copy. **Ink Faint** (`ink-faint`, ≥4.85:1 on every light surface): edge codes and hints.
 - **Graphite** (`grease`): china-marker numerals and step numbers, at 8.7:1 on print.
@@ -239,13 +239,13 @@ Five surfaces remap the same role tokens (background, foreground ladder, line, t
 **Character:** Cinzel's Roman capitals come straight from the logo. It is set in mixed case, so lowercase renders as small capitals and "What Brings You" sets exactly like the logo: a full capital, then small capitals. Source Serif 4 carries every sentence a student actually reads. Libre Franklin plays the film's printed margin, small, uppercase and widely tracked. Caveat is the china marker on the contact sheet, used only for numerals.
 
 ### Hierarchy
-- **Display** (Cinzel 600, `display`, line-height 1.04, tracking 0.02em): page titles ("Episodes", "The team", "About the show") and the closing "Get involved".
-- **Headline** (Cinzel 600, `headline`): section titles on a page ("The newest episodes", "Three things at once", "Next screening") and episode or event titles in detail-page hero frames.
+- **Display** (Cinzel 600, `display`, line-height 1.04, tracking 0.02em): page titles ("Episodes", "The team", "About the show").
+- **Headline** (Cinzel 600, `headline`): section titles on a page ("The newest episodes", "Three things at once") and episode titles in detail-page hero frames.
 - **Title** (Source Serif 4 600, `title`, 1.22): the heading inside a frame, such as an episode, event, member or premise facet. The same face at body size (1.125rem) is the compact title in narrow frames and the prev/next frames.
 - **Lede** (Source Serif 4 400, `lede`, 1.5, muted, max 52ch): the one-paragraph introduction under a page or section title. The hero tagline is the single larger instance (fluid 1.25–1.625rem, line-height 1.4, max 26ch).
 - **Body** (Source Serif 4 400, `body`, 1.62, measure 66ch): all reading text, rendered Markdown included. **Small** (`body-sm`) is used for meta rows, hints and frame descriptions.
 - **Label / Edge Code** (Libre Franklin 600, `label`, uppercase, tracking 0.16em, tabular lining figures): metadata stamped along a frame's bottom margin ("SEASON 01 · PLACEHOLDER FRAMES"), counts, dates, group labels, field labels and the follow links. The plate size (`label-plate`, 0.75rem) is used for buttons and the primary navigation.
-- **Numeral** (Caveat 600, `numeral`, rotated −3°, graphite): the episode number, step or day written top-left on a frame. `numeral-lg` is used for the day on the home page's next-screening frame.
+- **Numeral** (Caveat 600, `numeral`, rotated −3°, graphite): the episode number, step or day written top-left on a frame.
 
 ### Named Rules
 **The Logo Capitals Rule.** Cinzel is always set in mixed case and never forced to uppercase. The small capitals are the point.
@@ -256,13 +256,13 @@ Five surfaces remap the same role tokens (background, foreground ladder, line, t
 
 ## Layout
 
-The spatial model is a light table: a centred container of 80rem (narrow rooms 56rem, wide rows 96rem; Events tightens to 72rem) with a fluid gutter, on which frames are laid loose. From 60em up, the key compositions use twelve columns:
+The spatial model is a light table: a centred container of 80rem (narrow rooms 56rem, wide rows 96rem) with a fluid gutter, on which frames are laid loose. From 60em up, the key compositions use twelve columns:
 
 - **Home hero:** the logo, unframed on the paper, spans columns 1–8 and the tagline, actions and follow marks take 9–12, vertically centred, at viewport height minus the header (capped at 52rem).
 - **Premise:** three frames of different sizes, offset (1–7, then 8–12 dropped 4rem, then 3–11).
 - **Team:** the contact sheet sits in thirds, with every second and third frame dropped (4rem and 1rem) so the sheet reads as hand-laid. The sheet's edge code runs vertically down its left margin and stays sticky.
 
-Other pages use their own one-off structures rather than a shared grid. Events is a ledger with a sticky margin column (13rem, then 17rem from 64em) holding month markers, with frames running down the right. The Episodes log is one centred strip at most 56rem wide, its frames turning horizontal (cover left, body right) from 48em. About is a drying line where four strips hang from a wire at different heights (one column, two from 48em, four from 80em). The home reel is a horizontal strip with scroll-snap, each frame min(78vw, 26rem) wide, with prev/next plates that appear only when it overflows.
+Other pages use their own one-off structures rather than a shared grid. The Episodes log is one centred strip at most 56rem wide, its frames turning horizontal (cover left, body right) from 48em. About is a drying line where four strips hang from a wire at different heights (one column, two from 48em, four from 80em). The home reel is a horizontal strip with scroll-snap, each frame min(78vw, 26rem) wide, with prev/next plates that appear only when it overflows.
 
 Rhythm is cozy. Sections are separated by `s-9` (6rem), rising to `s-10` (8rem) from 60em. Heads to content take `s-7`/`s-8`, groups inside take `s-3`–`s-5`, and frame bodies pad `s-5`–`s-8` depending on frame size. Bands (beige or stock) bleed to the viewport edge behind contained content without extra markup. A page that ends on a band runs straight into the footer's perforations.
 
@@ -301,9 +301,9 @@ The form language is the film itself. Frames and plates are rectangles with bare
 ### Buttons (plates)
 A plate is a short length of film stock, tactile and quiet.
 - **Shape:** near-square (3px corners), 2.75rem tall, 3rem side padding, with two pairs of perforations punched at the ends. Labels are Libre Franklin 0.75rem uppercase, tracked 0.16em.
-- **Primary:** McGill red with white label, the one action that matters on a section ("The newest episodes", "Suggest a guest", "Send it in"). On hover it presses to red-deep, rises 1px and gains the leak shadow. On a stock band a primary plate turns white with a stock label, except when it sits on a print (a frame), where it stays red.
+- **Primary:** McGill red with white label, the one action that matters on a section ("The newest episodes"). On hover it presses to red-deep, rises 1px and gains the leak shadow. On a stock band a primary plate turns white with a stock label, except when it sits on a print (a frame), where it stays red.
 - **Secondary (default):** a graphite stock plate with paper showing through its holes. On hover it becomes raised stock.
-- **Ghost:** transparent with a 1px strong-line outline and outlined holes. On hover it gains a 6% wash, the outline darkens and the holes turn the mark colour. It is used for "All episodes", "Event details" and strip prev/next.
+- **Ghost:** transparent with a 1px strong-line outline and outlined holes. On hover it gains a 6% wash, the outline darkens and the holes turn the mark colour. It is used for "All episodes" and strip prev/next.
 - **Small:** 2.25rem tall and 1.5rem padding, with label-size type. **Icon:** a square 2.75rem plate without holes.
 - **Focus / Active:** a 2px mark-colour outline at a 3px offset. Pressing sinks the plate 1px over 160ms. Disabled plates sit at 50% opacity.
 
@@ -312,12 +312,12 @@ A plate is a short length of film stock, tactile and quiet.
 
 ### Frames (the atom)
 Everything that is content is a Frame: a white print between graphite rails with a stamped edge code. It is not a card.
-- **States:** a *projected* frame is the full print (default). A *latent* frame is underexposed, with muted text and media pale and half grey; it develops on hover, on focus, or when it is the centred frame of a strip, and is used for anything coming soon. A *fogged* frame is raised paper with sepia-toned media and warm stains; it is used for the past (finished events).
+- **States:** a *projected* frame is the full print (default). A *latent* frame is underexposed, with muted text and media pale and half grey; it develops on hover, on focus, or when it is the centred frame of a strip, and is used for anything coming soon. A *fogged* frame is raised paper with sepia-toned media and warm stains; it is kept for the past, though nothing uses it since the Events page was removed.
 - **Media slot:** sits on top, on a beige ground, with procedural dust and scratches at three densities. A numeral over a real photograph is written in white marker.
 - **Numeral:** written top-left in graphite china marker.
 - **Edge code:** the bottom margin, as metadata only.
 - **Leak:** at rest, a frame shows no leak. Hover or focus burns it in at 72%, and a lit frame glows at 55%. The burn keeps to the right edge (a 60% × 96% radial, gone by 72% of its radius), so the print stays readable. Its two texture masks are unioned, not intersected, so they mottle the red (83–96%) instead of thinning it to pink.
-- **Lit:** the frame that means something right now: the next episode to develop (or the latest once anything is released), the next screening, an upcoming event's detail frame, or the team's open frame. Its numeral turns red and the ring draws itself around it.
+- **Lit:** the frame that means something right now: the next episode to develop (or the latest once anything is released). Its numeral turns red and the ring draws itself around it.
 - **Interactive:** a frame that is a link rises 3px on hover onto the lifted shadow, with a 2px red focus outline.
 - **In a strip:** a frame drops its own rails, frame lines and shadow, and the strip's rails carry the perforations.
 
@@ -347,7 +347,7 @@ Everything that is content is a Frame: a white print between graphite rails with
 Placeholders are honest by construction: an unexposed beige print, a sepia "Add …" stamp, sepia italic bracketed copy for text that is not real yet, and a boxed "soon" chip on follow links without a URL. Every one carries a data marker and a maintainer tooltip, so a maintainer can find and replace it.
 
 ### Motion
-Motion is restrained. Prints develop out of white paper: a frame, or anything holding one, enters from 0.75rem below, overexposed (brightness 1.45, contrast 0.55, grayscale 0.6). It fades in over 640ms and its print darkens last over 1.8s on the out-curve (`cubic-bezier(0.16, 1, 0.3, 1)`), with optional staggers capped at 600ms. Each page has one authored moment. On the home page it is the hero logo, unframed, developing out of the paper over 1.8s (contrast before brightness, so its white ground never greys against the page). On Events the next screening's leak blooms after its frame develops, and on About the strips develop one after another. Under reduced motion all of this is static and complete.
+Motion is restrained. Prints develop out of white paper: a frame, or anything holding one, enters from 0.75rem below, overexposed (brightness 1.45, contrast 0.55, grayscale 0.6). It fades in over 640ms and its print darkens last over 1.8s on the out-curve (`cubic-bezier(0.16, 1, 0.3, 1)`), with optional staggers capped at 600ms. Each page has one authored moment. On the home page it is the hero logo, unframed, developing out of the paper over 1.8s (contrast before brightness, so its white ground never greys against the page). On About the strips develop one after another. Under reduced motion all of this is static and complete.
 
 **The Only Prints Develop Rule.** Only prints animate on scroll. Headings, ledes and action rows are type on paper and stay still, even where a reveal attribute sits on them.
 
@@ -355,10 +355,10 @@ Motion is restrained. Prints develop out of white paper: a frame, or anything ho
 
 ### Do:
 - **Do** put every piece of content (an episode, event, person or premise) in a Frame: a white print between graphite rails, with its metadata in the edge code.
-- **Do** light at most one frame per view, and only one that means something (next to develop, latest, next screening, the open frame). Give it the leak at 85%, and if it has a numeral, the drawn red ring.
+- **Do** light at most one frame per view, and only one that means something (next to develop, latest). Give it the leak at 85%, and if it has a numeral, the drawn red ring.
 - **Do** keep McGill red to the lit frame, the current page, the primary action and the wordmark, plus hairlines: link underlines, the focus ring, field focus and error text.
 - **Do** use one red per surface for the wordmark: McGill red on paper, Wordmark Red on Stock on graphite, shared by "Brings" and the script "in".
-- **Do** lay pages on archive paper, give whole sections beige folder bands, and keep graphite stock for rails, strips, plates, the closing band and the footer.
+- **Do** lay pages on archive paper, give whole sections beige folder bands, and keep graphite stock for rails, strips, plates and the footer.
 - **Do** cut perforations with a mask, repeat them with `round` so they end on whole holes, and let the surface beneath show through.
 - **Do** keep each type voice to its role: Cinzel in mixed case for titles, Source Serif 4 for reading (66ch measure), Libre Franklin uppercase at 0.16em for metadata and controls, Caveat for numerals only.
 - **Do** keep sections 6–8rem apart and groups tight, and lay frames loose and offset on the twelve-column table.

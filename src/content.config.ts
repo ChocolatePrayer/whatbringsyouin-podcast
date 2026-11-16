@@ -28,22 +28,6 @@ const episodes = defineCollection({
   }),
 });
 
-const events = defineCollection({
-  loader: md('events'),
-  schema: z.object({
-    title: z.string(),
-    kind: z.enum(['live-recording', 'talk', 'mixer', 'workshop', 'other']).default('other'),
-    date: z.coerce.date(), // YYYY-MM-DD (date only; times go in `time`)
-    time: z.string().optional(), // e.g. "6:00 PM"
-    endTime: z.string().optional(),
-    location: z.string(),
-    description: z.string(),
-    rsvpUrl: z.string().url().optional(),
-    image: z.string().optional(), // path under /public, e.g. /images/events/live-recording.jpg
-    placeholder: z.boolean().default(false),
-  }),
-});
-
 const team = defineCollection({
   loader: md('team'),
   schema: z.object({
@@ -56,4 +40,4 @@ const team = defineCollection({
   }),
 });
 
-export const collections = { episodes, events, team };
+export const collections = { episodes, team };

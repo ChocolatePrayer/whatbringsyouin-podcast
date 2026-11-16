@@ -22,10 +22,9 @@ underscore, fill in the front matter, write the body. Files starting with `_` ar
 | What | Folder | Notes |
 |---|---|---|
 | Episode | `src/content/episodes/` | `number` orders them; `status: coming-soon` shows a latent frame; add `audioUrl` / `links` when published |
-| Event | `src/content/events/` | `date` is `YYYY-MM-DD`; put times in `time` / `endTime`; past events fog automatically |
 | Team member | `src/content/team/` | `order` sorts; `photo` points to a file under `public/images/team/` |
 
-Site-wide facts (name, tagline, affiliation, email, follow links, form endpoint, nav) live in `src/site.ts`.
+Site-wide facts (name, tagline, affiliation, email, follow links, nav) live in `src/site.ts`.
 
 ## Replace the placeholders
 
@@ -41,11 +40,10 @@ Checklist:
 - [x] Logo: in place. The home hero prints `src/assets/brand/wbyi-logo.png` and the header and footer use the microphone cut from it (`src/assets/brand/wbyi-mic.png`). Both were made from `WBYI-podcast-logo.jpeg`; regenerate them if the logo changes. The favicons are `public/favicon.png` and `public/apple-touch-icon.png`.
 - [x] McGill Faculty of Medicine seal: shown in the footer with permission (`src/assets/brand/mcgill-medicine-seal.png`, from `mcgill-faculty-of-medicine-logo.png`).
 - [ ] Follow links, contact email and the launch note in `src/site.ts` (`placeholder: false` once real).
-- [ ] Form endpoint for Get involved in `src/site.ts` (Formspree, Netlify Forms, Google Forms…).
 - [ ] Team photos, names, programs and bios in `src/content/team/`.
-- [ ] Real episodes (delete the three placeholder files `01.md`–`03.md`) and real events (delete the three placeholder event files).
+- [ ] Real episodes (delete the three placeholder files `01.md`–`03.md`).
 - [ ] Copy marked `data-placeholder` in the pages.
-- [ ] Guest photos: add `photo:` under `guest:` in an episode file (`/images/guests/...`). Event images: add `image:` to an event file (`/images/events/...`). Drop the files under `public/`.
+- [ ] Guest photos: add `photo:` under `guest:` in an episode file (`/images/guests/...`). Drop the files under `public/`.
 
 ## Deploy
 

@@ -9,7 +9,6 @@ export const site = {
   affiliation: 'A student-run podcast affiliated with McGill University, Montréal.',
   launch: { label: 'First episodes coming soon', placeholder: true },
   email: { address: '', placeholder: true }, // e.g. hello@example.com
-  formEndpoint: { url: '', placeholder: true }, // e.g. a Formspree / Netlify Forms / Google Forms endpoint
   socials: [
     { id: 'spotify', name: 'Spotify', href: '', placeholder: true },
     { id: 'apple', name: 'Apple Podcasts', href: '', placeholder: true },
@@ -19,10 +18,8 @@ export const site = {
   ],
   nav: [
     { label: 'Episodes', href: '/episodes' },
-    { label: 'Events', href: '/events' },
     { label: 'Team', href: '/team' },
     { label: 'About', href: '/about' },
-    { label: 'Get involved', href: '/get-involved' },
   ],
 };
 export type Social = (typeof site.socials)[number];
