@@ -336,9 +336,9 @@ Everything that is content is a Frame: a white print between graphite rails with
 - **Choice plates:** radio options are ghost plates. When selected, a plate becomes a stock plate with a 3px red underline.
 
 ### Navigation
-- **Header:** a perforation rail runs across the top. Below it sit the mic mark and the wordmark in Cinzel (21px, tracking 0.03em, with a red "Brings" and the logo's red script "in" swinging below the baseline), and on the right the primary links in muted edge-code type at plate size.
-- **States:** hover darkens a link to strong ink and draws a grey stroke under it. The current page is strong ink with a hand-drawn McGill red double stroke beneath it, the only red in the header besides the wordmark.
-- **Mobile (≤52em):** a native disclosure labelled "Menu" opens a raised-paper panel of large Cinzel links (current page in red). The links fade in with a 40ms stagger when motion is allowed.
+- **Header:** a perforation rail runs across the top. Below it sit the mic mark and the wordmark in Cinzel (21px, tracking 0.03em, with a red "Brings" and the logo's red script "in" swinging below the baseline), and on the right the follow marks (YouTube, Instagram, Spotify, Apple Podcasts and Amazon Music glyphs, 18px, muted graphite, a hairline after them) and then the primary links in muted edge-code type at plate size.
+- **States:** hover darkens a link to strong ink and draws a grey stroke under it; a follow mark only darkens. The current page is strong ink with a hand-drawn McGill red double stroke beneath it, the only red in the header besides the wordmark.
+- **Mobile (≤52em):** a native disclosure labelled "Menu" opens a raised-paper panel of large Cinzel links (current page in red), with the follow marks in a row beneath them. The links fade in with a 40ms stagger when motion is allowed.
 
 ### Footer
 - **Style:** a graphite stock field whose top rail opens onto the page above. It holds the reversed mark and the wordmark (in Wordmark Red on Stock), the affiliation line, the nav, follow marks and contact. The colophon carries the McGill Faculty of Medicine seal reversed to white at 92% opacity beside "A McGill UGME podcast."

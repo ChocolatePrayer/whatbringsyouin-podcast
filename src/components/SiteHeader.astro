@@ -5,6 +5,8 @@ import scriptIn from '../assets/brand/wbyi-in.png';
 import { site } from '../site';
 import { withBase, isCurrent } from '../lib/url';
 const path = Astro.url.pathname;
+// The navbar carries the platform marks; RSS stays a text link (footer, Episodes).
+const follow = site.socials.filter((s) => !s.placeholder && s.href && s.id !== 'rss');
 ---
 <header class="site-header">
   <span class="site-header__rail perf perf--h" aria-hidden="true"></span>
@@ -13,6 +15,12 @@ const path = Astro.url.pathname;
       <Mark size={44} />
       <span class="brand__name" aria-hidden="true">What <span class="brand__red">Brings</span> You<span class="brand__in" style={`--script-in: url(${scriptIn.src})`}></span></span>
     </a>
+
+    <ul class="header-socials" role="list" aria-label="Follow">
+      {follow.map((s) => (
+        <li><a href={s.href} rel="me noopener" target="_blank" aria-label={s.name} title={s.name}><Icon name={s.id} size={18} /></a></li>
+      ))}
+    </ul>
 
     <nav class="site-nav" aria-label="Primary">
       <ul role="list">
@@ -32,6 +40,11 @@ const path = Astro.url.pathname;
         <ul role="list">
           {site.nav.map((item, i) => (
             <li style={`--i: ${i}`}><a href={withBase(item.href)} aria-current={isCurrent(path, item.href) ? 'page' : undefined}>{item.label}</a></li>
+          ))}
+        </ul>
+        <ul class="header-socials" role="list" aria-label="Follow">
+          {follow.map((s) => (
+            <li><a href={s.href} rel="me noopener" target="_blank" aria-label={s.name} title={s.name}><Icon name={s.id} size={18} /></a></li>
           ))}
         </ul>
         <p class="edge-code nav-menu__foot">{site.affiliation}</p>
@@ -56,6 +69,11 @@ const path = Astro.url.pathname;
   .brand :global(.mark) { transition: rotate var(--dur-3) var(--ease-out); transform-origin: 50% 90%; }
   .brand:hover { color: var(--fg-strong); }
   .brand:hover :global(.mark) { rotate: -5deg; }
+
+  /* follow marks: graphite glyphs packed right, left of the pages, behind a hairline; hover darkens them (red stays for the current page) */
+  .header-socials { display: flex; gap: var(--s-1); margin-inline-start: auto; padding-inline-end: var(--s-5); border-inline-end: 1px solid var(--line); }
+  .header-socials a { display: grid; place-items: center; width: 2rem; height: 2rem; color: var(--fg-muted); transition: color var(--dur-2) var(--ease-out); }
+  .header-socials a:hover { color: var(--fg-strong); }
 
   .site-nav ul { display: flex; gap: var(--s-6); }
   .site-nav a {
@@ -98,6 +116,8 @@ const path = Astro.url.pathname;
     color: var(--fg-muted); border-bottom: 1px solid var(--line);
   }
   .nav-menu__panel a[aria-current='page'] { color: var(--red); }
+  .nav-menu__panel .header-socials { display: flex; margin: var(--s-6) 0 0 -0.375rem; padding: 0; border: 0; }
+  .nav-menu__panel .header-socials a { display: grid; padding: 0; border: 0; width: 2.75rem; height: 2.75rem; }
   .nav-menu__foot { margin-block-start: var(--s-6); }
   @media (prefers-reduced-motion: no-preference) {
     .nav-menu[open] .nav-menu__panel li { animation: menu-in var(--dur-3) var(--ease-out) both; animation-delay: calc(var(--i) * 40ms); }
@@ -105,7 +125,7 @@ const path = Astro.url.pathname;
   }
   @media (max-width: 63.99em) { .site-nav ul { gap: var(--s-5); } }
   @media (max-width: 52em) {
-    .site-nav { display: none; }
+    .site-nav, .site-header__inner > .header-socials { display: none; }
     .nav-menu { display: block; }
   }
   @media (max-width: 26em) { .brand__name { font-size: 1.0625rem; } }

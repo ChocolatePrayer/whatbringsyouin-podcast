@@ -43,11 +43,11 @@ Delivered by students, for students, from within a McGill-affiliated organizatio
 
 ## Operating Context
 
-- **Pre-launch.** No episodes, no confirmed guests, no listener data yet.
+- **Launched 2026-11-11.** Episode 01 (the Dean, Dr. Lesley Fellows) is out; no listener data yet.
 - **Maintained by students**, likely non-developers, who will need to add episodes, team members, and events over time. Content workflow should be "add a file", not "edit code".
 - **Events** are the student organization's own: the chosen option described live recordings, speaker talks, and mixers as examples. Exact event types are not yet confirmed.
 - **Hosting:** GitHub Pages now; a cloud host is possible later.
-- **Podcast distribution platform** (Spotify, Apple Podcasts, YouTube, RSS host) is not yet chosen. Follow/subscribe links cannot be real until it is.
+- **Distribution:** RedCircle hosts the feed; the show is on Spotify, Apple Podcasts, Amazon Music and YouTube, with an Instagram account. The links live in `src/site.ts`.
 
 ## Capabilities and Constraints
 
@@ -65,7 +65,6 @@ Delivered by students, for students, from within a McGill-affiliated organizatio
 **Terminology:** episode, guest, host, team, events, the show. The name *What Brings You In* is the question a clinician asks at the start of a visit; treat that reference as part of the identity.
 
 **Explicitly undecided product facts (do not invent):**
-- Podcast distribution platform and RSS feed.
 - Whether episodes get transcripts and show notes.
 - Site language(s): English assumed; a French version for a Quebec-based organization is undecided.
 - Contact / join / guest-pitch mechanism.
